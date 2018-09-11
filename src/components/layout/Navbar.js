@@ -8,17 +8,49 @@ import AuthPage from './AuthPage'
 import { PrivateNavigation, PublicNavigation } from './Navigation'
 import Modal from 'react-responsive-modal';
 
+const style = {
+    loginIcon: {
+        fontSize: 35,
+        marginTop: -6,
+        color: '#082662'
+    }
+}
 
 class Home extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-
+            isLogged: false,
+            open: false,
         }
     }
 
+    componentWillMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
+
+        });
+    }
+
+    componentWillReceiveProps() {
+        firebase.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
+
+        })
+    }
+
+    onOpenModal = () => {
+        this.setState({ open: true });
+    };
+
+    onCloseModal = () => {
+        this.setState({ open: false });
+    };
+
+
     render() {
+        const { open } = this.state;
         return (
             <nav className="navbar navbar-expand-lg navbar-light navbar-custom fixed-top">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +66,48 @@ class Home extends Component {
                         <NavLink className="nav-item nav-link" to='/prices' activeClassName='activeNav'>Prices & conditions</NavLink>
                         <NavLink className="nav-item nav-link" to='/contact' activeClassName='activeNav'>Contact</NavLink>
                         <NavLink className="nav-item nav-link" to='/languages' activeClassName='activeNav'>FR</NavLink>
+
+                        {!this.state.isLogged ?
+
+                            <NavLink className="nav-item nav-link" to='/signin' activeClassName='activeNav' onClick={this.onOpenModal}>
+                                <i className="material-icons" style={style.loginIcon}> account_circle</i>
+                            </NavLink>
+                            : null
+                        }
+                        
+                        {this.state.isLogged ?
+                            <li className="nav-item dropdown pl-5">
+                                <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i className="material-icons" style={style.loginIcon}> account_circle</i>
+                                </a>
+                                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a className="dropdown-item" >Documentation</a>
+                                    <a className="dropdown-item" >Help center</a>
+
+                                    <div className="dropdown-divider"></div>
+                                    <a className="dropdown-item" href="" onClick={doSignOut}>Sign out</a>
+                                    <a className="dropdown-item" ><i className="fas fa-shopping-cart"></i></a>
+
+                                </div>
+                            </li> : null
+                        }
+
+
                     </ul>
+                    <Modal
+                            open={open}
+                            onClose={this.onCloseModal}
+                            center
+                            classNames={{
+                                transitionEnter: 'transition-enter',
+                                transitionEnterActive: 'transition-enter-active',
+                                transitionExit: 'transition-exit-active',
+                                transitionExitActive: 'transition-exit-active',
+                            }}
+                            animationDuration={1000}
+                        >
+                        <AuthPage />
+                        </Modal>
                 </div>
             </nav>
         )

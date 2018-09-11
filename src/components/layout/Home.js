@@ -36,7 +36,6 @@ class Home extends Component {
                     <p className="text-left " style={style.baseline}>Explore Our<br />
                         Curated Royalty-Free<br />
                         Music Library
-
                         </p>
                     <AutoSearch />
                 </div>
