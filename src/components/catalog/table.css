@@ -1,0 +1,60 @@
+.ReactTable .rt-table {
+    color: #fff;
+}
+
+.ReactTable .-pagination {
+    color:#fff;
+}
+.ReactTable .-pagination .-btn:not([disabled]):hover {
+    color:#dcad54;
+}
+
+.ReactTable .-pagination input, .ReactTable .-pagination select {
+    border: 1px solid rgba(0,0,0,0.1);
+    background: transparent;
+    padding: 5px 7px;
+    font-size: inherit;
+    border-radius: 3px;
+    font-weight: normal;
+    outline: none;
+}
+
+.ReactTable .rt-thead .rt-tr {
+    text-align: left !important;
+    border-bottom: solid 1px #828080;
+}
+
+.ReactTable .-pagination input, .ReactTable .-pagination select {
+    border: 1px solid #fff !important;
+    background: #fff !important;
+    padding: 5px 7px;
+    font-size: inherit;
+    border-radius: 3px;
+    font-weight: normal;
+    outline: none;
+    color: #000;
+}
+
+.ReactTable .rt-tbody {
+    -ms-flex: 99999 1 auto;
+    flex: 99999 1 auto;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    overflow: auto;
+    padding-top: 35px;
+    padding-bottom: 35px;
+}
+
+.ReactTable .rt-tr {
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    padding-bottom: 15px;
+}
+
+.rt-tr {
+    padding-top: 10px !important;
+}
