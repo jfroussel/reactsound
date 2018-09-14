@@ -14,7 +14,8 @@ const style = {
         marginTop: -6
     },
     navbar:{
-        borderBottom: '1px solid #0000001a'
+        borderBottom: '1px solid #0000001a',
+        backgroundColor: '#fff'
     }
 }
 

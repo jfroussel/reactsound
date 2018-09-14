@@ -38,10 +38,10 @@ const style = {
     iconBoxAction: {
         border: 'solid 2px #dfe1e5c2',
         textAlign: 'center',
-        paddingTop: 5,
+        paddingTop: 3,
         borderRadius: 50,
-        width: 40,
-        height: 40,
+        width: 30,
+        height: 30,
         cursor: 'pointer'
     },
     waveTools: {

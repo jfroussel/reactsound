@@ -192,7 +192,7 @@ class CatalogTable extends Component {
                                             </div>,
                                         style: {
                                             cursor: "pointer",
-                                            fontSize: 25,
+                                            fontSize: 15,
                                             padding: "0",
                                             textAlign: "center",
                                             userSelect: "none",
