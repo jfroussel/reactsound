@@ -42,6 +42,7 @@ class Home extends Component {
     }
 
     render() {
+        const { open } = this.state;
         return (
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={style.navbar}>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -106,6 +107,20 @@ class Home extends Component {
                             </span>
                         </div>
                     </ul>
+                    <Modal
+                            open={open}
+                            onClose={this.onCloseModal}
+                            center
+                            classNames={{
+                                transitionEnter: 'transition-enter',
+                                transitionEnterActive: 'transition-enter-active',
+                                transitionExit: 'transition-exit-active',
+                                transitionExitActive: 'transition-exit-active',
+                            }}
+                            animationDuration={1000}
+                        >
+                        <AuthPage />
+                        </Modal>
                 </div>
             </nav>
         )
