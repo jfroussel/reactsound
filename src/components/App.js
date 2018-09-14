@@ -9,10 +9,17 @@ import Contact from './layout/Contact'
 import Signin from './layout/AuthPage'
 import Navbar from './layout/Navbar'
 
+const style = {
+    container : {
+        paddingTop: '5rem'
+    }
+}
+
 const App = () => (
     <Router>
-        <div className="mt-5">
+        <div style={style.container}>
             <Navbar />
+            <Route exact path="/" component={Home} />
             <Route path='/home' component={Home} />
             <Route path='/catalog' component={Catalog} />
             <Route path='/features' component={Features} />
