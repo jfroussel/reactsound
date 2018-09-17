@@ -42,9 +42,9 @@ class Playlist extends Component {
                                             </p>
                                                 </div>
                                                 <div className="card-read-more">
-                                                    <a href="http://www.fostrap.com/2016/03/bootstrap-3-carousel-fade-effect.html" className="btn btn-link btn-block">
+                                                    <a href="" className="btn btn-link btn-block text-info">
                                                         Read More
-                                            </a>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
