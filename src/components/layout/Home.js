@@ -6,7 +6,7 @@ import Playlist from './Playlist'
 const style = {
     coverImage: {
         width: '100%',
-        minHeight: 1000,
+        minHeight: 500,
         margin: 0,
         padding: 0,
         background: 'url(' + CoverImage + ') no-repeat center fixed',
@@ -15,7 +15,7 @@ const style = {
     baseline: {
         color: '#FFF',
         fontSize: 60,
-        paddingTop: 150,
+        paddingTop: 100,
         fontWeight: '300',
     },
 
@@ -41,12 +41,9 @@ class Home extends Component {
                         </p>
                         <AutoSearch />
                     </div>
-
                 </section>
                 <Playlist />
-
             </div>
-
         )
     }
 }
