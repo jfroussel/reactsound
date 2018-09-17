@@ -49,22 +49,22 @@ class Composers extends Component {
                                                     <ul className="list-inline">
                                                         <li className="list-inline-item">
                                                             <a className="social-icon text-xs-center text-info" target="_blank" href="#">
-                                                                <i className="fa fa-facebook"></i>
+                                                                <i className="fab fa-facebook"></i>
                                                             </a>
                                                         </li>
                                                         <li className="list-inline-item">
                                                             <a className="social-icon text-xs-center text-info" target="_blank" href="#">
-                                                                <i className="fa fa-twitter"></i>
+                                                                <i className="fab fa-twitter"></i>
                                                             </a>
                                                         </li>
                                                         <li className="list-inline-item">
                                                             <a className="social-icon text-xs-center text-info" target="_blank" href="#">
-                                                                <i className="fa fa-skype"></i>
+                                                                <i className="fab fa-skype"></i>
                                                             </a>
                                                         </li>
                                                         <li className="list-inline-item">
                                                             <a className="social-icon text-xs-center text-info" target="_blank" href="#">
-                                                                <i className="fa fa-google"></i>
+                                                                <i className="fab fa-google"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
