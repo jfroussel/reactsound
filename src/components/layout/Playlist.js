@@ -27,7 +27,7 @@ class Playlist extends Component {
 
                                 {genres.map((genre, i) => {
                                     return (
-                                        <div className="col-xs-12 col-sm-3">
+                                        <div className="col-xs-12 col-sm-4">
                                             <div className="card-playlist" key={genre}>
                                                 <a className="img-card" href="">
                                                     <img src={'https://picsum.photos/200/300?image=2'+i} />

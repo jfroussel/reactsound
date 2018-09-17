@@ -44,11 +44,11 @@ const bpm = [
 ]
 */
 const bpm = [
-  {name:'Slow', value:'(0-50)'},
-  {name:'Slow medium', value:'(50-100)'},
-  {name:'Medium', value:'(100-150)'},
-  {name:'Medium hight', value:'(150-200)'},
-  {name:'Hight', value:'(200 +)'},
+  { name: 'Slow', value: '(0-50)' },
+  { name: 'Slow medium', value: '(50-100)' },
+  { name: 'Medium', value: '(100-150)' },
+  { name: 'Medium hight', value: '(150-200)' },
+  { name: 'Hight', value: '(200 +)' },
 ]
 
 const instruments = [
@@ -98,10 +98,60 @@ const instruments = [
   'Xylophone',
 ]
 
+const composers = [
+  'Jean Michel (A.del)',
+  'Ruskov',
+  'Mathieu',
+  'Pierre Marie',
+  'Elliot Dahan',
+  'Davy and Yoann',
+  'Mika P',
+  'Patrice Dangelo',
+  'Lionel',
+  'Fred Shumann',
+  'Thomas Z',
+  'Junior Lewis',
+  'Illias P',
+  'Leroy Q',
+  'Franck Luccini',
+  'Mike Buyens',
+  'Gilles P',
+  'Geoff',
+  'Rodolphe Andrieu',
+  'Thomas Nils',
+  'Harry',
+]
+
+const fakeComposers = [
+  "https://randomuser.me/api/portraits/women/48.jpg",
+  "https://randomuser.me/api/portraits/men/56.jpg",
+  "https://randomuser.me/api/portraits/women/23.jpg",
+  "https://randomuser.me/api/portraits/women/51.jpg",
+  "https://randomuser.me/api/portraits/men/74.jpg",
+  "https://randomuser.me/api/portraits/men/56.jpg",
+  "https://randomuser.me/api/portraits/men/34.jpg",
+  "https://randomuser.me/api/portraits/women/87.jpg",
+  "https://randomuser.me/api/portraits/women/76.jpg",
+  "https://randomuser.me/api/portraits/men/71.jpg",
+  "https://randomuser.me/api/portraits/women/30.jpg",
+  "https://randomuser.me/api/portraits/women/42.jpg",
+  "https://randomuser.me/api/portraits/women/19.jpg",
+  "https://randomuser.me/api/portraits/men/42.jpg",
+  "https://randomuser.me/api/portraits/women/63.jpg",
+  "https://randomuser.me/api/portraits/men/80.jpg",
+  "https://randomuser.me/api/portraits/women/23.jpg",
+  "https://randomuser.me/api/portraits/women/49.jpg",
+  "https://randomuser.me/api/portraits/men/67.jpg",
+  "https://randomuser.me/api/portraits/women/90.jpg",
+  "https://randomuser.me/api/portraits/women/29.jpg",
+]
+
 export {
-    genres,
-    moods,
-    artists,
-    instruments,
-    bpm,
+  genres,
+  moods,
+  artists,
+  instruments,
+  bpm,
+  composers,
+  fakeComposers,
 }
