@@ -33,7 +33,7 @@ class Contact extends Component {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <textarea className="form-control-custom mb-4" rows="3" placeholder="Your message ..."></textarea><br />
-                                        <button type="submit" className="btn btn-info btn-lg mb-4 font-weight-normal">Send Message</button>
+                                        <button type="submit" className="btn btn-primary btn-lg mb-4 font-weight-normal">Send Message</button>
                                     </div> 
                                 </div>
                             </form>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CoverImage from '../../assets/console.jpg'
 import AutoSearch from './Autosuggest'
 import Playlist from './Playlist'
+import Composers from './Composers'
 
 const style = {
     coverImage: {
@@ -43,6 +44,7 @@ class Home extends Component {
                     </div>
                 </section>
                 <Playlist />
+                <Composers />
             </div>
         )
     }
