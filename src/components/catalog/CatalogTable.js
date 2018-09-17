@@ -12,7 +12,8 @@ import "react-table/react-table.css"
 import Album from '../../assets/jacquette.jpg'
 import WaveSurfer from './WaveSurfer'
 import ReactTooltip from 'react-tooltip'
-import Modal from 'react-responsive-modal';
+import Modal from 'react-responsive-modal'
+import Auth from '../layout/AuthPage'
 
 class CatalogTable extends Component {
     constructor(props) {
@@ -30,7 +31,7 @@ class CatalogTable extends Component {
         if(!this.state.isLogged) {
             this.setState({ open: true });
         } else {
-            alert("go to function")
+            this.setState({ open: false });
         }
 
         
@@ -71,14 +72,17 @@ class CatalogTable extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
-
+       
     }
 
     componentDidUpdate() {
 
         const sounds = this.props.sounds
         this.filtered(sounds)
+        var user = firebase.auth().currentUser;
+        if(user) {
+            
+        }
 
     }
 
@@ -272,8 +276,7 @@ class CatalogTable extends Component {
                         }}
                         animationDuration={1000}
                     >
-                            <h2>to use this feature you must register </h2>
-                            <button className="btn btn-lg btn-warning">Register now</button>
+                            <Auth />
                     </Modal>
                 </div>
             );

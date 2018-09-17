@@ -37,7 +37,7 @@ class Auth extends React.Component {
         callbacks: {
             // Avoid redirects after sign-in.
             signInSuccessWithAuthResult: () => false
-          }
+        }
     };
 
     componentDidMount() {
@@ -53,12 +53,13 @@ class Auth extends React.Component {
     render() {
         if (!this.state.isSignedIn) {
             return (
-                <div className="row pt-1">
-                   
-                    <div className="col-12 text-center" style={style.connectContainer}>
-                        <h2 className="font-weight-light">Sign in or Sign up</h2>
-                        <p className="lead constrain-width mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At aliquam rhoncus donec magna turpis, dictum sit amet tellus at, commodo elementum sapien.</p>
-                        <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                <div className="container">
+                    <div className="row pt-1">
+                        <div className="col-12 text-center" style={style.connectContainer}>
+                            <h2 className="font-weight-light">Sign in or Sign up</h2>
+                            <p className="lead constrain-width mt-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. At aliquam rhoncus donec magna turpis, dictum sit amet tellus at, commodo elementum sapien.</p>
+                            <StyledFirebaseAuth uiConfig={this.uiConfig} firebaseAuth={firebase.auth()} />
+                        </div>
                     </div>
                 </div>
             );

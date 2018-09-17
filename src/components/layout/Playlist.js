@@ -30,7 +30,7 @@ class Playlist extends Component {
                                         <div className="col-xs-12 col-sm-4">
                                             <div className="card-playlist" key={genre}>
                                                 <a className="img-card" href="">
-                                                    <img src={'https://picsum.photos/200/300?image=2'+i} />
+                                                    <img src={'https://picsum.photos/200/300?image=2'+i} alt="" />
                                                 </a>
                                                 <div className="card-content">
                                                     <h4 className="card-title">

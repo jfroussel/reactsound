@@ -6,14 +6,13 @@ import 'firebase/auth'
 import { auth } from '../../firebase'
 import { doSignOut } from '../../firebase/auth'
 import AuthPage from './AuthPage'
-import { PrivateNavigation, PublicNavigation } from './Navigation'
 import Modal from 'react-responsive-modal';
 const style = {
     loginIcon: {
         fontSize: 35,
         marginTop: -6
     },
-    navbar:{
+    navbar: {
         borderBottom: '1px solid #0000001a',
         backgroundColor: '#fff'
     }
@@ -54,15 +53,11 @@ class Home extends Component {
                 </NavLink>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
                     <ul className="navbar-nav mx-auto">
-                        <NavLink className="nav-item nav-link" to='/catalog' activeClassName='activeNav'>Catalog</NavLink>
-                        <NavLink className="nav-item nav-link" to='/features' activeClassName='activeNav'>Features</NavLink>
-                        <NavLink className="nav-item nav-link" to='/prices' activeClassName='activeNav'>Prices & conditions</NavLink>
-                        <NavLink className="nav-item nav-link" to='/contact' activeClassName='activeNav'>Contact</NavLink>
-                        <NavLink className="nav-item nav-link" to='/languages' activeClassName='activeNav'>FR</NavLink>
-
-                        
-
-
+                        <NavLink className="nav-item nav-link text-uppercase" to='/catalog' activeClassName='activeNav'>Catalog</NavLink>
+                        <NavLink className="nav-item nav-link text-uppercase" to='/features' activeClassName='activeNav'>Features</NavLink>
+                        <NavLink className="nav-item nav-link text-uppercase" to='/prices' activeClassName='activeNav'>Prices & conditions</NavLink>
+                        <NavLink className="nav-item nav-link text-uppercase" to='/contact' activeClassName='activeNav'>Contact</NavLink>
+                        <NavLink className="nav-item nav-link text-uppercase" to='/languages' activeClassName='activeNav'>FR</NavLink>
                     </ul>
                 </div>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -109,19 +104,19 @@ class Home extends Component {
                         </div>
                     </ul>
                     <Modal
-                            open={open}
-                            onClose={this.onCloseModal}
-                            center
-                            classNames={{
-                                transitionEnter: 'transition-enter',
-                                transitionEnterActive: 'transition-enter-active',
-                                transitionExit: 'transition-exit-active',
-                                transitionExitActive: 'transition-exit-active',
-                            }}
-                            animationDuration={1000}
-                        >
+                        open={open}
+                        onClose={this.onCloseModal}
+                        center
+                        classNames={{
+                            transitionEnter: 'transition-enter',
+                            transitionEnterActive: 'transition-enter-active',
+                            transitionExit: 'transition-exit-active',
+                            transitionExitActive: 'transition-exit-active',
+                        }}
+                        animationDuration={1000}
+                    >
                         <AuthPage />
-                        </Modal>
+                    </Modal>
                 </div>
             </nav>
         )

@@ -31,11 +31,11 @@ class Composers extends Component {
                                             <div className="card">
                                                 <div className="card-body text-center pb-2">
 
-                                                    <p><img className="rounded-circle" src={fakeComposers[i]} /></p>
+                                                    <p><img className="rounded-circle" src={fakeComposers[i]} alt="" /></p>
 
                                                     <h5 className="card-title"><strong>{composer}</strong></h5>
                                                     <p className="card-text">This is basic user profile with image, title, detail and button.</p>
-                                                    <a href="#" className="btn btn-info btn-sm"><i className="fa fa-arrow-right"></i></a>
+                                                    <a href="" className="btn btn-info btn-sm"><i className="fa fa-arrow-right"></i></a>
                                                 </div>
                                             </div>
                                         </div>
@@ -48,22 +48,22 @@ class Composers extends Component {
                                 quis nostrud exercitation.</p>
                                                     <ul className="list-inline">
                                                         <li className="list-inline-item">
-                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="#">
+                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="">
                                                                 <i className="fab fa-facebook"></i>
                                                             </a>
                                                         </li>
                                                         <li className="list-inline-item">
-                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="#">
+                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="">
                                                                 <i className="fab fa-twitter"></i>
                                                             </a>
                                                         </li>
                                                         <li className="list-inline-item">
-                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="#">
+                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="">
                                                                 <i className="fab fa-skype"></i>
                                                             </a>
                                                         </li>
                                                         <li className="list-inline-item">
-                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="#">
+                                                            <a className="social-icon text-xs-center text-info" target="_blank" href="">
                                                                 <i className="fab fa-google"></i>
                                                             </a>
                                                         </li>
