@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CoverImage from '../../assets/console.jpg'
 import AutoSearch from './Autosuggest'
+import Playlist from './Playlist'
 
 const style = {
     coverImage: {
@@ -31,15 +32,21 @@ class Home extends Component {
 
     render() {
         return (
-            <section className="cover-container pb-5" style={style.coverImage}>
-                <div className="container">
-                    <p className="text-left " style={style.baseline}>Explore Our<br />
-                        Curated Royalty-Free<br />
-                        Music Library
+            <div>
+                <section className="cover-container pb-5" style={style.coverImage}>
+                    <div className="container">
+                        <p className="text-left " style={style.baseline}>Explore Our<br />
+                            Curated Royalty-Free<br />
+                            Music Library
                         </p>
-                    <AutoSearch />
-                </div>
-            </section>
+                        <AutoSearch />
+                    </div>
+
+                </section>
+                <Playlist />
+
+            </div>
+
         )
     }
 }
