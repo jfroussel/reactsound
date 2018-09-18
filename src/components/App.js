@@ -8,6 +8,7 @@ import Prices from './layout/Prices'
 import Contact from './layout/Contact'
 import Signin from './layout/AuthPage'
 import Navbar from './layout/Navbar'
+import Footer from './layout/Footer'
 
 const style = {
     container : {
@@ -26,6 +27,7 @@ const App = () => (
             <Route path='/prices' component={Prices} />
             <Route path='/contact' component={Contact} />
             <Route path='/signin' component={Signin} />
+            <Footer />
         </div>
     </Router>
 );

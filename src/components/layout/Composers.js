@@ -24,7 +24,7 @@ class Composers extends Component {
                 <div className="row mt-4">
                     {composers.map((composer, i) => {
                         return (
-                            <div className="col-xs-12 col-sm-6 col-md-3">
+                            <div className="col-xs-12 col-sm-6 col-md-3" key={ composer }>
                                 <div className="flip-div">
                                     <div className="flip-main">
                                         <div className="front">

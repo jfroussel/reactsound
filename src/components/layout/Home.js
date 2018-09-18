@@ -4,6 +4,7 @@ import AutoSearch from './Autosuggest'
 import Playlist from './Playlist'
 import Composers from './Composers'
 
+
 const style = {
     coverImage: {
         width: '100%',
@@ -45,6 +46,7 @@ class Home extends Component {
                 </section>
                 <Playlist />
                 <Composers />
+                
             </div>
         )
     }

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@livechat/ui-kit": "^0.2.11",
     "firebase": "^5.4.2",
     "react": "^16.5.0",
     "react-autosuggest": "^9.4.1",
