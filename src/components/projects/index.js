@@ -5,7 +5,7 @@ import AddProject from './addProject'
 class Project extends Component {
     render() {
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <h3>Projects dashboard</h3>
                 <div className="row">
                     <div className="col-8">

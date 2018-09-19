@@ -1,7 +1,8 @@
 import React from 'react';
 import ProjectForm from './projectForm';
 import { connect } from 'react-redux';
-import { addProject } from '../../actions/projects';
+import { addProject } from '../../actions/projects'
+
 
 const AddProject = (props) => (
     <div>

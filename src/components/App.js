@@ -10,6 +10,7 @@ import Signin from './layout/AuthPage'
 import Navbar from './layout/Navbar'
 import Footer from './layout/Footer'
 import Projects from './projects'
+import NotRegister from './Messages/NotRegister'
 
 const style = {
     container : {
@@ -29,6 +30,7 @@ const App = () => (
             <Route path='/contact' component={Contact} />
             <Route path='/signin' component={Signin} />
             <Route path='/projects' component={Projects} />
+            <Route path='/notRegister' component={NotRegister} />
             <Footer />
         </div>
     </Router>

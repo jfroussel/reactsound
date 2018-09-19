@@ -15,10 +15,9 @@ export const addProject = (projectData = {
     return (dispatch) => {
         const project = {
             title: projectData.title,
-            description: projectData.description,
-            
+            description: projectData.description,  
         };
-       console.log('CLG :',project)
+
         return firebase.database().ref('projects').push(project).then(ref => {
             dispatch(_addProject({
                 id: ref.key,
@@ -35,7 +34,7 @@ const _removeProject = ({ id } = {}) => ({
 
 export const removeProject = ({ id } = {}) => {
     return (dispatch) => {
-        return firebase.database.ref(`projects/${id}`).remove().then(() => {
+        return firebase.database().ref(`projects/${id}`).remove().then(() => {
             dispatch(_removeProject({ id }));
         })
     }
@@ -48,32 +47,16 @@ const _editProject = (id, updates) => ({
 });
 
 
-/*
-const _editFilename = (id, filename) => ({
-    type : 'EDIT_FILENAME',
-    id,
-    filename
-})
-
-export const editFilename = (id, filename) => {
-    console.log('id :',id)
-    return (dispatch) => {
-        return database.ref(`sounds/${id}`).update(filename).then(() => {
-            dispatch(_editFilename(id, filename));
-        });
-    }
-};
-*/
 
 export const editProject = (id, updates) => {
     console.log('id :',id)
     return (dispatch) => {
-        return firebase.database.ref(`projects/${id}`).update(updates).then(() => {
+        return firebase.database().ref(`projects/${id}`).update(updates).then(() => {
             dispatch(_editProject(id, updates));
         });
     }
 };
-/*
+
 const _getProjects = (projects) => ({
     type: 'GET_PROJECTS',
     projects
@@ -81,7 +64,7 @@ const _getProjects = (projects) => ({
 
 export const getProjects = () => {
     return (dispatch) => {
-        return firebase.database.ref('projects').once('value').then(snapshot => {
+        return firebase.database().ref('projects').once('value').then(snapshot => {
             const projects = [];
 
             snapshot.forEach(item => {
@@ -95,24 +78,3 @@ export const getProjects = () => {
         });
     };
 };
-*/
-
-export const GET_PROJECTS = 'GET_PROJECTS'
-
-export const getProjects = () => {
-    
-    return (dispatch) => {
-        return firebase.database().ref('projects').once('value').then(snapshot => {
-            const projects = [];
-
-            snapshot.forEach(item => {
-                projects.push({
-                    id: item.key,
-                    ...item.val()
-                });
-            });
-
-            dispatch({ type: GET_PROJECTS, payload: projects })
-        });
-    };
-}

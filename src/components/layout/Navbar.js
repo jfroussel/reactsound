@@ -6,6 +6,7 @@ import 'firebase/auth'
 import { auth } from '../../firebase'
 import { doSignOut } from '../../firebase/auth'
 
+
 const style = {
     loginIcon: {
         fontSize: 35,
@@ -31,14 +32,17 @@ class Home extends Component {
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-
+            if(user) {
+                console.log('reference user : ',user.uid)
+            }
+            
         });
     }
 
     componentWillReceiveProps() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-
+            console.log('reference user : ',user)
         })
     }
 
@@ -56,14 +60,15 @@ class Home extends Component {
                         <NavLink className="nav-item nav-link text-uppercase" to='/catalog' activeClassName='activeNav'>Catalog</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/features' activeClassName='activeNav'>Features</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/prices' activeClassName='activeNav'>Prices & conditions</NavLink>
-                        <NavLink className="nav-item nav-link text-uppercase" to='/contact' activeClassName='activeNav'>Contact</NavLink>
-                        <NavLink className="nav-item nav-link text-uppercase" to='/languages' activeClassName='activeNav'>FR</NavLink>
+
                         {this.state.isLogged ?
                             <NavLink className="nav-item nav-link text-uppercase" to='/projects' activeClassName='activeNav'>
                                 My projects
                             </NavLink>
-                            : null
+                            : <NavLink className="nav-item nav-link text-uppercase" to='/notRegister' activeClassName='activeNav'>My projects</NavLink>
                         }
+                        <NavLink className="nav-item nav-link text-uppercase" to='/contact' activeClassName='activeNav'>Contact</NavLink>
+                        <NavLink className="nav-item nav-link text-uppercase" to='/languages' activeClassName='activeNav'>FR</NavLink>
                     </ul>
                 </div>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -109,7 +114,7 @@ class Home extends Component {
                             </span>
                         </div>
                     </ul>
-                    
+
                 </div>
             </nav>
         )

@@ -7,31 +7,13 @@ export default class ProjectForm extends React.Component {
         this.onDescriptionChange = this.onDescriptionChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
         this.state = {
-            title: props.sound ? props.sound.title : '',
-            description: props.sound ? props.sound.description : '',
+            title: props.project ? props.project.title : '',
+            description: props.project ? props.project.description : '',
             error: ''
         };
     }
 
-    componentWillMount() {
-        console.log('component will mount : ', this)
-    }
 
-    componentWillUpdate() {
-        console.log('component will update : ', this.props)
-    }
-
-    componentDidMount() {
-        console.log('component did mount : ', this.props)
-    }
-
-    componentDidUpdate() {
-        console.log('component did update : ', this.props)
-    }
-
-    componentWillReceiveProps() {
-        console.log('component will receive props : ', this.props)
-    }
 
 
     onTitleChange(e) {
@@ -57,15 +39,23 @@ export default class ProjectForm extends React.Component {
                     description: this.state.description,
                 }
             );
+            this.setState({ title: '', description: '' })
         }
     }
 
     render() {
         return (
-            <div className="pt-5">
-                {this.state.error && <p className='error'>{this.state.error}</p>}
+            <div className="container pt-5">
+                {this.state.error &&
+                    <div className="alert alert-danger" role="alert">
+                        {this.state.error}
+                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group col-6">
+                    <div className="form-group">
                         <label>Titre</label>
                         <input
                             type="text"
@@ -78,7 +68,7 @@ export default class ProjectForm extends React.Component {
                             onChange={this.onTitleChange}
                         />
                     </div>
-                    <div className="form-group col-6">
+                    <div className="form-group">
                         <label>Description</label>
                         <textarea
                             className="form-control"
@@ -89,9 +79,9 @@ export default class ProjectForm extends React.Component {
                             onChange={this.onDescriptionChange}
                         ></textarea>
                     </div>
-                    <div className="row col-6">
-                        <button type="submit" className="btn btn-lg btn-primary">Add new project</button>
-                    </div>
+
+                    <button type="submit" className="btn btn-primary">Add new project</button>
+
                 </form>
             </div>
         );

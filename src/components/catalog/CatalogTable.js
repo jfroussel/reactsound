@@ -211,23 +211,42 @@ class CatalogTable extends Component {
                                     {
                                         Header: "Title",
                                         accessor: "title",
+                                        style: {
+                                            color: '#fff'
+                                        }
 
                                     },
                                     {
                                         Header: "Author",
                                         accessor: "author",
+                                        style: {
+                                            color: '#fff'
+                                        }
+
                                     },
                                     {
                                         Header: "Length",
                                         accessor: "lenght",
+                                        style: {
+                                            color: '#fff'
+                                        }
+
                                     },
                                     {
                                         Header: "BPM",
                                         accessor: "bpm",
+                                        style: {
+                                            color: '#fff'
+                                        }
+
                                     },
                                     {
                                         Header: "Tone",
                                         accessor: "tone.label",
+                                        style: {
+                                            color: '#fff'
+                                        }
+
                                     },
                                     {
                                         Header: "Loops",
@@ -235,6 +254,7 @@ class CatalogTable extends Component {
                                         style: {
                                             cursor: "pointer",
                                             textAlign: "left",
+                                            color: '#fff'
                                         },
                                     },
                                     {
