@@ -23,8 +23,6 @@ class Playlist extends Component {
                     <div className="content">
                         <div className="container pt-5">
                             <div className="row">
-
-
                                 {genres.map((genre, i) => {
                                     return (
                                         <div className="col-xs-12 col-sm-4" key={genre}>
@@ -49,9 +47,7 @@ class Playlist extends Component {
                                             </div>
                                         </div>
                                     )
-
                                 })}
-
                             </div>
                         </div>
                     </div>

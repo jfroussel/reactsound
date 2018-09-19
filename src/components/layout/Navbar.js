@@ -58,6 +58,12 @@ class Home extends Component {
                         <NavLink className="nav-item nav-link text-uppercase" to='/prices' activeClassName='activeNav'>Prices & conditions</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/contact' activeClassName='activeNav'>Contact</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/languages' activeClassName='activeNav'>FR</NavLink>
+                        {this.state.isLogged ?
+                            <NavLink className="nav-item nav-link text-uppercase" to='/projects' activeClassName='activeNav'>
+                                My projects
+                            </NavLink>
+                            : null
+                        }
                     </ul>
                 </div>
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
