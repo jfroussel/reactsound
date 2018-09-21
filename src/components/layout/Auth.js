@@ -35,10 +35,23 @@ class Auth extends React.Component {
 
         ],
         callbacks: {
-            // Avoid redirects after sign-in.
-            signInSuccessWithAuthResult: () => false
+            
+            signInSuccessWithAuthResult: (e) => {
+                this.createMember(e.user.uid, e.user.email, e.user.displayName)
+               
+            }
+           
         }
     };
+
+    createMember(uid,email,displayName) {
+        const member = {
+            uid: uid,
+            email: email,
+            displayName: displayName
+        }
+        return  firebase.database().ref('members').push(member)
+    }
 
     componentDidMount() {
         this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(
