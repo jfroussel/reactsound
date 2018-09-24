@@ -37,6 +37,7 @@ class Auth extends React.Component {
         callbacks: {
             
             signInSuccessWithAuthResult: (e) => {
+                console.log('REGISTER : ',e)
                 this.createMember(e.user.uid, e.user.email, e.user.displayName)
                
             }
@@ -50,7 +51,7 @@ class Auth extends React.Component {
             email: email,
             displayName: displayName
         }
-        return  firebase.database().ref('members').push(member)
+        return  firebase.database().ref('members').child(member.uid).set(member)
     }
 
     componentDidMount() {
