@@ -38,10 +38,15 @@ class Auth extends React.Component {
             
             signInSuccessWithAuthResult: (e) => {
                 console.log('REGISTER : ',e)
-                this.createMember(e.user.uid, e.user.email, e.user.displayName)
+                this.createMember(e.user.uid, e.user.email, e.user.displayName).then(() => {
+                    this.createMemberPlaylist(e.user.uid).then(() => {
+                        this.createMemberCart(e.user.uid).then(() => {
+                            this.createMemberProject(e.user.uid)
+                        })
+                    })
+                })
                
             }
-           
         }
     };
 
@@ -52,6 +57,27 @@ class Auth extends React.Component {
             displayName: displayName
         }
         return  firebase.database().ref('members').child(member.uid).set(member)
+    }
+
+    createMemberPlaylist(uid) {
+        const playlist = {
+            name: 'Default'
+        }
+        return firebase.database().ref('members/' + uid + '/playlists').set(playlist)
+    }
+
+    createMemberCart(uid) {
+        const cart = {
+            name: 'Default'
+        }
+        return firebase.database().ref('members/' + uid + '/carts').set(cart)
+    }
+
+    createMemberProject(uid) {
+        const project = {
+            name: 'Default'
+        }
+        return firebase.database().ref('members/' + uid + '/projects').set(project)
     }
 
     componentDidMount() {
