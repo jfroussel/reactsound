@@ -1,12 +1,19 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
+import 'firebase/auth'
+
+
+
 
 const _addProject = (project) => ({
     type: 'ADD_PROJECT',
-    project
+    project,
 });
 
-export const addProject = (projectData = {
+
+
+
+export const addProject = (uid,projectData = {
     title: '',
     description: '',
     
@@ -17,11 +24,12 @@ export const addProject = (projectData = {
             title: projectData.title,
             description: projectData.description,  
         };
-
-        return firebase.database().ref('projects').push(project).then(ref => {
+       
+        return firebase.database().ref('members/' + uid + '/projects').push(project).then(ref => {
             dispatch(_addProject({
                 id: ref.key,
                 ...project
+                
             }));
         });
     };
@@ -60,11 +68,14 @@ export const editProject = (id, updates) => {
 const _getProjects = (projects) => ({
     type: 'GET_PROJECTS',
     projects
+    
 });
+
+const uid = '4VTsqVnIZxVaj3t2Tr068ZW4YNm1'
 
 export const getProjects = () => {
     return (dispatch) => {
-        return firebase.database().ref('projects').once('value').then(snapshot => {
+        return firebase.database().ref('members/' + uid + '/projects').once('value').then(snapshot => {
             const projects = [];
 
             snapshot.forEach(item => {

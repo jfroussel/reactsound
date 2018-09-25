@@ -35,47 +35,53 @@ class Auth extends React.Component {
 
         ],
         callbacks: {
-            
+
             signInSuccessWithAuthResult: (e) => {
-                console.log('REGISTER : ',e)
-                this.createMember(e.user.uid, e.user.email, e.user.displayName).then(() => {
-                    this.createMemberPlaylist(e.user.uid).then(() => {
-                        this.createMemberCart(e.user.uid).then(() => {
-                            this.createMemberProject(e.user.uid)
+                
+                console.log('ignInSuccessWithAuthResult : ',e)
+                if(e.additionalUserInfo.isNewUser){
+                    this.createMember(e.user.uid, e.user.email, e.user.displayName).then(() => {
+                        this.createMemberPlaylist(e.user.uid).then(() => {
+                            this.createMemberCart(e.user.uid).then(() => {
+                                this.createMemberProject(e.user.uid)
+                            })
                         })
                     })
-                })
-               
+                }
+                    
+                
+
             }
         }
     };
 
-    createMember(uid,email,displayName) {
+    createMember(uid, email, displayName) {
         const member = {
             uid: uid,
             email: email,
             displayName: displayName
         }
-        return  firebase.database().ref('members').child(member.uid).set(member)
+        return firebase.database().ref('members').child(member.uid).set(member)
     }
 
     createMemberPlaylist(uid) {
         const playlist = {
-            name: 'Default'
+
         }
+
         return firebase.database().ref('members/' + uid + '/playlists').set(playlist)
     }
 
     createMemberCart(uid) {
         const cart = {
-            name: 'Default'
+
         }
         return firebase.database().ref('members/' + uid + '/carts').set(cart)
     }
 
     createMemberProject(uid) {
         const project = {
-            name: 'Default'
+
         }
         return firebase.database().ref('members/' + uid + '/projects').set(project)
     }

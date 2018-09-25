@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-
 import firebase from 'firebase/app'
 import 'firebase/database'
+import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getProjects } from '../../actions/projects'
@@ -11,13 +11,9 @@ import "react-table/react-table.css"
 import { confirmAlert } from 'react-confirm-alert'
 import 'react-confirm-alert/src/react-confirm-alert.css'
 
+
 const style = {
-    subComponent: {
-        border: 'solid 1px #6c757d',
-        padding: '10px 10px',
-        fontWeight: '200',
-        color: '#000'
-    },
+
     header: {
         textAlign: 'left',
         color: '#000',
@@ -25,31 +21,29 @@ const style = {
     }
 }
 
+
+
 class ProjectsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
 
         };
-
-
     }
 
 
     componentWillMount() {
-        this.props.getProjects()
-    }
 
-    componentWillUpdate() {
-        this.props.getProjects()
+        //this.props.getProjects(uid)
+
     }
 
 
 
     render() {
-
+        console.log('THIS PROPS //// : ', this.props)
         const { projects } = this.props
-
+        
         const remove = (id, title) => {
             confirmAlert({
                 customUI: ({ onClose }) => {
@@ -67,31 +61,8 @@ class ProjectsList extends Component {
                     )
                 }
             })
+        }
 
-
-            /*
-            confirmAlert({
-                title: 'Suppression du projet ' + title,
-                message: 'Etes vous certain de vouloir supprimer définitivement ce projet ?',
-                buttons: [
-                    {
-                        label: 'Oui',
-                        onClick: () => {
-                            firebase.database().ref('projects').child(id).remove().then(() => {
-                                window.location.reload()
-                            })
-        
-                        }
-                    },
-                    {
-                        label: 'Non',
-                        onClick: () => console.log('la suppression a été annulée !')
-                    }
-                ],
-                
-            })
-            */
-        };
         return (
             <div className="pt-5">
                 <div>
@@ -148,11 +119,6 @@ class ProjectsList extends Component {
 }
 
 
-
-
-
-
-
 const mapStateToProps = (state) => {
     return {
         projects: state.projects
@@ -160,6 +126,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
+    
     return bindActionCreators({ getProjects }, dispatch)
 }
 
