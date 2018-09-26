@@ -27,23 +27,34 @@ class ProjectsList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            isLogged: false,
+            uid: null,
+            countProjects: ''
         };
     }
 
 
     componentWillMount() {
-
-        //this.props.getProjects(uid)
-
+        firebase.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
+            if (user) {
+                this.setState({ uid: user.uid })
+                this.props.getProjects(this.state.uid)
+            }
+        });
     }
+
+
+
+
 
 
 
     render() {
         console.log('THIS PROPS //// : ', this.props)
         const { projects } = this.props
-        
+        let countProjects = projects.length
+
         const remove = (id, title) => {
             confirmAlert({
                 customUI: ({ onClose }) => {
@@ -53,7 +64,8 @@ class ProjectsList extends Component {
                             <p>You want to delete {title} project?</p>
                             <button className="btn btn-default" onClick={onClose}>No</button>
                             <button className="btn btn-warning" onClick={() => {
-                                firebase.database().ref('projects').child(id).remove().then(() => {
+                                firebase.database().ref('members/' + this.state.uid + '/projects').child(id).remove().then(() => {
+                                    countProjects = countProjects -1
                                     onClose()
                                 })
                             }}>Yes, Delete it!</button>
@@ -65,6 +77,9 @@ class ProjectsList extends Component {
 
         return (
             <div className="pt-5">
+                <h4>you have {countProjects} active projects</h4>
+                <br />
+
                 <div>
                     <ReactTable
                         data={projects}
@@ -126,7 +141,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    
+
     return bindActionCreators({ getProjects }, dispatch)
 }
 

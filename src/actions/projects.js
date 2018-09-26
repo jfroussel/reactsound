@@ -54,8 +54,6 @@ const _editProject = (id, updates) => ({
     updates
 });
 
-
-
 export const editProject = (id, updates) => {
     console.log('id :',id)
     return (dispatch) => {
@@ -65,15 +63,13 @@ export const editProject = (id, updates) => {
     }
 };
 
-const _getProjects = (projects) => ({
+const _getProjects = (uid,projects) => ({
     type: 'GET_PROJECTS',
     projects
     
 });
 
-const uid = '4VTsqVnIZxVaj3t2Tr068ZW4YNm1'
-
-export const getProjects = () => {
+export const getProjects = (uid) => {
     return (dispatch) => {
         return firebase.database().ref('members/' + uid + '/projects').once('value').then(snapshot => {
             const projects = [];
@@ -85,7 +81,7 @@ export const getProjects = () => {
                 });
             });
 
-            dispatch(_getProjects(projects));
+            dispatch(_getProjects(uid,projects));
         });
     };
 };

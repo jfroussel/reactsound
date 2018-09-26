@@ -46,6 +46,8 @@ export default class ProjectForm extends React.Component {
     render() {
         return (
             <div className="container pt-5">
+                <h4>Create a new project</h4>
+                <br />
                 {this.state.error &&
                     <div className="alert alert-danger" role="alert">
                         {this.state.error}
