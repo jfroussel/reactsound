@@ -39,10 +39,15 @@ const _removeProject = ({ id } = {}) => ({
     type: 'REMOVE_PROJECT',
     id
 });
-
-export const removeProject = ({ id } = {}) => {
+/*
+firebase.database().ref('members/' + this.state.uid + '/projects').child(id).remove().then(() => {
+    countProjects = countProjects -1
+    onClose()
+})
+*/
+export const removeProject = ({ uid,id } = {}) => {
     return (dispatch) => {
-        return firebase.database().ref(`projects/${id}`).remove().then(() => {
+        return firebase.database().ref(`members/${uid}/projects/${id}`).remove().then(() => {
             dispatch(_removeProject({ id }));
         })
     }

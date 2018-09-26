@@ -4,7 +4,7 @@ import 'firebase/database'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProjects } from '../../actions/projects'
+import { getProjects, removeProject } from '../../actions/projects'
 import { Link } from 'react-router-dom';
 import ReactTable from "react-table"
 import "react-table/react-table.css"
@@ -42,6 +42,8 @@ class ProjectsList extends Component {
                 this.props.getProjects(this.state.uid)
             }
         });
+
+       
     }
 
 
@@ -54,6 +56,8 @@ class ProjectsList extends Component {
         console.log('THIS PROPS //// : ', this.props)
         const { projects } = this.props
         let countProjects = projects.length
+
+        
 
         const remove = (id, title) => {
             confirmAlert({
@@ -68,6 +72,7 @@ class ProjectsList extends Component {
                                     countProjects = countProjects -1
                                     onClose()
                                 })
+                                
                             }}>Yes, Delete it!</button>
                         </div>
                     )
@@ -109,7 +114,7 @@ class ProjectsList extends Component {
                                     {
 
                                         id: 'edit',
-                                        Cell: (({ original }) => <Link to={`/sound/${original.id}`} className="btn btn-primary">Edit</Link>),
+                                        Cell: (({ original }) => <Link to={`/project/${original.id}`} className="btn btn-primary">Edit</Link>),
 
                                     },
                                     {
@@ -142,7 +147,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 
-    return bindActionCreators({ getProjects }, dispatch)
+    return bindActionCreators({ getProjects, removeProject }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectsList);
