@@ -4,6 +4,7 @@ import StorageTrack from './reducer-storage-track'
 import Filters from './reducer-filters'
 import ProjectsReducer from './reducer-projects'
 import ProjectsFilters from './reducer-projects-filter'
+import PlaylistReducer from './reducer-playlists'
 
 
 export default combineReducers({
@@ -12,4 +13,5 @@ export default combineReducers({
   filters: Filters,
   projectsFilters: ProjectsFilters,
   projects: ProjectsReducer,
+  playlists: PlaylistReducer,
 })

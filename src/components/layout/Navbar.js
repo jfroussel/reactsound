@@ -67,6 +67,12 @@ class Home extends Component {
                             </NavLink>
                             : <NavLink className="nav-item nav-link text-uppercase" to='/notRegister' activeClassName='activeNav'>My projects</NavLink>
                         }
+                        {this.state.isLogged ?
+                            <NavLink className="nav-item nav-link text-uppercase" to='/playlists' activeClassName='activeNav'>
+                                My playlists
+                            </NavLink>
+                            : <NavLink className="nav-item nav-link text-uppercase" to='/notRegister' activeClassName='activeNav'>My playlists</NavLink>
+                        }
                         <NavLink className="nav-item nav-link text-uppercase" to='/contact' activeClassName='activeNav'>Contact</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/languages' activeClassName='activeNav'>FR</NavLink>
                     </ul>

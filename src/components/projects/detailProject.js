@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
+import VideoPlayer from './videoPlayer'
+import ProjectPlaylist from './projectPlaylist'
+
 
 class DetailProject extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            projectID:''
+            projectID: ''
         }
     }
 
 
 
     componentWillMount() {
-      this.setState({projectID:this.props.match.params})
+        this.setState({ projectID: this.props.match.params })
     }
 
 
@@ -23,17 +26,22 @@ class DetailProject extends Component {
 
         console.log(pid.id)
         return (
-          
-                
-                    <div className="container">
-                        <div className="row contact-details">
-                            <div className="col-sm-8 m-auto text-center">
-                                <h2 className="font-weight-light">Detail project {pid.id}</h2>
-                            </div>
-                        </div>
+
+            <div className="container-fluid pt-5">
+                <div className="row">
+                    <div className="col-sm-12">
+                        <h4 className="font-weight-light">Detail project {pid.id}</h4>
                     </div>
-               
-            
+                </div>
+                <div className="row">
+                    <VideoPlayer />
+                    <div className="col-sm-8">
+                        <ProjectPlaylist />
+                    </div>
+                </div>
+            </div>
+
+
 
         );
     }

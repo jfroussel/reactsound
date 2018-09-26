@@ -10,6 +10,8 @@ import Signin from './layout/AuthPage'
 import Navbar from './layout/Navbar'
 import Footer from './layout/Footer'
 import Projects from './projects'
+import Playlists from './playlist'
+import PlaylistDetail from './playlist/detailPlaylist'
 import ProjectDetail from './projects/detailProject'
 import NotRegister from './Messages/NotRegister'
 
@@ -32,6 +34,8 @@ const App = () => (
             <Route path='/signin' component={Signin} />
             <Route path='/projects' component={Projects} />
             <Route path='/project/:id' component={ProjectDetail} />
+            <Route path='/playlists' component={Playlists} />
+            <Route path='/playlist/:id' component={PlaylistDetail} />
             <Route path='/notRegister' component={NotRegister} />
             <Footer />
         </div>
