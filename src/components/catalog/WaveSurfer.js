@@ -1,25 +1,40 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getPlaylists } from '../../actions/playlist'
+import firebase from 'firebase/app'
+import 'firebase/database'
+import 'firebase/auth'
 import WaveSurfer from 'wavesurfer.js'
-//import TimelinePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js';
-//import MinimapPlugin from 'wavesurfer.js/dist/plugin/wavesurfer.minimap.min.js';
-//import RegionsPlugin from 'wavesurfer.js/src/plugin/regions.js'
-//import CursorPlugin from 'wavesurfer.js/src/plugin/cursor.js'
 import drums from '../../assets/instruments/drums.svg'
 import fullmix from '../../assets/instruments/fullmix.svg'
 import bass from '../../assets/instruments/bass.svg'
-
 import ReactTooltip from 'react-tooltip'
 import style from './WaveSurferStyle'
 
-export default class Waveform extends Component {
+class Waveform extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            activePlay: false
+            activePlay: false,
+            isLogged: false,
+            uid: null,
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
+
+    }
+
+
+    componentWillMount() {
+        firebase.auth().onAuthStateChanged((user) => {
+            user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
+            if (user) {
+                this.setState({ uid: user.uid })
+                this.props.getPlaylists(this.state.uid)
+            }
+        });
     }
 
     componentDidMount() {
@@ -50,7 +65,8 @@ export default class Waveform extends Component {
     }
 
     render() {
-
+        const { playlists } = this.props
+        console.log(playlists)
         return (
             <div className='container waveform'>
                 <div className="row">
@@ -74,31 +90,39 @@ export default class Waveform extends Component {
 
                     <div className="col-1" style={style.iconBox}>
                         <div className="dropup" data-tip="Stems">
-                            <a className="btn btn-default dropdown-toggle dropdown-reactsound" href="" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a className="btn btn-default dropdown-toggle dropdown-reactsound" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="material-icons " style={style.stems} >
                                     list
                                 </i>
                             </a>
-                            
+
                             <div className="dropdown-menu" >
-                                <a className="dropdown-item" href=""><img className="mr-2" src={fullmix} width="25" alt=""/> full mix</a>
-                                <a className="dropdown-item" href=""><img className="mr-2" src={drums} width="25" alt=""/> drums stem </a>
-                                <a className="dropdown-item" href=""><img className="mr-2" src={bass} width="25" alt=""/> bass stem</a>
+                                <a className="dropdown-item" href=""><img className="mr-2" src={fullmix} width="25" alt="" /> full mix</a>
+                                <a className="dropdown-item" href=""><img className="mr-2" src={drums} width="25" alt="" /> drums stem </a>
+                                <a className="dropdown-item" href=""><img className="mr-2" src={bass} width="25" alt="" /> bass stem</a>
                             </div>
                         </div>
                     </div>
                     <div className="col-1" style={style.iconBox}>
-                        <div className="dropup" data-tip="Stems">
-                            <a className="btn btn-default dropdown-toggle dropdown-reactsound" href="" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div className="dropup" data-tip="Add to playlists">
+                            <a className="btn btn-default dropdown-toggle dropdown-reactsound" href="" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="material-icons " style={style.stems} >
-                                playlist_add
+                                    playlist_add
                                 </i>
                             </a>
-                            
+
                             <div className="dropdown-menu" >
-                                <a className="dropdown-item" href=""> playlist 1</a>
-                                <a className="dropdown-item" href=""> playlist 2 </a>
-                                <a className="dropdown-item" href=""> playlist 3</a>
+                                <div className="text-center">
+                                    <a className="btn btn-sm btn-primary" href="">Add new playlist</a>
+                                    <div className="dropdown-divider"></div>
+                                </div>
+
+                                {playlists.map((item, id) => {
+                                    return (
+                                        <a className="dropdown-item" href="" key={item.id}>{id} - {item.title}</a>
+                                    )
+                                })}
+
                             </div>
                         </div>
                     </div>
@@ -135,3 +159,15 @@ export default class Waveform extends Component {
 Waveform.defaultProps = {
     src: ""
 }
+
+const mapStateToProps = (state) => {
+    return {
+        playlists: state.playlists
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getPlaylists }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Waveform);

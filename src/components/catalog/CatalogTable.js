@@ -144,7 +144,7 @@ class CatalogTable extends Component {
                         <div style={style.iconBoxAction} className="ml-2" data-tip="Download this track" onClick={this.onOpenModal}>
                             <i className="fas fa-download" style={style.iconAction} ></i>
                         </div>
-                        <div style={style.iconBoxAction} className="ml-2" data-tip="Add to favorites" onClick={this.onOpenModal}>
+                        <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" onClick={this.onOpenModal}>
                             <i className="fas fa-music" style={style.iconAction} ></i>
                         </div>
                     </div>

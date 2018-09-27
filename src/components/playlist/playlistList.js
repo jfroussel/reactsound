@@ -55,8 +55,8 @@ class PlaylistList extends Component {
     render() {
         console.log('THIS PROPS //// : ', this.props)
         const { playlists } = this.props
-        //let countPlaylists = playlists.length ? playlists.length : 0
-        let countPlaylists = 5
+        let countPlaylists = playlists.length ? playlists.length : 0
+        
         
 
         const remove = (id, title) => {
