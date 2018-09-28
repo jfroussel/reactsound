@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import PlaylistList from './playlistList'
-import AddPlaylist from './addPlaylist'
+import ProjectList from '../components/projects/projectList'
+import AddProject from '../components/projects/addProject'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
 
 
 
-class Playlist extends Component {
+class Project extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,13 +29,13 @@ class Playlist extends Component {
         const uid = this.state.uid
         return (
             <div className="container-fluid">
-                <h3>Playlist dashboard</h3>
+                <h3>Projects dashboard</h3>
                 <div className="row">
                     <div className="col-8">
-                        <PlaylistList uid={uid} />
+                        <ProjectList uid={uid} />
                     </div>
                     <div className="col-4">
-                        <AddPlaylist uid={uid} />
+                        <AddProject uid={uid} />
                     </div>
                 </div>
             </div>
@@ -43,4 +43,4 @@ class Playlist extends Component {
     }
 }
 
-export default Playlist;
+export default Project;

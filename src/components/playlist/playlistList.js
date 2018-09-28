@@ -21,8 +21,6 @@ const style = {
     }
 }
 
-
-
 class PlaylistList extends Component {
     constructor(props) {
         super(props);
@@ -33,7 +31,6 @@ class PlaylistList extends Component {
         };
     }
 
-
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
@@ -42,23 +39,15 @@ class PlaylistList extends Component {
                 this.props.getPlaylists(this.state.uid)
             }
         });
-
-       
+        console.log(this.props)
     }
-
-
-
-
-
-
 
     render() {
         console.log('THIS PROPS //// : ', this.props)
         const { playlists } = this.props
+        
         let countPlaylists = playlists.length ? playlists.length : 0
         
-        
-
         const remove = (id, title) => {
             confirmAlert({
                 customUI: ({ onClose }) => {

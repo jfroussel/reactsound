@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import ProjectList from './projectList'
-import AddProject from './addProject'
+import PlaylistList from '../components/playlist/playlistList'
+import AddPlaylist from '../components/playlist/addPlaylist'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getPlaylists, removePlaylist } from '../actions/playlist'
 
 
 
 
-class Project extends Component {
+class Playlist extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -23,19 +26,21 @@ class Project extends Component {
             }
             
         });
+        this.props.getPlaylists(this.state.uid)
     }
     
     render() {
+        const { playlists } = this.props
         const uid = this.state.uid
         return (
             <div className="container-fluid">
-                <h3>Projects dashboard</h3>
+                <h3>Playlist dashboard</h3>
                 <div className="row">
                     <div className="col-8">
-                        <ProjectList uid={uid} />
+                        <PlaylistList uid={uid} test={playlists} />
                     </div>
                     <div className="col-4">
-                        <AddProject uid={uid} />
+                        <AddPlaylist uid={uid} />
                     </div>
                 </div>
             </div>
@@ -43,4 +48,15 @@ class Project extends Component {
     }
 }
 
-export default Project;
+const mapStateToProps = (state) => {
+    return {
+        playlists: state.playlists
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+
+    return bindActionCreators({ getPlaylists, removePlaylist }, dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Playlist)

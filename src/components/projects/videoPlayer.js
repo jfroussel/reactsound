@@ -14,11 +14,11 @@ class VideoPlayer extends Component {
                 <div className="row">
                     <form>
                         <div className="form-group">
-                            <label for="projectVideo">Upload your video</label>
+                            <label htmlFor="projectVideo">Upload your video</label>
                             <input type="file" className="form-control-file" id="projectVideo" />
                         </div>
                         <div className="form-group">
-                            <label for="projectYoutube">Or paste your youtube link</label>
+                            <label htmlFor="projectYoutube">Or paste your youtube link</label>
                             <input type="text" className="form-control-file" id="projectYoutube" />
                         </div>
 
