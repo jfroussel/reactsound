@@ -32,10 +32,6 @@ class Home extends Component {
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-            if(user) {
-                console.log('reference user : ',user.uid)
-            }
-            
         });
     }
 

@@ -1,12 +1,11 @@
 import React, { Component } from "react"
 import './table.css'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getStorageTrack } from '../../actions/storageTrack'
 import firebase from 'firebase';
 import 'firebase/auth'
 import style from './CatalogTableStyle'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { getSounds } from '../../actions/sounds'
-import { getStorageTrack } from '../../actions/storageTrack'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
 import Album from '../../assets/jacquette.jpg'
@@ -28,62 +27,64 @@ class CatalogTable extends Component {
     }
 
     onOpenModal = () => {
-        if(!this.state.isLogged) {
+        if (!this.state.isLogged) {
             this.setState({ open: true });
         } else {
             this.setState({ open: false });
         }
-
-        
     };
 
     onCloseModal = () => {
         this.setState({ open: false });
     };
 
-    getFilterSelect(data) {
+    
+    getFilterSelect(sound) {
         return (
-            data[0].value
+            sound[0].value
         )
     }
 
 
     filtered(sounds) {
+
         return (
-            sounds.filter(sound =>
-                this.getFilterSelect(sound.genres) === this.props.filters.genres.toString() ||
-                this.getFilterSelect(sound.moods) === this.props.filters.moods.toString() ||
-                this.getFilterSelect(sound.instruments) === this.props.filters.instruments.toString()
+            sounds.filter((sound,i) =>
+               
+                
+                  this.getFilterSelect(sound.genres) === this.props.filters.genres.toString() ||
+                  this.getFilterSelect(sound.moods) === this.props.filters.moods.toString() ||
+                  this.getFilterSelect(sound.instruments) === this.props.filters.instruments.toString()
+                  
             )
         )
     }
 
     componentWillMount() {
-        this.props.getSounds()
+
         var user = firebase.auth().currentUser;
 
         if (user) {
             this.setState({ isLogged: true })
-            console.log('USER IS LOGGED')
+
         } else {
             this.setState({ isLogged: false })
-            console.log('USER IS NOT LOGGED')
+
         }
     }
 
     componentWillReceiveProps(nextProps) {
-       
+
     }
 
     componentDidUpdate() {
 
-        const sounds = this.props.sounds
-        this.filtered(sounds)
+        //const sounds = this.props.sounds
+        this.filtered(this.props.sounds)
         var user = firebase.auth().currentUser;
-        if(user) {
-            
-        }
+        if (user) {
 
+        }
     }
 
     getTags(tags, i) {
@@ -99,11 +100,8 @@ class CatalogTable extends Component {
         }
     }
 
-
-
-
     render() {
-        console.log('IS LOGGED : ',this.state.isLogged)
+        console.log('PROPS : ', this.props)
         const { open } = this.state;
         const { sounds, storageTrack } = this.props
         const filteredSounds = this.filtered(sounds).length ? this.filtered(sounds) : sounds
@@ -283,7 +281,7 @@ class CatalogTable extends Component {
                         showPaginationBottom
                     />
                     <br />
-                   
+
                     <Modal
                         open={open}
                         onClose={this.onCloseModal}
@@ -296,7 +294,7 @@ class CatalogTable extends Component {
                         }}
                         animationDuration={1000}
                     >
-                            <Auth />
+                        <Auth />
                     </Modal>
                 </div>
             );
@@ -306,17 +304,16 @@ class CatalogTable extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        sounds: state.sounds,
         storageTrack: state.storageTrack,
-        filters: state.filters
+        
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getSounds, getStorageTrack }, dispatch)
+    return bindActionCreators({ getStorageTrack }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CatalogTable);
+export default connect(mapStateToProps, mapDispatchToProps)(CatalogTable)
 
 
 

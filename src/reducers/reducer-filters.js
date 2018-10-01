@@ -1,9 +1,9 @@
 const filtersReducerDefaultState = {
-    genres: [],
-    moods: [],
+    genres: '',
+    moods: '',
     artists: [],
     instruments: [],
-    bpm: [],
+    bpm: '',
     length: '',
 
 };
@@ -13,7 +13,7 @@ export default (state = filtersReducerDefaultState, action) => {
         case 'FILTER_GENRES':
             return {
                 ...state,
-                genres: [...state.genres, action.genres]
+                genres: action.genres
             }
 
         case 'REMOVE_FILTER_GENRES':
@@ -25,7 +25,7 @@ export default (state = filtersReducerDefaultState, action) => {
         case 'FILTER_MOODS':
             return {
                 ...state,
-                moods: [...state.moods, action.moods]
+                moods: action.moods
             }
 
         case 'REMOVE_FILTER_MOODS':
@@ -63,7 +63,7 @@ export default (state = filtersReducerDefaultState, action) => {
         case 'FILTER_BPM':
             return {
                 ...state,
-                bpm: [...state.bpm, action.bpm]
+                bpm: action.bpm
             }
 
         case 'REMOVE_FILTER_BPM':

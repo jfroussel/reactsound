@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import {
   filterGenres,
   removeFilterGenres,
-  filterArtists,
-  removeFilterArtists,
-  filterInstruments,
-  removeFilterInstruments,
-  filterMoods,
-  removeFilterMoods,
   filterBpm,
   removeFilterBpm,
-} from '../../actions/filters';
+  filterArtists,
+  removeFilterArtists,
+  filterMoods,
+  removeFilterMoods,
+  filterInstruments,
+  removeFilterInstruments
+} from '../actions/filters'
 import style from './CatalogSidebarStyle'
-import { genres, moods, artists, instruments, bpm } from './CatalogConstants'
+import { genres, moods, artists, instruments, bpm } from '../components/catalog/CatalogConstants'
 
 class CatalogSidebar extends Component {
 
@@ -24,20 +24,21 @@ class CatalogSidebar extends Component {
       checked: false
     }
   }
-/*
-  onMouseOver() {
-    //this.setState({ mouseOverSidebar: true })
-    return (
-      console.log('on mouse over')
-    )
-  }
-*/
+  /*
+    onMouseOver() {
+      //this.setState({ mouseOverSidebar: true })
+      return (
+        console.log('on mouse over')
+      )
+    }
+  */
 
   handleChange = name => event => {
     this.setState({ checked: event.target.checked });
   }
 
   render() {
+   
     const { filters } = this.props
 
     return (
@@ -53,10 +54,10 @@ class CatalogSidebar extends Component {
                   data-target="#collapseOne"
                   aria-expanded="true"
                   aria-controls="collapseOne"
-                  //onMouseOver={this.onMouseOver}
+                //onMouseOver={this.onMouseOver}
                 >
 
-                  GENRES <span className="badge badge-pill badge-custom ml-3">{filters.genres.length}</span>
+                  GENRES <span className="badge badge-pill badge-custom ml-3">{filters.genres}</span>
 
                 </button>
               </h5>
@@ -64,18 +65,20 @@ class CatalogSidebar extends Component {
             </div>
             <div id="collapseOne" className="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div className="card-body">
-                {genres.map((genre, i) => {
+              {genres.map((genre, i) => {
                   return (
                     <div className="form-check" key={genre}>
 
                       <input
-                        type="checkbox"
+                        type="radio"
                         value={genre}
+                        name="genre"
                         className="form-check-input"
                         id={genre}
                         onChange={(e) => {
-                         
+
                           if (e.target.checked) {
+                            
                             this.props.dispatch(filterGenres(e.target.value));
                           } else {
                             this.props.dispatch(removeFilterGenres(e.target.value))
@@ -103,7 +106,7 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
-                  MOODS <span className="badge badge-pill badge-custom ml-3">{filters.moods.length}</span>
+                  MOODS <span className="badge badge-pill badge-custom ml-3">{ filters.moods }</span>
                 </button>
               </h5>
             </div>
@@ -113,7 +116,8 @@ class CatalogSidebar extends Component {
                   return (
                     <div className="form-check" key={mood}>
                       <input
-                        type="checkbox"
+                        type="radio"
+                        name="moods"
                         className="form-check-input"
                         value={mood}
                         id={mood}
@@ -143,7 +147,7 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  BPM <span className="badge badge-pill badge-custom ml-3">{filters.bpm.length}</span>
+                  BPM <span className="badge badge-pill badge-custom ml-3">{ filters.bpm }</span>
                 </button>
               </h5>
             </div>
@@ -154,7 +158,8 @@ class CatalogSidebar extends Component {
                   return (
                     <div className="form-check" key={el.name}>
                       <input
-                        type="checkbox"
+                        type="radio"
+                        name="bpm"
                         className="form-check-input"
                         value={el.name}
                         id={el.name}
@@ -204,7 +209,7 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  ARTISTS <span className="badge badge-pill badge-custom ml-3">{filters.artists.length}</span>
+                  ARTISTS <span className="badge badge-pill badge-custom ml-3"></span>
                 </button>
               </h5>
             </div>
@@ -244,7 +249,7 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  INSTRUMENTS <span className="badge badge-pill badge-custom ml-3">{filters.instruments.length}</span>
+                  INSTRUMENTS <span className="badge badge-pill badge-custom ml-3"></span>
                 </button>
               </h5>
             </div>
@@ -285,4 +290,8 @@ const mapStateToProps = (state) => {
   }
 }
 
+
+
 export default connect(mapStateToProps)(CatalogSidebar)
+
+

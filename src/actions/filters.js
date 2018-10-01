@@ -1,9 +1,9 @@
-export const filterGenres = (genres = []) => ({
+export const filterGenres = (genres = null) => ({
     type: 'FILTER_GENRES',
     genres
 });
 
-export const removeFilterGenres = (genres = []) => ({
+export const removeFilterGenres = (genres = null) => ({
     type: 'REMOVE_FILTER_GENRES',
     genres
 });
