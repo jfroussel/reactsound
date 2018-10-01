@@ -45,10 +45,10 @@ class CatalogSidebar extends Component {
                   aria-controls="collapseOne"
                 //onMouseOver={this.onMouseOver}
                 >
-
-
-                  GENRES <span className="badge badge-pill badge-custom ml-3"></span>
-
+                 
+                 
+                  GENRES <span className="badge badge-pill badge-custom ml-3">{filters.genres}</span>
+                  
                 </button>
               </h5>
 
@@ -57,16 +57,28 @@ class CatalogSidebar extends Component {
               <div className="card-body">
                 {genres.map((genre, i) => {
                   return (
-                    <a
-                      key={genre}
-                      className="badge badge-pill badge-custom-sidebar ml-2 mt-2"
-                      onClick={(e) => {
-                          this.props.dispatch(filterGenres(e.target.text))
-                      }}
-                    >{genre}</a>
+                    <div className="form-check" key={genre}>
+                      <input
+                        type="radio"
+                        value={genre}
+                        name="genre"
+                        className="form-check-input"
+                        id={genre}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            this.props.dispatch(filterGenres(e.target.value));
+                          } else {
+                            this.props.dispatch(removeFilterGenres(e.target.value))
+                          }
+                        }}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="exampleCheck1"
+                      >{genre}</label>
+                    </div>
                   )
                 })}
-                
               </div>
             </div>
           </div>
@@ -81,24 +93,33 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseTwo"
                 >
-                  MOODS <span className="badge badge-pill badge-custom ml-3"></span>
+                  MOODS <span className="badge badge-pill badge-custom ml-3">{filters.moods}</span>
                 </button>
               </h5>
             </div>
             <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
               <div className="card-body">
-              {moods.map((mood, i) => {
+                {moods.map((mood, i) => {
                   return (
-                    <a
-                      key={mood}
-                      className="badge badge-pill badge-custom-sidebar ml-2 mt-2"
-                      onClick={(e) => {
-                          this.props.dispatch(filterMoods(e.target.text))
-                      }}
-                    >{mood}</a>
+                    <div className="form-check" key={mood}>
+                      <input
+                        type="radio"
+                        name="moods"
+                        className="form-check-input"
+                        value={mood}
+                        id={mood}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            this.props.dispatch(filterMoods(e.target.value));
+                          } else {
+                            this.props.dispatch(removeFilterMoods(e.target.value))
+                          }
+                        }}
+                      />
+                      <label className="form-check-label" htmlFor="exampleCheck1">{mood}</label>
+                    </div>
                   )
                 })}
-                
               </div>
             </div>
           </div>
@@ -113,24 +134,33 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  BPM <span className="badge badge-pill badge-custom ml-3"></span>
+                  BPM <span className="badge badge-pill badge-custom ml-3">{filters.bpm}</span>
                 </button>
               </h5>
             </div>
             <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
               <div className="card-body">
-              {bpm.map((el, i) => {
+                {bpm.map((el, i) => {
                   return (
-                    <a
-                      key={el.name}
-                      className="badge badge-pill badge-custom-sidebar ml-2 mt-2"
-                      onClick={(e) => {
-                          this.props.dispatch(filterMoods(e.target.text))
-                      }}
-                    >{el.name}</a>
+                    <div className="form-check" key={el.name}>
+                      <input
+                        type="radio"
+                        name="bpm"
+                        className="form-check-input"
+                        value={el.name}
+                        id={el.name}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            this.props.dispatch(filterBpm(e.target.value));
+                          } else {
+                            this.props.dispatch(removeFilterBpm(e.target.value))
+                          }
+                        }}
+                      />
+                      <label className="form-check-label" htmlFor="exampleCheck1">{el.name}  {el.value}</label>
+                    </div>
                   )
                 })}
-                
               </div>
             </div>
           </div>
@@ -187,7 +217,7 @@ class CatalogSidebar extends Component {
                           }
                         }}
                       />
-                      <label className="form-check-label" htmlFor="exampleCheck1"></label>
+                      <label className="form-check-label" htmlFor="exampleCheck1">{artist}</label>
                     </div>
                   )
                 })}
@@ -211,18 +241,26 @@ class CatalogSidebar extends Component {
             </div>
             <div id="collapseSix" className="collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
               <div className="card-body">
-              {instruments.map((instrument, i) => {
+                {instruments.map((instrument, i) => {
                   return (
-                    <a
-                      key={instrument}
-                      className="badge badge-pill badge-custom-sidebar ml-2 mt-2"
-                      onClick={(e) => {
-                          this.props.dispatch(filterInstruments(e.target.text))
-                      }}
-                    >{instrument}</a>
+                    <div className="form-check has-warning" key={instrument}>
+                      <input
+                        type="checkbox"
+                        className="form-check-input"
+                        id={instrument}
+                        value={instrument}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            this.props.dispatch(filterInstruments(e.target.value))
+                          } else {
+                            this.props.dispatch(removeFilterInstruments(e.target.value))
+                          }
+                        }}
+                      />
+                      <label className="form-check-label" htmlFor="exampleCheck1">{instrument}</label>
+                    </div>
                   )
                 })}
-                
               </div>
             </div>
           </div>

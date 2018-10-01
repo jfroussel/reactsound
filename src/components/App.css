@@ -643,7 +643,27 @@ li.nav-item .btn-white {
 
 .badge-custom {
   color: #212529;
-  background-color: #17a2b8;
+  background-color: #17ddfc;
+  cursor: pointer;
+  
+}
+.badge-custom-sidebar:hover{
+  color: #17ddfc!important ;
+  background-color: transparent;
+  border: 2px solid #17ddfc;
+  cursor: pointer;
+  text-decoration: none ;
+  opacity: 0.8;
+  transition: 0.4s;
+}
+
+
+.badge-custom-sidebar {
+  color: #ffffffba !important;
+  font-size: 12px;
+  font-weight: 400;
+  background-color: transparent;
+  border: 2px solid #c7c7c74f;
 }
 
 .transition-enter {
