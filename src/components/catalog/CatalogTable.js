@@ -102,9 +102,10 @@ class CatalogTable extends Component {
     }
 
     render() {
-        console.log('PROPS : ', this.props)
+        
         const { open } = this.state;
         const { sounds, storageTrack } = this.props
+        
         const filteredSounds = this.filtered(sounds).length ? this.filtered(sounds) : sounds
         const onRowClick = (state, rowInfo, column, instance) => {
 
@@ -153,6 +154,7 @@ class CatalogTable extends Component {
         }
 
         const SubComponent = (props) => {
+            
             const author = props.author
             const filename = props.filename
             const genres = props.genres
@@ -160,6 +162,9 @@ class CatalogTable extends Component {
             const instruments = props.instruments
             const defaultTrack = '../data/audioDefault.mpeg'
             const id = props.id
+            const trackID = this.props.sounds[id].id
+            const trackName = this.props.sounds[id].title
+            
 
             return (
                 <div className="row" style={style.subComponent}>
@@ -168,10 +173,10 @@ class CatalogTable extends Component {
                     </div>
                     <div className="col-10 pt-3" >
                         <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} <br /><span>By Author : {author ? author : 'author not found !'}</span> </div>
-                        <div className="pb-3">Genres : {this.getTags(genres) ? this.getTags(genres) : ''} </div>
-                        <div className="pb-3">Moods : {this.getTags(moods) ? this.getTags(moods) : ''}</div>
-                        <div className="pb-3">Instruments : {this.getTags(instruments) ? this.getTags(instruments) : ''}</div>
-                        <div className='parent-component' style={style.wave}><WaveSurfer src={!storageTrack ? defaultTrack : storageTrack} /></div>
+                        <div className="pb-1">Genres : {this.getTags(genres) ? this.getTags(genres) : ''} </div>
+                        <div className="pb-1">Moods : {this.getTags(moods) ? this.getTags(moods) : ''}</div>
+                        <div className="pb-1">Instruments : {this.getTags(instruments) ? this.getTags(instruments) : ''}</div>
+                        <div className='parent-component' style={style.wave}><WaveSurfer src={!storageTrack ? defaultTrack : storageTrack} trackID={trackID} trackName={trackName} /></div>
                     </div>
                 </div>
             )

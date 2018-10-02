@@ -33,7 +33,7 @@ class Catalog extends Component {
 
   render() {
     const { sounds, storageTrack, filters } = this.props
-  
+    
     return (
         <section className="features-1">
           <div className="container-fluid container-catalog">

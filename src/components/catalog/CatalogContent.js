@@ -14,7 +14,7 @@ class CatalogContent extends Component {
   }
   render() {
     const { filters, sounds } = this.props
-    //const intruments = filters.instruments
+    
 
 
     return (
