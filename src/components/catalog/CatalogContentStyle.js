@@ -4,6 +4,9 @@ const style = {
     },
     title: {
         color: '#6c6d6f'
+    },
+    search: {
+        fontSize: '0.8rem'
     }
 }
 

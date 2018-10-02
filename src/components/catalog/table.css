@@ -21,8 +21,12 @@
 
 .ReactTable .rt-thead .rt-tr {
     text-align: left !important;
+    text-transform: uppercase;
     border-bottom: solid 1px #828080;
+    color: rgb(23, 162, 184);
+
 }
+
 
 .ReactTable .-pagination input, .ReactTable .-pagination select {
     border: 1px solid #fff !important;

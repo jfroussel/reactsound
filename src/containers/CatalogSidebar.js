@@ -125,7 +125,7 @@ class CatalogSidebar extends Component {
                       key={el.name}
                       className="badge badge-pill badge-custom-sidebar ml-2 mt-2"
                       onClick={(e) => {
-                          this.props.dispatch(filterMoods(e.target.text))
+                          this.props.dispatch(filterBpm(e.target.text))
                       }}
                     >{el.name}</a>
                   )

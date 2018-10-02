@@ -9,21 +9,30 @@ class CatalogContent extends Component {
     this.state = {}
   }
 
+  componentWillUpdate() {
+    console.log('CWM ' ,this.props)
+  }
   render() {
     const { filters, sounds } = this.props
-    const searchRequestItems = () => {
-      if (filters) {
-        return (
-          filters.genres + '  ' + filters.moods + ' ' + filters.bpm + ' ' + filters.instruments + ' ' + filters.artists
-        )
-      }
-    }
+    //const intruments = filters.instruments
+
 
     return (
-      <div>
+      <div className="container-fluid">
         <h3 style={style.title}>Most Popular Royalty Free Music</h3>
-        <em><h5 style={style.count}>{sounds.length} tracks found</h5></em>
-        <em><h6 style={style.count}>search request : {searchRequestItems()}  </h6></em>
+        
+        <div className="row ml-0">
+          <em><h6 className="text-muted" style={style.search}> search request :</h6></em>
+          <span className="badge badge-pill badge-custom-sidebar  ml-3">{filters.genres}</span>
+          <span className="badge badge-pill badge-custom-sidebar ml-3">{filters.moods}</span>
+          <span className="badge badge-pill badge-custom-sidebar ml-3">{filters.bpm}</span>
+          <span className="badge badge-pill badge-custom-sidebar ml-3">
+            {
+              filters.instruments
+            }
+          </span>
+        </div>
+
         <CatalogTable sounds={sounds} filters={filters} />
       </div>
     )

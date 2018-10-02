@@ -49,7 +49,7 @@ export default (state = filtersReducerDefaultState, action) => {
         case 'FILTER_INSTRUMENTS':
             return {
                 ...state,
-                instruments: [...state.instruments, action.instruments]
+                instruments: [...state.instruments, action.instruments + ' / ']
             }
 
         case 'REMOVE_FILTER_INSTRUMENTS':

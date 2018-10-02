@@ -14,6 +14,7 @@ import ReactTooltip from 'react-tooltip'
 import Modal from 'react-responsive-modal'
 import Auth from '../layout/AuthPage'
 
+
 class CatalogTable extends Component {
     constructor(props) {
         super(props);
@@ -93,7 +94,7 @@ class CatalogTable extends Component {
             return (
                 tags.map((tag, i) => {
                     return (
-                        <span className="ml-2 pl-2 pt-1 pb-1 pr-2" key={i} style={style.tags}>{tag.value}</span>
+                        <span className="badge badge-pill badge-custom-sidebar ml-2 mt-2" key={i}>{tag.value}</span>
                     )
                 })
             )
@@ -158,14 +159,15 @@ class CatalogTable extends Component {
             const moods = props.moods
             const instruments = props.instruments
             const defaultTrack = '../data/audioDefault.mpeg'
+            const id = props.id
 
             return (
                 <div className="row" style={style.subComponent}>
                     <div className="col-2 pt-3">
-                        <img src={Album} alt="album" width="200px" />
+                        <img src={'https://picsum.photos/200/300?image=2'+id} alt="album" style={style.subComponentImg} />
                     </div>
                     <div className="col-10 pt-3" >
-                        <div className="pb-3">Audio filename : {filename ? filename : 'track not found !'} <br /><span>By Author : {author ? author : 'author not found !'}</span> </div>
+                        <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} <br /><span>By Author : {author ? author : 'author not found !'}</span> </div>
                         <div className="pb-3">Genres : {this.getTags(genres) ? this.getTags(genres) : ''} </div>
                         <div className="pb-3">Moods : {this.getTags(moods) ? this.getTags(moods) : ''}</div>
                         <div className="pb-3">Instruments : {this.getTags(instruments) ? this.getTags(instruments) : ''}</div>
@@ -182,6 +184,7 @@ class CatalogTable extends Component {
                         data={filteredSounds}
                         columns={[
                             {
+                               
                                 columns: [
                                     {
                                         expander: true,
@@ -204,6 +207,7 @@ class CatalogTable extends Component {
                                 ]
                             },
                             {
+                                Header: `${filteredSounds.length} tracks found`,
                                 columns: [
 
                                     {

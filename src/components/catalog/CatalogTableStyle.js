@@ -6,6 +6,10 @@ const style = {
         color: '#FFF',
 
     },
+    subComponentImg: {
+        width: 220,
+        height: 220
+    },
     table: {
         color: '#FFF',
     },
