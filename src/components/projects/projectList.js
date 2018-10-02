@@ -114,7 +114,7 @@ class ProjectsList extends Component {
                                     {
 
                                         id: 'edit',
-                                        Cell: (({ original }) => <Link to={`/project/${original.id}`} className="btn btn-primary">Edit</Link>),
+                                        Cell: (({ original }) => <Link to={`/projects/${original.id}`} className="btn btn-primary">Edit</Link>),
 
                                     },
                                     {

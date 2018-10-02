@@ -8,7 +8,7 @@ import { addPlaylist } from '../../actions/playlist'
 class AddPlaylist extends Component {
 
     render() {
-        console.log('USERID')
+       
         return (
             <div>
                 

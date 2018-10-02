@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getPlaylists, removePlaylist } from '../../actions/playlist'
 import { Link } from 'react-router-dom';
 import ReactTable from "react-table"
 import "react-table/react-table.css"
@@ -33,13 +36,14 @@ class PlaylistList extends Component {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
             if (user) {
                 this.setState({ uid: user.uid })
-
+                this.props.getPlaylists(this.state.uid)
             }
         });
+        
     }
 
     render() {
-       console.log('PLAYLISTLIST PROPS ', this.props)
+       
         const { playlists } = this.props
         
         let countPlaylists = playlists.length ? playlists.length : 0
@@ -67,7 +71,7 @@ class PlaylistList extends Component {
 
         return (
             <div className="pt-5">
-                <h4>playlist dashboard</h4>
+                <h4>you have {countPlaylists} active playlists</h4>
                 <br />
 
                 <div>
@@ -76,7 +80,7 @@ class PlaylistList extends Component {
                         columns={[
 
                             {
-                                Header: `you have ${playlists.length} playlists`,
+
                                 columns: [
 
                                     {
@@ -99,7 +103,7 @@ class PlaylistList extends Component {
                                     {
 
                                         id: 'edit',
-                                        Cell: (({ original }) => <Link to={`/playlists/${original.id}`} className="btn btn-primary" >Edit</Link>),
+                                        Cell: (({ original }) => <Link to={`/playlists/${original.id}`} className="btn btn-primary">Edit</Link>),
 
                                     },
                                     {
@@ -124,6 +128,15 @@ class PlaylistList extends Component {
 }
 
 
+const mapStateToProps = (state) => {
+    return {
+        playlists: state.playlists
+    };
+}
 
+const mapDispatchToProps = (dispatch) => {
 
-export default PlaylistList
+    return bindActionCreators({ getPlaylists, removePlaylist }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaylistList);

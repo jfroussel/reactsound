@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import {
   filterGenres,
-  removeFilterGenres,
   filterBpm,
-  removeFilterBpm,
   filterArtists,
   removeFilterArtists,
   filterMoods,
-  removeFilterMoods,
   filterInstruments,
-  removeFilterInstruments
 } from '../actions/filters'
 import style from './CatalogSidebarStyle'
 import { genres, moods, artists, instruments, bpm } from '../components/catalog/CatalogConstants'
@@ -29,7 +25,6 @@ class CatalogSidebar extends Component {
   }
 
   render() {
-    const { filters } = this.props
     return (
       <div style={style.containerSidebar}>
         <div className="accordion" id="catalog-sidebar">

@@ -11,7 +11,7 @@ import Navbar from './layout/Navbar'
 import Footer from './layout/Footer'
 import Projects from '../containers/Project'
 import Playlist from '../containers/Playlist'
-import PlaylistDetail from './playlist/detailPlaylist'
+import PlaylistDetail from '../containers/detailPlaylist'
 import ProjectDetail from './projects/detailProject'
 import NotRegister from './Messages/NotRegister'
 
@@ -26,16 +26,16 @@ const App = () => (
         <div style={style.container}>
             <Navbar />
             <Route exact path="/" component={Home} />
-            <Route path='/home' component={Home} />
-            <Route path='/catalog' component={Catalog} />
-            <Route path='/features' component={Features} />
-            <Route path='/prices' component={Prices} />
-            <Route path='/contact' component={Contact} />
-            <Route path='/signin' component={Signin} />
-            <Route path='/projects' component={Projects} />
-            <Route path='/project/:id' component={ProjectDetail} />
-            <Route path='/playlists' component={Playlist} />
-            <Route path='/playlist/:id' component={PlaylistDetail} />
+            <Route exact path='/home' component={Home} />
+            <Route exact path='/catalog' component={Catalog} />
+            <Route exact path='/features' component={Features} />
+            <Route exact path='/prices' component={Prices} />
+            <Route exact path='/contact' component={Contact} />
+            <Route exact path='/signin' component={Signin} />
+            <Route exact path='/projects' component={Projects} />
+            <Route exact path='/projects/:id' component={ProjectDetail} />
+            <Route exact path='/playlists' component={Playlist} />
+            <Route exact path='/playlists/:id' component={PlaylistDetail} />
             <Route path='/notRegister' component={NotRegister} />
             <Footer />
         </div>

@@ -8,7 +8,6 @@ import 'firebase/auth'
 import style from './CatalogTableStyle'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
-import Album from '../../assets/jacquette.jpg'
 import WaveSurfer from './WaveSurfer'
 import ReactTooltip from 'react-tooltip'
 import Modal from 'react-responsive-modal'

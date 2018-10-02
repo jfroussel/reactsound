@@ -23,10 +23,10 @@ class Playlist extends Component {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
             if(user) {
                 this.setState({uid:user.uid})
+                this.props.getPlaylists(this.state.uid)
             }
-            
         });
-        this.props.getPlaylists(this.state.uid)
+        
     }
     
     render() {
@@ -34,10 +34,9 @@ class Playlist extends Component {
         const uid = this.state.uid
         return (
             <div className="container-fluid">
-                <h3>Playlist dashboard</h3>
                 <div className="row">
                     <div className="col-8">
-                        <PlaylistList uid={uid} test={playlists} />
+                        <PlaylistList uid={uid} playlists={playlists} />
                     </div>
                     <div className="col-4">
                         <AddPlaylist uid={uid} />

@@ -12,8 +12,6 @@ import fullmix from '../../assets/instruments/fullmix.svg'
 import bass from '../../assets/instruments/bass.svg'
 import ReactTooltip from 'react-tooltip'
 import style from './WaveSurferStyle'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class Waveform extends Component {
     constructor(props) {
@@ -66,9 +64,9 @@ class Waveform extends Component {
         )
     }
 
-    addToPlaylist(item, trackID, trackName) {
-        const playlistTitle = item.title
-        const playlistID = item.id
+    addToPlaylist(playlist, trackID, trackName) {
+        const playlistTitle = playlist.title
+        const playlistID = playlist.id
         return (
             alert(`le morceau ${trackName} ref: ${trackID} a bien été ajouté à la playlist ${playlistTitle} avec pour clef ref : ${playlistID}`)
         )
@@ -128,9 +126,9 @@ class Waveform extends Component {
                                     <div className="dropdown-divider"></div>
                                 </div>
 
-                                {playlists.map((item, id) => {
+                                {playlists.map((playlist, id) => {
                                     return (
-                                        <a className="dropdown-item" href="#" onClick={() => this.addToPlaylist(item, this.props.trackID, this.props.trackName)} key={item.id}>{id} - {item.title}</a>
+                                        <a className="dropdown-item" href="" onClick={() => this.addToPlaylist(playlist, this.props.trackID, this.props.trackName)} key={playlist.id}>{id} - {playlist.title}</a>
                                     )
                                 })}
 

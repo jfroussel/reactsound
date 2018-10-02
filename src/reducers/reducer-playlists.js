@@ -22,6 +22,8 @@ export default (state = playlistsReducerDefaultState, action) => {
             });
         case 'GET_PLAYLISTS':
             return action.playlists;
+        case 'GET_LIST' :
+            return action.list  
         default:
             return state;
     }
