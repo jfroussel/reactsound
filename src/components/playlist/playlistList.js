@@ -67,9 +67,6 @@ class PlaylistList extends Component {
 
         return (
             <div className="pt-5">
-                <h4>playlist dashboard</h4>
-                <br />
-
                 <div>
                     <ReactTable
                         data={playlists}
@@ -107,8 +104,10 @@ class PlaylistList extends Component {
                                         id: 'delete',
                                         Cell: (({ original }) => <button onClick={() => remove(original.id, original.title)}>Delete</button>),
                                     },
-                                ]
-                            },
+
+                                ],
+                                
+                            }
                         ]}
                         defaultPageSize={10}
                         headerStyle={style.header}

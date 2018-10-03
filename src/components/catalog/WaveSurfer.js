@@ -12,6 +12,7 @@ import fullmix from '../../assets/instruments/fullmix.svg'
 import bass from '../../assets/instruments/bass.svg'
 import ReactTooltip from 'react-tooltip'
 import style from './WaveSurferStyle'
+import AddPlaylist from '../playlist/addPlaylist'
 
 class Waveform extends Component {
     constructor(props) {
@@ -63,6 +64,9 @@ class Waveform extends Component {
             this.wavesurfer.pause()
         )
     }
+    addNewPlaylist() {
+
+    }
 
     addToPlaylist(playlist, trackID, trackName) {
         const playlistTitle = playlist.title
@@ -71,6 +75,7 @@ class Waveform extends Component {
             alert(`le morceau ${trackName} ref: ${trackID} a bien été ajouté à la playlist ${playlistTitle} avec pour clef ref : ${playlistID}`)
         )
     }
+
 
 
     render() {
@@ -122,7 +127,7 @@ class Waveform extends Component {
 
                             <div className="dropdown-menu" >
                                 <div className="text-center">
-                                    <a className="btn btn-sm btn-primary" href="">Add new playlist</a>
+                                    <a className="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#addNewPlaylist">Add new playlist</a>
                                     <div className="dropdown-divider"></div>
                                 </div>
 
@@ -132,6 +137,21 @@ class Waveform extends Component {
                                     )
                                 })}
 
+                            </div>
+                        </div>
+                        <div className="modal fade" id="addNewPlaylist" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title text-muted" id="exampleModalLabel">Add new playlist</h5>
+                                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div className="modal-body">
+                                        <AddPlaylist uid={this.state.uid} />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

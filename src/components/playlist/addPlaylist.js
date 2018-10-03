@@ -14,7 +14,6 @@ class AddPlaylist extends Component {
                 
                 <PlaylistForm
                     onSubmitPlaylist={(playlist) => {
-                        console.log('PROPS / : ', this.props)
                         this.props.dispatch(addPlaylist(this.props.uid, playlist));
                         //props.history.push('/');
                     }}

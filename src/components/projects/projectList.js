@@ -82,16 +82,13 @@ class ProjectsList extends Component {
 
         return (
             <div className="pt-5">
-                <h4>you have {countProjects} active projects</h4>
-                <br />
-
                 <div>
                     <ReactTable
                         data={projects}
                         columns={[
 
                             {
-
+                                Header: `you have ${projects.length} projects`,
                                 columns: [
 
                                     {

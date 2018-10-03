@@ -37,7 +37,7 @@ class DetailPlaylist extends Component {
 
     render() {
 
-        const pid = this.state.playlistID
+      
         const { list } = this.props
         console.log('PLAYLIST DETAIL PROPS ', list)
         return (
@@ -48,7 +48,7 @@ class DetailPlaylist extends Component {
                         <h4 className="font-weight-light">Detail playlist  </h4>
                     </div>
                     <div className="col-sm-12">
-                       
+                      
                     </div>
                 </div>
             </div>

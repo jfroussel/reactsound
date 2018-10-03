@@ -25,7 +25,9 @@ export default class ProjectForm extends React.Component {
         const description = e.target.value
         this.setState(() => ({ description: description }))
     }
-
+    closeModal() {
+        document.getElementById("addNewProject").click();
+    }
     onSubmit(e) {
         e.preventDefault()
 
@@ -40,14 +42,14 @@ export default class ProjectForm extends React.Component {
                 }
             );
             this.setState({ title: '', description: '' })
+            this.closeModal()
         }
     }
 
     render() {
         return (
-            <div className="container pt-5">
-                <h4>Create a new project</h4>
-                <br />
+            <div className="container">
+              
                 {this.state.error &&
                     <div className="alert alert-danger" role="alert">
                         {this.state.error}
@@ -81,8 +83,12 @@ export default class ProjectForm extends React.Component {
                             onChange={this.onDescriptionChange}
                         ></textarea>
                     </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" className="btn btn-primary">Add new project</button>
+                    </div>
 
-                    <button type="submit" className="btn btn-primary">Add new project</button>
+
 
                 </form>
             </div>

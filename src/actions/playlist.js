@@ -16,6 +16,7 @@ const _addPlaylist = (playlist) => ({
 export const addPlaylist = (uid,playlistData = {
     title: '',
     description: '',
+    uid
     
    
 }) => {
@@ -64,10 +65,13 @@ export const getlist = (uid, id) => {
             const list = [];   
             snapshot.forEach(item => {
                 console.log('ITEM', item)
+              
                 list.push({
-                    key: item.key,
-                    value: item.val()
-                });
+                    key:item.key,
+                    value:item.val()
+                }
+                    
+                );
                 
             });
             
