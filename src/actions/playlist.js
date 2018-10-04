@@ -1,15 +1,12 @@
+
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
-
-//const userId = firebase.auth().currentUser.uid;
-
 
 const _addPlaylist = (playlist) => ({
     type: 'ADD_PLAYLIST',
     playlist,
 });
-
 
 
 
@@ -25,16 +22,15 @@ export const addPlaylist = (uid,playlistData = {
             title: playlistData.title,
             description: playlistData.description,  
         };
-       
         return firebase.database().ref('members/' + uid + '/playlists').push(playlist).then(ref => {
             dispatch(_addPlaylist({
                 id: ref.key,
                 ...playlist
-                
-            }));
+            }))
         });
     };
 };
+
 
 const _removePlaylist = ({ id } = {}) => ({
     type: 'REMOVE_PLAYLIST',
@@ -119,3 +115,4 @@ export const getPlaylists = (uid) => {
         });
     };
 };
+

@@ -10,9 +10,8 @@ import ReactTable from "react-table"
 import "react-table/react-table.css"
 import WaveSurfer from './WaveSurfer'
 import ReactTooltip from 'react-tooltip'
-import Modal from 'react-responsive-modal'
-import Auth from '../layout/AuthPage'
-
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 class CatalogTable extends Component {
     constructor(props) {
@@ -20,25 +19,23 @@ class CatalogTable extends Component {
         this.state = {
             pictureFixture: '',
             filteredSounds: '',
-            open: false,
             isLogged: false,
         };
         this.getTags = this.getTags.bind(this)
+
     }
 
-    onOpenModal = () => {
-        if (!this.state.isLogged) {
-            this.setState({ open: true });
-        } else {
-            this.setState({ open: false });
-        }
-    };
-
-    onCloseModal = () => {
-        this.setState({ open: false });
-    };
-
     
+    notify = () => toast.error("To use this feature  REGISTER NOW IT'S FREE ! ", {
+        position: "bottom-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        className: 'notify'
+    })
+
     getFilterSelect(sound) {
         return (
             sound[0].value
@@ -49,42 +46,34 @@ class CatalogTable extends Component {
     filtered(sounds) {
 
         return (
-            sounds.filter((sound,i) =>
-               
-                
-                  this.getFilterSelect(sound.genres) === this.props.filters.genres.toString() ||
-                  this.getFilterSelect(sound.moods) === this.props.filters.moods.toString() ||
-                  this.getFilterSelect(sound.instruments) === this.props.filters.instruments.toString()
-                  
+            sounds.filter((sound, i) =>
+
+
+                this.getFilterSelect(sound.genres) === this.props.filters.genres.toString() ||
+                this.getFilterSelect(sound.moods) === this.props.filters.moods.toString() ||
+                this.getFilterSelect(sound.instruments) === this.props.filters.instruments.toString()
+
             )
         )
     }
 
     componentWillMount() {
-
+       
         var user = firebase.auth().currentUser;
-
         if (user) {
             this.setState({ isLogged: true })
-
         } else {
             this.setState({ isLogged: false })
-
         }
+        console.log(this.state.isLogged)
     }
 
-    componentWillReceiveProps(nextProps) {
-
-    }
 
     componentDidUpdate() {
 
         //const sounds = this.props.sounds
         this.filtered(this.props.sounds)
-        var user = firebase.auth().currentUser;
-        if (user) {
-
-        }
+        
     }
 
     getTags(tags, i) {
@@ -101,11 +90,12 @@ class CatalogTable extends Component {
     }
 
     render() {
-        
-        const { open } = this.state;
+
+
         const { sounds, storageTrack } = this.props
-        
+        console.log('logged : ', this.state.isLogged)
         const filteredSounds = this.filtered(sounds).length ? this.filtered(sounds) : sounds
+       
         const onRowClick = (state, rowInfo, column, instance) => {
 
             return {
@@ -120,7 +110,6 @@ class CatalogTable extends Component {
 
                     if (handleOriginal) {
                         handleOriginal()
-
                     }
                 }
             };
@@ -129,7 +118,7 @@ class CatalogTable extends Component {
 
         const Buy = () => {
             return (
-                <button type="button" className="btn btn-warning" onClick={this.onOpenModal}>Buy 25€</button>
+                <button type="button" className="btn btn-warning">Buy 25€</button>
             )
         }
 
@@ -137,23 +126,26 @@ class CatalogTable extends Component {
             return (
                 <div>
                     <div className="row">
-                        <div style={style.iconBoxAction} className="ml-3" data-tip="like this track" onClick={this.onOpenModal} >
+                        <div style={style.iconBoxAction} className="ml-3" data-tip="like this track" onClick={!this.state.isLogged ? this.notify : undefined} >
                             <i className="far fa-heart" style={style.iconAction} ></i>
                         </div>
-                        <div style={style.iconBoxAction} className="ml-2" data-tip="Download this track" onClick={this.onOpenModal}>
+                        <div style={style.iconBoxAction} className="ml-2" data-tip="Download this track" onClick={!this.state.isLogged ? this.notify : undefined}>
                             <i className="fas fa-download" style={style.iconAction} ></i>
                         </div>
-                        <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" onClick={this.onOpenModal}>
+                        <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" onClick={!this.state.isLogged ? this.notify : undefined}>
                             <i className="fas fa-music" style={style.iconAction} ></i>
                         </div>
                     </div>
                     <ReactTooltip />
+                    <ToastContainer />
+                       
+                   
                 </div>
             )
         }
 
         const SubComponent = (props) => {
-            
+
             const author = props.author
             const filename = props.filename
             const genres = props.genres
@@ -163,12 +155,12 @@ class CatalogTable extends Component {
             const id = props.id
             const trackID = this.props.sounds[id].id
             const trackName = this.props.sounds[id].title
-            
+
 
             return (
                 <div className="row" style={style.subComponent}>
                     <div className="col-2 pt-3">
-                        <img src={'https://picsum.photos/200/300?image=2'+id} alt="album" style={style.subComponentImg} />
+                        <img src={'https://picsum.photos/200/300?image=2' + id} alt="album" style={style.subComponentImg} />
                     </div>
                     <div className="col-10 pt-3" >
                         <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} <br /><span>By Author : {author ? author : 'author not found !'}</span> </div>
@@ -188,7 +180,7 @@ class CatalogTable extends Component {
                         data={filteredSounds}
                         columns={[
                             {
-                               
+
                                 columns: [
                                     {
                                         expander: true,
@@ -290,30 +282,19 @@ class CatalogTable extends Component {
                     />
                     <br />
 
-                    <Modal
-                        open={open}
-                        onClose={this.onCloseModal}
-                        center
-                        classNames={{
-                            transitionEnter: 'transition-enter',
-                            transitionEnterActive: 'transition-enter-active',
-                            transitionExit: 'transition-exit-active',
-                            transitionExitActive: 'transition-exit-active',
-                        }}
-                        animationDuration={1000}
-                    >
-                        <Auth />
-                    </Modal>
                 </div>
+
             );
         }
     }
 }
 
+
+
 const mapStateToProps = (state) => {
     return {
         storageTrack: state.storageTrack,
-        
+
     }
 }
 

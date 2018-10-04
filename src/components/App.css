@@ -869,3 +869,9 @@ h1.heading {
   
   box-shadow: 0px 0px 10px rgba(0,0,0,.16);
 }
+
+.notify {
+  background-color: #fc4c17;
+  color: #fff;
+  font-size: 14px;
+}

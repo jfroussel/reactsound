@@ -7,6 +7,7 @@ import ProjectsFilters from './reducer-projects-filter'
 import PlaylistReducer from './reducer-playlists'
 
 
+
 export default combineReducers({
   sounds: SoundsReducer,
   storageTrack : StorageTrack,
@@ -14,4 +15,5 @@ export default combineReducers({
   projectsFilters: ProjectsFilters,
   projects: ProjectsReducer,
   playlists: PlaylistReducer,
+  
 })
