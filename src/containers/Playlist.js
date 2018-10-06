@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import PlaylistList from '../components/playlist/playlistList'
-import AddPlaylist from '../components/playlist/addPlaylist'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPlaylists, removePlaylist } from '../actions/playlist'
+import Card from '../widgets/Card'
 
 
 class Playlist extends Component {
@@ -15,7 +14,7 @@ class Playlist extends Component {
             isLogged: false,
             uid: null
         }
-        
+
     }
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
@@ -27,34 +26,28 @@ class Playlist extends Component {
         });
 
     }
-    
+
 
 
     render() {
         const { playlists } = this.props
-        const uid = this.state.uid
+        
+        
         return (
             <div className="container pt-5">
-                <h4>playlist dashboard</h4>
-                <button className="btn btn-primary" data-toggle="modal" data-target="#addNewPlaylist">Add new playlist</button>
-                <div className="row">
-                    <div className="col-12">
-                        <PlaylistList uid={uid} playlists={playlists} />
-                    </div>
+                <div className="text-center">
+                <h3 className="text-uppercase">your playlists</h3>
                 </div>
-                <div className="modal fade" id="addNewPlaylist" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Add new playlist</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <AddPlaylist uid={uid}/>
-                            </div>
-                        </div>
+                <div className="container pt-5">
+                    <div className="row">
+                        {playlists.map((playlist, index) => {
+                            return (
+                                <div className="col-4" key={index}>
+                                    <Card uid={playlist.id} title={playlist.title} description={playlist.description} btn1={'Edit'} btn2={'Delete'}  />
+                                    <br />
+                                </div>
+                            )
+                        })}
                     </div>
                 </div>
             </div>

@@ -1,4 +1,3 @@
-
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
@@ -10,17 +9,17 @@ const _addPlaylist = (playlist) => ({
 
 
 
-export const addPlaylist = (uid,playlistData = {
+export const addPlaylist = (uid, playlistData = {
     title: '',
     description: '',
     uid
-    
-   
+
+
 }) => {
     return (dispatch) => {
         const playlist = {
             title: playlistData.title,
-            description: playlistData.description,  
+            description: playlistData.description,
         };
         return firebase.database().ref('members/' + uid + '/playlists').push(playlist).then(ref => {
             dispatch(_addPlaylist({
@@ -37,73 +36,27 @@ const _removePlaylist = ({ id } = {}) => ({
     id
 });
 
-export const removePlaylist = ({ uid,id } = {}) => {
-    
+export const removePlaylist = ({ uid, id } = {}) => {
+
     return (dispatch) => {
-         
+
         return firebase.database().ref(`members/${uid}/playlists/${id}`).remove().then(() => {
             dispatch(_removePlaylist({ id }));
         })
     }
 };
 
-const _getList = (list) => ({
-    type: 'GET_LIST',
-    list
-   
-});
-
-export const getlist = (uid, id) => {
-   
-    return (dispatch) => {
-        return firebase.database().ref(`members/${uid}/playlists/${id}`).once('value').then(snapshot => {
-            
-            const list = [];   
-            snapshot.forEach(item => {
-                console.log('ITEM', item)
-              
-                list.push({
-                    key:item.key,
-                    value:item.val()
-                }
-                    
-                );
-                
-            });
-            
-            dispatch(_getList(list));
-        });
-    }
-};
-
-const _editPlaylist = (id, updates) => ({
-    type: 'EDIT_PLAYLIST',
-    id,
-    updates
-});
-
-export const editPlaylist = (uid, id, updates) => {
-   
-    return (dispatch) => {
-        return firebase.database().ref(`members/${uid}/playlists/${id}`).update(updates).then(() => {
-            console.log('playlist id ', id)
-            dispatch(_editPlaylist(id, updates));
-        });
-    }
-};
-
-
-const _getPlaylists = (uid,playlists) => ({
+const _getPlaylists = (uid, playlists) => ({
     type: 'GET_PLAYLISTS',
     playlists
-    
+
 });
 
 export const getPlaylists = (uid) => {
     return (dispatch) => {
         return firebase.database().ref('members/' + uid + '/playlists').once('value').then(snapshot => {
-            const playlists = [];
 
+            const playlists = []
             snapshot.forEach(item => {
                 playlists.push({
                     id: item.key,
@@ -111,8 +64,11 @@ export const getPlaylists = (uid) => {
                 });
             });
 
-            dispatch(_getPlaylists(uid,playlists));
+
+            dispatch(_getPlaylists(uid, playlists));
         });
     };
 };
+
+
 

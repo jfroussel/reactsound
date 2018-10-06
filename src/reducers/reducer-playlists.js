@@ -9,21 +9,10 @@ export default (state = playlistsReducerDefaultState, action) => {
             ];
         case 'REMOVE_PLAYLIST':
             return state.filter(({ id }) => id !== action.id);
-        case 'EDIT_PLAYLIST':
-            return state.map((playlist) => {
-                if (playlist.id === action.id) {
-                    return {
-                        ...playlist,
-                        ...action.updates
-                    };
-                } else {
-                    return playlist;
-                }
-            });
+        
         case 'GET_PLAYLISTS':
             return action.playlists;
-        case 'GET_LIST' :
-            return action.list  
+
         default:
             return state;
     }

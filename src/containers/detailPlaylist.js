@@ -3,7 +3,7 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getlist } from '../actions/playlist'
+import { editPlaylist } from '../actions/list'
 
 
 class DetailPlaylist extends Component {
@@ -14,7 +14,6 @@ class DetailPlaylist extends Component {
             isLogged: false,
             uid: null,
             playlistID: '',
-
         }
     }
 
@@ -26,10 +25,10 @@ class DetailPlaylist extends Component {
             if (user) {
                 this.setState({ uid: user.uid })
                 this.setState({ playlistID: this.props.match.params })
-                this.props.getlist(this.state.uid, this.state.playlistID.id)
-            }
-        });
+                this.props.editPlaylist(user.uid, this.props.match.params.id)
 
+            }
+        })
 
     }
 
@@ -37,18 +36,42 @@ class DetailPlaylist extends Component {
 
     render() {
 
-      
         const { list } = this.props
-        console.log('PLAYLIST DETAIL PROPS ', list)
+       
+        let tracks = list.pop()
+        
+       
+        console.log(tracks)
         return (
 
             <div className="container-fluid pt-5">
                 <div className="row">
                     <div className="col-sm-12">
-                        <h4 className="font-weight-light">Detail playlist  </h4>
+                        <h4 className="font-weight-light">Detail playlist </h4>
                     </div>
                     <div className="col-sm-12">
-                      
+                        <ul>
+                            {
+
+                                list.map((item, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <li>{item.key} : {item.value}</li>
+                                        </div>
+                                    )
+                                })
+
+                            }
+                        </ul>
+                        <ul>
+                            {
+
+                               JSON.stringify(tracks)
+
+
+                            }
+                        </ul>
+
                     </div>
                 </div>
             </div>
@@ -57,14 +80,12 @@ class DetailPlaylist extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        list: state.playlists,
-
+        list: state.list
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-
-    return bindActionCreators({ getlist }, dispatch)
+    return bindActionCreators({ editPlaylist }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPlaylist)
