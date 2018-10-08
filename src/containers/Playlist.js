@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPlaylists, removePlaylist } from '../actions/playlist'
 import Card from '../widgets/Card'
+import AddPlaylist from '../components/playlist/addPlaylist'
 
 
 class Playlist extends Component {
@@ -37,6 +38,12 @@ class Playlist extends Component {
             <div className="container pt-5">
                 <div className="text-center">
                     <h3 className="text-uppercase">your playlists</h3>
+                    <button
+                        className="btn btn-success"
+                        data-toggle="modal" data-target="#addNewPlaylist"
+                        >
+                        Create new playlist
+                    </button>
                 </div>
                 <div className="container pt-5">
                     <div className="row">
@@ -55,6 +62,22 @@ class Playlist extends Component {
                             )
                         })}
                     </div>
+
+                </div>
+                <div className="modal fade" id="addNewPlaylist" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title text-muted" id="exampleModalLabel">Add new playlist</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <AddPlaylist uid={this.state.uid} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -68,7 +91,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getPlaylists, removePlaylist }, dispatch)
+    return bindActionCreators({ getPlaylists, removePlaylist, AddPlaylist }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)
