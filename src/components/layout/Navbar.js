@@ -38,7 +38,7 @@ class Home extends Component {
     componentWillReceiveProps() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-            console.log('reference user : ',user)
+            console.log('reference user : ', user)
         })
     }
 
@@ -56,19 +56,6 @@ class Home extends Component {
                         <NavLink className="nav-item nav-link text-uppercase" to='/catalog' activeClassName='activeNav'>Catalog</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/features' activeClassName='activeNav'>Features</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/prices' activeClassName='activeNav'>Prices & conditions</NavLink>
-
-                        {this.state.isLogged ?
-                            <NavLink className="nav-item nav-link text-uppercase" to='/projects' activeClassName='activeNav'>
-                                My projects
-                            </NavLink>
-                            : <NavLink className="nav-item nav-link text-uppercase" to='/notRegister' activeClassName='activeNav'>My projects</NavLink>
-                        }
-                        {this.state.isLogged ?
-                            <NavLink className="nav-item nav-link text-uppercase" to='/playlists' activeClassName='activeNav'>
-                                My playlists
-                            </NavLink>
-                            : <NavLink className="nav-item nav-link text-uppercase" to='/notRegister' activeClassName='activeNav'>My playlists</NavLink>
-                        }
                         <NavLink className="nav-item nav-link text-uppercase" to='/contact' activeClassName='activeNav'>Contact</NavLink>
                         <NavLink className="nav-item nav-link text-uppercase" to='/languages' activeClassName='activeNav'>FR</NavLink>
                     </ul>
@@ -97,8 +84,12 @@ class Home extends Component {
                                 </i>
                                 </a>
                                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a className="dropdown-item" >Documentation</a>
-                                    <a className="dropdown-item" >Help center</a>
+                                    <NavLink className="dropdown-item " to='/account' activeClassName='activeNav'>Account</NavLink>
+                                    <NavLink className="dropdown-item " to='/projects' activeClassName='activeNav'>Projects</NavLink>
+                                    <NavLink className="dropdown-item " to='/playlists' activeClassName='activeNav'>Playlists</NavLink>
+                                    <div className="dropdown-divider"></div>
+                                    <NavLink className="dropdown-item " to='/documentation' activeClassName='activeNav'>Documentation</NavLink>
+                                    <NavLink className="dropdown-item " to='/help-center' activeClassName='activeNav'>Help center</NavLink>
                                     <div className="dropdown-divider"></div>
                                     <a className="dropdown-item" href="" onClick={doSignOut}>Sign out</a>
                                 </div>

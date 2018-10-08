@@ -13,6 +13,9 @@ import Projects from '../containers/Project'
 import Playlist from '../containers/Playlist'
 import PlaylistDetail from '../containers/detailPlaylist'
 import ProjectDetail from '../containers/detailProject'
+import Account from '../containers/Account'
+import HelpCenter from '../containers/HelpCenter'
+import Documentation from '../containers/Documentation'
 import NotRegister from './Messages/NotRegister'
 
 const style = {
@@ -37,6 +40,9 @@ const App = () => (
             <Route exact path='/playlists' component={Playlist} />
             <Route exact path='/playlists/:id' component={PlaylistDetail} />
             <Route path='/notRegister' component={NotRegister} />
+            <Route exact path='/account' component={Account} />
+            <Route exact path='/documentation' component={Documentation} />
+            <Route exact path='/help-center' component={HelpCenter} />
             <Footer />
         </div>
     </Router>

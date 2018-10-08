@@ -16,8 +16,6 @@ class DetailProject extends Component {
         }
     }
 
-
-
     componentWillMount() {
 
         firebase.auth().onAuthStateChanged((user) => {
@@ -26,7 +24,6 @@ class DetailProject extends Component {
                 this.setState({ uid: user.uid })
                 this.setState({ projectID: this.props.match.params })
                 this.props.editProject(user.uid, this.props.match.params.id)
-
             }
         })
     }
