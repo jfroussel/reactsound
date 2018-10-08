@@ -64,9 +64,7 @@ class Waveform extends Component {
             this.wavesurfer.pause()
         )
     }
-    addNewPlaylist() {
-
-    }
+    
 
     addToPlaylist(playlist, trackID, trackName) {
         const playlistTitle = playlist.title

@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getProjects } from '../actions/projects'
 import Card from '../widgets/Card'
+import AddProject from '../components/projects/addProject'
+
 
 class Project extends Component {
     constructor(props) {
@@ -27,10 +29,17 @@ class Project extends Component {
 
     render() {
         const { projects } = this.props
+        
         return (
             <div className="container pt-5">
                 <div className="text-center">
-                    <h3 className="text-uppercase">your projects</h3>
+                    <h3 className="text-uppercase">your ({projects.length}) projects </h3>
+                    <button
+                        className="btn btn-success"
+                        data-toggle="modal" data-target="#addNewProject"
+                        >
+                        Create new project
+                    </button>
                 </div>
                 <div className="container pt-5">
                     <div className="row">
@@ -50,6 +59,21 @@ class Project extends Component {
                         })}
                     </div>
                 </div>
+                <div className="modal fade" id="addNewProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title text-muted" id="exampleModalLabel">Add new project</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <AddProject uid={this.state.uid} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -62,7 +86,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getProjects }, dispatch)
+    return bindActionCreators({ getProjects, AddProject }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project)

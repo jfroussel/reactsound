@@ -15,7 +15,6 @@ class Playlist extends Component {
             isLogged: false,
             uid: null
         }
-        this.addPlaylist = this.addPlaylist.bind(this)
     }
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
@@ -28,14 +27,10 @@ class Playlist extends Component {
 
     }
 
-    addPlaylist() {
-        return (
-            <AddPlaylist />
-        )
+    removePlaylist(uid, id) {
+        this.props.dispatch(removePlaylist({ id }));
     }
-
-
-
+    
     render() {
         const { playlists } = this.props
         console.log('PLAYLISTS PROPS ', playlists)
@@ -43,8 +38,13 @@ class Playlist extends Component {
         return (
             <div className="container pt-5">
                 <div className="text-center">
-                    <h3 className="text-uppercase">your playlists</h3>
-                    <button className={'btn btn-success'} onClick={() => this.addPlaylist()}>Create new playlist</button>
+                    <h3 className="text-uppercase">your ({playlists.length}) playlists</h3>
+                    <button
+                        className="btn btn-success"
+                        data-toggle="modal" data-target="#addNewPlaylist"
+                        >
+                        Create new playlist
+                    </button>
                 </div>
                 <div className="container pt-5">
                     <div className="row">
@@ -63,6 +63,41 @@ class Playlist extends Component {
                             )
                         })}
                     </div>
+
+                </div>
+                <div className="modal fade" id="addNewPlaylist" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title text-muted" id="exampleModalLabel">Add new playlist</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div className="modal-body">
+                                <AddPlaylist uid={this.state.uid} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="modal fade" id="Delete" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog" role="document">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title text-muted" id="exampleModalLabel">Delete {playlists.title} playlist ?</h5>
+                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            
+                            <div className="modal-body">
+                            <h5>Are your sure ?</h5>
+                            {JSON.stringify()}
+                                <button className="btn btn-danger">Yes</button>
+                                <button className="btn btn-default">Abord</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -71,12 +106,13 @@ class Playlist extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        playlists: state.playlists
+        playlists: state.playlists,
+        
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getPlaylists, removePlaylist }, dispatch)
+    return bindActionCreators({ getPlaylists, removePlaylist, AddPlaylist }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)

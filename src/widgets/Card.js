@@ -16,9 +16,10 @@ class Card extends Component {
         }
     }
 
+
     render() {
         const  card  = this.props
-        
+        console.log('CARD PROPS ', card)
         return (
             <div className="card" style={style.card}>
                 <div className="card-body">
@@ -26,7 +27,7 @@ class Card extends Component {
                     <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     <p className="card-text">{card.description}</p>
                     <Link to={card.url} className="btn btn-primary">{card.btn1}</Link>
-                    <a href="" className="btn btn-default">{card.btn2}</a>
+                    <a href="" className="btn btn-default" data-toggle="modal" data-target={'#'+ card.btn2}>{card.btn2}</a>
                 </div>
             </div>
         );
