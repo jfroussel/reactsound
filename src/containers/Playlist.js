@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPlaylists, removePlaylist } from '../actions/playlist'
 import Card from '../widgets/Card'
+import AddPlaylist from '../components/playlist/addPlaylist'
 
 
 class Playlist extends Component {
@@ -14,7 +15,7 @@ class Playlist extends Component {
             isLogged: false,
             uid: null
         }
-
+        this.addPlaylist = this.addPlaylist.bind(this)
     }
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
@@ -27,6 +28,12 @@ class Playlist extends Component {
 
     }
 
+    addPlaylist() {
+        return (
+            <AddPlaylist />
+        )
+    }
+
 
 
     render() {
@@ -37,6 +44,7 @@ class Playlist extends Component {
             <div className="container pt-5">
                 <div className="text-center">
                     <h3 className="text-uppercase">your playlists</h3>
+                    <button className={'btn btn-success'} onClick={() => this.addPlaylist()}>Create new playlist</button>
                 </div>
                 <div className="container pt-5">
                     <div className="row">
