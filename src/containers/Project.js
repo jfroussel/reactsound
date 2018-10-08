@@ -1,60 +1,71 @@
 import React, { Component } from 'react';
-import ProjectList from '../components/projects/projectList'
-import AddProject from '../components/projects/addProject'
 import firebase from 'firebase/app'
 import 'firebase/auth'
-
-
-
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { getProjects } from '../actions/projects'
+import Card from '../widgets/Card'
 
 class Project extends Component {
     constructor(props) {
         super(props)
         this.state = {
             isLogged: false,
-            uid:null
+            uid: null
         }
     }
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-            if(user) {
-                this.setState({uid:user.uid})
+            if (user) {
+                this.setState({ uid: user.uid })
+                this.props.getProjects(user.uid)
             }
-            
+
         });
     }
-    
+
     render() {
-        const uid = this.state.uid
+        const { projects } = this.props
         return (
             <div className="container pt-5">
-                <h3>Projects dashboard</h3>
-                <button className="btn btn-primary" data-toggle="modal" data-target="#addNewProject">Add new project</button>
-
-                <div className="row">
-                    <div className="col-12">
-                        <ProjectList uid={uid} />
-                    </div>
-                    <div className="modal fade" id="addNewProject" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="exampleModalLabel">Add new project</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">
-                                <AddProject uid={uid}/>
-                            </div>
-                        </div>
-                    </div>
+                <div className="text-center">
+                    <h3 className="text-uppercase">your projects</h3>
                 </div>
+                <div className="container pt-5">
+                    <div className="row">
+                        {projects.map((project, index) => {
+                            return (
+                                <div className="col-4" key={index}>
+                                    <Card
+                                        uid={project.id}
+                                        title={project.title}
+                                        description={project.description}
+                                        url={`/projects/${project.id}`}
+                                        btn1={'Edit'}
+                                        btn2={'Delete'} />
+                                    <br />
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-export default Project;
+const mapStateToProps = (state) => {
+    return {
+        projects: state.projects
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getProjects }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Project)
+
+
+

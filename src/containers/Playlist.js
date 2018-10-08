@@ -31,19 +31,25 @@ class Playlist extends Component {
 
     render() {
         const { playlists } = this.props
-        
-        
+        console.log('PLAYLISTS PROPS ', playlists)
+
         return (
             <div className="container pt-5">
                 <div className="text-center">
-                <h3 className="text-uppercase">your playlists</h3>
+                    <h3 className="text-uppercase">your playlists</h3>
                 </div>
                 <div className="container pt-5">
                     <div className="row">
                         {playlists.map((playlist, index) => {
                             return (
                                 <div className="col-4" key={index}>
-                                    <Card uid={playlist.id} title={playlist.title} description={playlist.description} btn1={'Edit'} btn2={'Delete'}  />
+                                    <Card
+                                        uid={playlist.id}
+                                        title={playlist.title}
+                                        description={playlist.description}
+                                        url={`/playlists/${playlist.id}`}
+                                        btn1={'Edit'}
+                                        btn2={'Delete'} />
                                     <br />
                                 </div>
                             )

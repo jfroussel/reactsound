@@ -12,7 +12,7 @@ import Footer from './layout/Footer'
 import Projects from '../containers/Project'
 import Playlist from '../containers/Playlist'
 import PlaylistDetail from '../containers/detailPlaylist'
-import ProjectDetail from './projects/detailProject'
+import ProjectDetail from '../containers/detailProject'
 import NotRegister from './Messages/NotRegister'
 
 const style = {

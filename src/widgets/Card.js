@@ -18,14 +18,14 @@ class Card extends Component {
 
     render() {
         const  card  = this.props
-      
+        
         return (
             <div className="card" style={style.card}>
                 <div className="card-body">
                     <h5 className="card-title">{card.title}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
                     <p className="card-text">{card.description}</p>
-                    <Link to={`/playlists/${card.uid}`} className="btn btn-primary">{card.btn1}</Link>
+                    <Link to={card.url} className="btn btn-primary">{card.btn1}</Link>
                     <a href="" className="btn btn-default">{card.btn2}</a>
                 </div>
             </div>
