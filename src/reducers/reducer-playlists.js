@@ -8,8 +8,7 @@ export default (state = playlistsReducerDefaultState, action) => {
                 action.playlist
             ];
         case 'REMOVE_PLAYLIST':
-        return state.filter(({ id }) => id !== action.id);
-        
+        return state.filter(({ id }) => id !== action.id)      
         case 'GET_PLAYLISTS':
             return action.playlists;
 

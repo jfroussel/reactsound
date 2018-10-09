@@ -65,7 +65,7 @@ class CatalogTable extends Component {
         } else {
             this.setState({ isLogged: false })
         }
-        console.log(this.state.isLogged)
+       
     }
 
 

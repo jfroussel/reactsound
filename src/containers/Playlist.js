@@ -6,6 +6,8 @@ import { bindActionCreators } from 'redux'
 import { getPlaylists, removePlaylist } from '../actions/playlist'
 import Card from '../widgets/Card'
 import AddPlaylist from '../components/playlist/addPlaylist'
+import { ToastContainer} from 'react-toastify';
+
 
 
 class Playlist extends Component {
@@ -27,13 +29,14 @@ class Playlist extends Component {
 
     }
 
+
     removePlaylist(uid, id) {
         this.props.dispatch(removePlaylist({ id }));
     }
-    
+
     render() {
         const { playlists } = this.props
-        console.log('PLAYLISTS PROPS ', playlists)
+        console.log('PLAYLISTS PROPS ', this.props)
 
         return (
             <div className="container pt-5">
@@ -42,7 +45,7 @@ class Playlist extends Component {
                     <button
                         className="btn btn-success"
                         data-toggle="modal" data-target="#addNewPlaylist"
-                        >
+                    >
                         Create new playlist
                     </button>
                 </div>
@@ -57,7 +60,10 @@ class Playlist extends Component {
                                         description={playlist.description}
                                         url={`/playlists/${playlist.id}`}
                                         btn1={'Edit'}
-                                        btn2={'Delete'} />
+                                        btn2={'Delete'}
+                                        category={'playlists'}
+                                        memberID={this.state.uid}
+                                    />
                                     <br />
                                 </div>
                             )
@@ -80,25 +86,7 @@ class Playlist extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="modal fade" id="Delete" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title text-muted" id="exampleModalLabel">Delete {playlists.title} playlist ?</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            
-                            <div className="modal-body">
-                            <h5>Are your sure ?</h5>
-                            {JSON.stringify()}
-                                <button className="btn btn-danger">Yes</button>
-                                <button className="btn btn-default">Abord</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ToastContainer />
             </div>
         );
     }
@@ -108,6 +96,7 @@ const mapStateToProps = (state) => {
     return {
         playlists: state.playlists,
         
+
     };
 }
 

@@ -29,23 +29,34 @@ export const addPlaylist = (uid, playlistData = {
         });
     };
 };
-
-
-const _removePlaylist = ({ id } = {}) => ({
+const _removePlaylist = ( id ) => ({
     type: 'REMOVE_PLAYLIST',
     id
 });
-
-export const removePlaylist = ({ uid, id } = {}) => {
-
+ 
+export const removePlaylist = ( uid,category,id ) => {
     return (dispatch) => {
-
-        return firebase.database().ref(`members/${uid}/playlists/${id}`).remove().then(() => {
+        return firebase.database().ref(`members/${uid}/${category}/${id}`).remove().then(() => {
             dispatch(_removePlaylist({ id }));
         })
     }
 };
+/*
+const _removePlaylist = (id) => ({
+    type: 'REMOVE_PLAYLIST',
+    id
+});
 
+export const removePlaylist = (uid, id) => {
+
+    return (dispatch) => {
+
+        return firebase.database().ref(`members/${uid}/playlists/${id}`).remove().then(() => {
+            dispatch(_removePlaylist({ uid,id }));
+        })
+    }
+};
+*/
 
 
 
