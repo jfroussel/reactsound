@@ -8,7 +8,7 @@ export default (state = projectsReducerDefaultState, action) => {
                 action.project
             ];
         case 'REMOVE_PROJECT':
-            return state.filter(({ id }) => id !== action.id);
+            return state.filter(({ id }) => id !== action.id)
         case 'EDIT_PROJECT':
             return action.project
         case 'GET_PROJECTS':

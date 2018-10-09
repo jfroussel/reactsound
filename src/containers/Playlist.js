@@ -6,9 +6,6 @@ import { bindActionCreators } from 'redux'
 import { getPlaylists, removePlaylist } from '../actions/playlist'
 import Card from '../widgets/Card'
 import AddPlaylist from '../components/playlist/addPlaylist'
-import { ToastContainer} from 'react-toastify';
-
-
 
 class Playlist extends Component {
     constructor(props) {
@@ -26,14 +23,10 @@ class Playlist extends Component {
                 this.props.getPlaylists(this.state.uid)
             }
         });
-
     }
-
-
-    removePlaylist(uid, id) {
+    removePlaylist(id) {
         this.props.dispatch(removePlaylist({ id }));
     }
-
     render() {
         const { playlists } = this.props
         console.log('PLAYLISTS PROPS ', this.props)
@@ -69,7 +62,6 @@ class Playlist extends Component {
                             )
                         })}
                     </div>
-
                 </div>
                 <div className="modal fade" id="addNewPlaylist" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog" role="document">
@@ -85,23 +77,17 @@ class Playlist extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                <ToastContainer />
+                </div> 
             </div>
         );
     }
 }
-
 const mapStateToProps = (state) => {
     return {
         playlists: state.playlists,
-        
-
     };
 }
-
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ getPlaylists, removePlaylist, AddPlaylist }, dispatch)
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Playlist)

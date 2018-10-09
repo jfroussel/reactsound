@@ -7,14 +7,10 @@ const _addPlaylist = (playlist) => ({
     playlist,
 });
 
-
-
 export const addPlaylist = (uid, playlistData = {
     title: '',
     description: '',
     uid
-
-
 }) => {
     return (dispatch) => {
         const playlist = {
@@ -33,7 +29,6 @@ const _removePlaylist = ( id ) => ({
     type: 'REMOVE_PLAYLIST',
     id
 });
- 
 export const removePlaylist = ( uid,category,id ) => {
     return (dispatch) => {
         return firebase.database().ref(`members/${uid}/${category}/${id}`).remove().then(() => {
@@ -41,31 +36,11 @@ export const removePlaylist = ( uid,category,id ) => {
         })
     }
 };
-/*
-const _removePlaylist = (id) => ({
-    type: 'REMOVE_PLAYLIST',
-    id
-});
-
-export const removePlaylist = (uid, id) => {
-
-    return (dispatch) => {
-
-        return firebase.database().ref(`members/${uid}/playlists/${id}`).remove().then(() => {
-            dispatch(_removePlaylist({ uid,id }));
-        })
-    }
-};
-*/
-
-
-
 const _getPlaylists = (uid, playlists) => ({
     type: 'GET_PLAYLISTS',
     playlists
 
 });
-
 export const getPlaylists = (uid) => {
     return (dispatch) => {
         return firebase.database().ref('members/' + uid + '/playlists').once('value').then(snapshot => {
@@ -77,8 +52,6 @@ export const getPlaylists = (uid) => {
                     ...item.val()
                 });
             });
-
-
             dispatch(_getPlaylists(uid, playlists));
         });
     };

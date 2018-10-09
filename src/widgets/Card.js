@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RemoveCard from './RemoveCard'
 
-
 const style = {
     card: {
         width: '18rem'
@@ -12,13 +11,8 @@ const style = {
 class Card extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-           
-        }
+       
     }
-
-
-
 
     render() {
         const card = this.props
@@ -32,12 +26,9 @@ class Card extends Component {
                     <Link to={card.url} className="btn btn-primary">{card.btn1}</Link>
                     <a href="" className="btn btn-default" data-toggle="modal" data-target={`#` + card.uid}>delete</a>
                 </div>
-
                 <RemoveCard card={card} />
-                
             </div>
         );
     }
 }
-
 export default Card;

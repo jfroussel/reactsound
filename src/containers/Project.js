@@ -3,10 +3,9 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProjects } from '../actions/projects'
+import { getProjects, removeProject } from '../actions/projects'
 import Card from '../widgets/Card'
 import AddProject from '../components/projects/addProject'
-
 
 class Project extends Component {
     constructor(props) {
@@ -23,13 +22,13 @@ class Project extends Component {
                 this.setState({ uid: user.uid })
                 this.props.getProjects(user.uid)
             }
-
         });
     }
-
+    removeProject(id) {
+        this.props.dispatch(removeProject({ id }));
+    }
     render() {
         const { projects } = this.props
-        
         return (
             <div className="container pt-5">
                 <div className="text-center">
@@ -37,7 +36,7 @@ class Project extends Component {
                     <button
                         className="btn btn-success"
                         data-toggle="modal" data-target="#addNewProject"
-                        >
+                    >
                         Create new project
                     </button>
                 </div>
@@ -52,7 +51,10 @@ class Project extends Component {
                                         description={project.description}
                                         url={`/projects/${project.id}`}
                                         btn1={'Edit'}
-                                        btn2={'Delete'} />
+                                        btn2={'Delete'}
+                                        category={'projects'}
+                                        memberID={this.state.uid}
+                                    />
                                     <br />
                                 </div>
                             )
@@ -78,17 +80,14 @@ class Project extends Component {
         );
     }
 }
-
 const mapStateToProps = (state) => {
     return {
         projects: state.projects
     };
 }
-
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getProjects, AddProject }, dispatch)
+    return bindActionCreators({ getProjects, AddProject, removeProject }, dispatch)
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(Project)
 
 
