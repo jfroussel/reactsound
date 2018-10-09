@@ -1,7 +1,7 @@
 const filtersReducerDefaultState = {
     genres: '',
     moods: '',
-    artists: [],
+    composers: '',
     instruments: [],
     bpm: '',
     length: '',
@@ -34,10 +34,10 @@ export default (state = filtersReducerDefaultState, action) => {
                 moods: state.moods.filter((item, index) => { return action.moods !== item })
             }
 
-        case 'FILTER_ARTISTS':
+        case 'FILTER_COMPOSERS':
             return {
                 ...state,
-                artists: [...state.artists, action.artists]
+                composers: action.composers
             }
 
         case 'REMOVE_FILTER_ARTISTS':

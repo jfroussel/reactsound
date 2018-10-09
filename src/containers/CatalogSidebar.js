@@ -3,13 +3,13 @@ import { connect } from 'react-redux'
 import {
   filterGenres,
   filterBpm,
-  filterArtists,
+  filterComposers,
   removeFilterArtists,
   filterMoods,
   filterInstruments,
 } from '../actions/filters'
 import style from './CatalogSidebarStyle'
-import { genres, moods, artists, instruments, bpm } from '../components/catalog/CatalogConstants'
+import { genres, moods, composers, instruments, bpm } from '../components/catalog/CatalogConstants'
 
 class CatalogSidebar extends Component {
 
@@ -160,30 +160,21 @@ class CatalogSidebar extends Component {
                   aria-expanded="false"
                   aria-controls="collapseThree"
                 >
-                  ARTISTS <span className="badge badge-pill badge-custom ml-3"></span>
+                  COMPOSERS <span className="badge badge-pill badge-custom ml-3"></span>
                 </button>
               </h5>
             </div>
             <div id="collapseFive" className="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
               <div className="card-body">
-                {artists.map((artist, i) => {
+              {composers.map((composer, i) => {
                   return (
-                    <div className="form-check" key={artist}>
-                      <input
-                        type="checkbox"
-                        className="form-check-input"
-                        id={artist}
-                        value={artist}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            this.props.dispatch(filterArtists(e.target.value))
-                          } else {
-                            this.props.dispatch(removeFilterArtists(e.target.value))
-                          }
-                        }}
-                      />
-                      <label className="form-check-label" htmlFor="exampleCheck1"></label>
-                    </div>
+                    <a
+                      key={composer}
+                      className="badge badge-pill badge-custom-sidebar ml-2 mt-2"
+                      onClick={(e) => {
+                          this.props.dispatch(filterComposers(e.target.text))
+                      }}
+                    >{composer}</a>
                   )
                 })}
               </div>

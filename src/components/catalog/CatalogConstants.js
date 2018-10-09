@@ -99,7 +99,7 @@ const instruments = [
 ]
 
 const composers = [
-  'Jean Michel (A.del)',
+  'A.del',
   'Ruskov',
   'Mathieu',
   'Pierre Marie',
@@ -120,6 +120,7 @@ const composers = [
   'Rodolphe Andrieu',
   'Thomas Nils',
   'Harry',
+  'jeff'
 ]
 
 const fakeComposers = [

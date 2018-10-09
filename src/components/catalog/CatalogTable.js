@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { NavLink } from 'react-router-dom'
 import './table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -25,7 +26,7 @@ class CatalogTable extends Component {
 
     }
 
-    
+
     notify = () => toast.error("To use this feature  REGISTER NOW IT'S FREE ! ", {
         position: "bottom-left",
         autoClose: 3000,
@@ -58,14 +59,14 @@ class CatalogTable extends Component {
     }
 
     componentWillMount() {
-       
+
         var user = firebase.auth().currentUser;
         if (user) {
             this.setState({ isLogged: true })
         } else {
             this.setState({ isLogged: false })
         }
-       
+
     }
 
 
@@ -73,7 +74,7 @@ class CatalogTable extends Component {
 
         //const sounds = this.props.sounds
         this.filtered(this.props.sounds)
-        
+
     }
 
     getTags(tags, i) {
@@ -93,9 +94,9 @@ class CatalogTable extends Component {
 
 
         const { sounds, storageTrack } = this.props
-        console.log('logged : ', this.state.isLogged)
+        console.log('CATALOG PROPS ', this.props)
         const filteredSounds = this.filtered(sounds).length ? this.filtered(sounds) : sounds
-       
+
         const onRowClick = (state, rowInfo, column, instance) => {
 
             return {
@@ -138,8 +139,8 @@ class CatalogTable extends Component {
                     </div>
                     <ReactTooltip />
                     <ToastContainer />
-                       
-                   
+
+
                 </div>
             )
         }
@@ -163,7 +164,12 @@ class CatalogTable extends Component {
                         <img src={'https://picsum.photos/200/300?image=2' + id} alt="album" style={style.subComponentImg} />
                     </div>
                     <div className="col-10 pt-3" >
-                        <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} <br /><span>By Author : {author ? author : 'author not found !'}</span> </div>
+                        <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} <br />
+                            <NavLink className="nav-item nav-link" to={`composer/${author}`} activeClassName='activeNav' >
+                                By Composer :<span className="badge badge-pill badge-custom-sidebar ml-2 mt-2" key={id}> {author ? author : 'author not found !'} </span>
+                                {console.log('xxxxxxxxxxxxx' ,id)}
+                            </NavLink>
+                        </div>
                         <div className="pb-1">Genres : {this.getTags(genres) ? this.getTags(genres) : ''} </div>
                         <div className="pb-1">Moods : {this.getTags(moods) ? this.getTags(moods) : ''}</div>
                         <div className="pb-1">Instruments : {this.getTags(instruments) ? this.getTags(instruments) : ''}</div>

@@ -16,6 +16,7 @@ import ProjectDetail from '../containers/detailProject'
 import Account from '../containers/Account'
 import HelpCenter from '../containers/HelpCenter'
 import Documentation from '../containers/Documentation'
+import Composer from '../containers/Composer'
 import NotRegister from './Messages/NotRegister'
 
 const style = {
@@ -43,6 +44,7 @@ const App = () => (
             <Route exact path='/account' component={Account} />
             <Route exact path='/documentation' component={Documentation} />
             <Route exact path='/help-center' component={HelpCenter} />
+            <Route exact path='/composer/:id' component={Composer} />
             <Footer />
         </div>
     </Router>

@@ -19,9 +19,9 @@ export const removeFilterMoods = (moods = []) => ({
     moods
 });
 
-export const filterArtists = (artists = []) => ({
-    type: 'FILTER_ARTISTS',
-    artists
+export const filterComposers = (composers = []) => ({
+    type: 'FILTER_COMPOSERS',
+    composers
 });
 
 export const removeFilterArtists = (artists = []) => ({
