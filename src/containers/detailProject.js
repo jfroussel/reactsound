@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 import VideoPlayer from '../components/projects/videoPlayer'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { editProject } from '../actions/projects'
+import { editProject } from '../actions/project'
+
+
 
 
 class DetailProject extends Component {
@@ -12,7 +15,9 @@ class DetailProject extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            projectID: ''
+            projectID: '',
+            isLogged: false,
+            uid: null,
         }
     }
 
@@ -32,26 +37,25 @@ class DetailProject extends Component {
 
     render() {
         const { project } = this.props
-        console.log('DETAIL PROJECT ', this.props)
+
 
         return (
 
             <div className="container-fluid pt-5">
                 <div className="row">
-                    <div className="col-sm-12">
-                        <h4 className="font-weight-light">Detail playlist </h4>
+                    <div className="text-left pl-5">
+                        <button className="btn btn-default ">
+                            <NavLink className="text-uppercase" to='/projects' activeClassName='activeNav'>
+                                project dashboard
+                            </NavLink>
+                        </button>
+                    </div>
+                    <div className="col-sm-12 text-center">
+                        <h3 className="text-uppercase">Project title : {project.title} </h3>
+                        <p>Description : {project.description}</p>
                     </div>
                     <div className="col-sm-12">
-                        <ul>
-                            {
-                                project.map((item, index) => {
-                                    return (
-                                        <li key={index}>{item.key} : {item.value}</li>
-                                    )
-                                })
-                            }
-                            
-                        </ul>
+
                     </div>
 
                 </div>
@@ -64,7 +68,7 @@ class DetailProject extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        project: state.projects
+        project: state.project
     };
 }
 

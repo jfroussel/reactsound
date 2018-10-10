@@ -51,29 +51,6 @@ export const removeProject = ( uid,category,id ) => {
     }
 };
 
-const _editProject = (project) => ({
-    type: 'EDIT_PROJECT',
-    project,
-
-});
-
-export const editProject = (uid, id) => {
-    return (dispatch) => {
-        return firebase.database().ref(`members/${uid}/projects/${id}`).once('value').then((snapshot) => {
-            console.log(snapshot)
-            const project = []
-
-            snapshot.forEach(item => {
-                project.push({
-                    key: item.key,
-                    value: item.val()
-                })
-            })
-            dispatch(_editProject(project));
-        });
-    }
-};
-
 const _getProjects = (uid,projects) => ({
     type: 'GET_PROJECTS',
     projects

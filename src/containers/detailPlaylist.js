@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
@@ -14,6 +15,7 @@ class DetailPlaylist extends Component {
             isLogged: false,
             uid: null,
             playlistID: '',
+
         }
     }
 
@@ -29,53 +31,35 @@ class DetailPlaylist extends Component {
 
             }
         })
-
     }
 
 
 
     render() {
-
         const { list } = this.props
-       
-        let tracks = list.pop()
-        
-       
-        console.log(tracks)
+
+
         return (
 
             <div className="container-fluid pt-5">
                 <div className="row">
-                    <div className="col-sm-12">
-                        <h4 className="font-weight-light">Detail playlist </h4>
+                <div className="text-left pl-5">
+                        <button className="btn btn-default ">
+                            <NavLink className="text-uppercase" to='/playlists' activeClassName='activeNav'>
+                                playlist dashboard
+                            </NavLink>
+                        </button>
+                    </div>
+                    <div className="col-sm-12 text-center">
+                        <h3 className="text-uppercase">Playlist title : {list.title}</h3>
+                        <p>Description : {list.description}</p>
                     </div>
                     <div className="col-sm-12">
-                        <ul>
-                            {
-
-                                list.map((item, index) => {
-                                    return (
-                                        <div key={index}>
-                                            <li>{item.key} : {item.value}</li>
-                                        </div>
-                                    )
-                                })
-
-                            }
-                        </ul>
-                        <ul>
-                            {
-
-                               JSON.stringify(tracks)
-
-
-                            }
-                        </ul>
 
                     </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 const mapStateToProps = (state) => {

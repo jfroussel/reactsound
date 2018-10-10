@@ -24,6 +24,7 @@ class Project extends Component {
             }
         });
     }
+    
     removeProject(id) {
         this.props.dispatch(removeProject({ id }));
     }
