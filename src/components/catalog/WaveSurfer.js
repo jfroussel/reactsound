@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPlaylists } from '../../actions/playlist'
@@ -64,7 +65,7 @@ class Waveform extends Component {
             this.wavesurfer.pause()
         )
     }
-    
+
 
     addToPlaylist(playlist, trackID, trackName) {
         const playlistTitle = playlist.title
@@ -123,7 +124,7 @@ class Waveform extends Component {
                                 </i>
                             </a>
 
-                            <div className="dropdown-menu" >
+                            <div className="dropdown-menu" style={style.dropdown}>
                                 <div className="text-center">
                                     <a className="btn btn-sm btn-primary" href="" data-toggle="modal" data-target="#addNewPlaylist">Add new playlist</a>
                                     <div className="dropdown-divider"></div>
@@ -154,11 +155,14 @@ class Waveform extends Component {
                         </div>
                     </div>
                     <div className="col-1" style={style.iconBox}>
-                        <span data-tip="list of author tracks">
-                            <i className="material-icons" style={style.icon}>
-                                how_to_reg
+                        <NavLink className="nav-item" to={`composer/${this.props.author}`}  >
+                            <span data-tip="list of author tracks">
+                                <i className="material-icons" style={style.icon} key={this.props.id}>
+                                    how_to_reg
                             </i>
-                        </span>
+                            </span>
+                        </NavLink>
+
                     </div>
                     <div className="col-1" style={style.iconBox}>
                         <span data-tip="Infos">

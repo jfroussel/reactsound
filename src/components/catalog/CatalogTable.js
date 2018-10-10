@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { NavLink } from 'react-router-dom'
 import './table.css'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -11,8 +10,8 @@ import ReactTable from "react-table"
 import "react-table/react-table.css"
 import WaveSurfer from './WaveSurfer'
 import ReactTooltip from 'react-tooltip'
-import { ToastContainer, toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+
+
 
 class CatalogTable extends Component {
     constructor(props) {
@@ -25,17 +24,6 @@ class CatalogTable extends Component {
         this.getTags = this.getTags.bind(this)
 
     }
-
-
-    notify = () => toast.error("To use this feature  REGISTER NOW IT'S FREE ! ", {
-        position: "bottom-left",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        className: 'notify'
-    })
 
     getFilterSelect(sound) {
         return (
@@ -90,6 +78,8 @@ class CatalogTable extends Component {
         }
     }
 
+
+
     render() {
 
 
@@ -124,23 +114,21 @@ class CatalogTable extends Component {
         }
 
         const CatalogActions = () => {
+
             return (
                 <div>
                     <div className="row">
-                        <div style={style.iconBoxAction} className="ml-3" data-tip="like this track" onClick={!this.state.isLogged ? this.notify : undefined} >
-                            <i className="far fa-heart" style={style.iconAction} ></i>
+                        <div style={style.iconBoxAction} className="ml-3" data-tip="like this track" >
+                            <i className="far fa-heart" style={style.iconAction}  ></i>
                         </div>
-                        <div style={style.iconBoxAction} className="ml-2" data-tip="Download this track" onClick={!this.state.isLogged ? this.notify : undefined}>
+                        <div style={style.iconBoxAction} className="ml-2" data-tip="Download this track">
                             <i className="fas fa-download" style={style.iconAction} ></i>
                         </div>
-                        <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" onClick={!this.state.isLogged ? this.notify : undefined}>
+                        <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" >
                             <i className="fas fa-music" style={style.iconAction} ></i>
                         </div>
                     </div>
                     <ReactTooltip />
-                    <ToastContainer />
-
-
                 </div>
             )
         }
@@ -164,16 +152,11 @@ class CatalogTable extends Component {
                         <img src={'https://picsum.photos/200/300?image=2' + id} alt="album" style={style.subComponentImg} />
                     </div>
                     <div className="col-10 pt-3" >
-                        <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} <br />
-                            <NavLink className="nav-item nav-link" to={`composer/${author}`} activeClassName='activeNav' >
-                                By Composer :<span className="badge badge-pill badge-custom-sidebar ml-2 mt-2" key={id}> {author ? author : 'author not found !'} </span>
-                                {console.log('xxxxxxxxxxxxx' ,id)}
-                            </NavLink>
-                        </div>
+                        <div className="pb-3 text-white">Audio filename : {filename ? filename : 'track not found !'} </div>
                         <div className="pb-1">Genres : {this.getTags(genres) ? this.getTags(genres) : ''} </div>
                         <div className="pb-1">Moods : {this.getTags(moods) ? this.getTags(moods) : ''}</div>
                         <div className="pb-1">Instruments : {this.getTags(instruments) ? this.getTags(instruments) : ''}</div>
-                        <div className='parent-component' style={style.wave}><WaveSurfer src={!storageTrack ? defaultTrack : storageTrack} trackID={trackID} trackName={trackName} /></div>
+                        <div className='parent-component' style={style.wave}><WaveSurfer src={!storageTrack ? defaultTrack : storageTrack} trackID={trackID} trackName={trackName} author={author} id={id} /></div>
                     </div>
                 </div>
             )

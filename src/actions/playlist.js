@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import { showSnack } from 'react-redux-snackbar'
 
 const _addPlaylist = (playlist) => ({
     type: 'ADD_PLAYLIST',
@@ -22,17 +23,27 @@ export const addPlaylist = (uid, playlistData = {
                 id: ref.key,
                 ...playlist
             }))
+            dispatch(showSnack(uid, {
+                label: `Your playlist ${playlist.title} has been created`,
+                timeout: 5000,
+                button: { label: 'OK, GOT IT' }
+            }));
         });
     };
 };
-const _removePlaylist = ( id ) => ({
+const _removePlaylist = (id) => ({
     type: 'REMOVE_PLAYLIST',
     id
 });
-export const removePlaylist = ( uid,category,id ) => {
+export const removePlaylist = (uid, category, id) => {
     return (dispatch) => {
         return firebase.database().ref(`members/${uid}/${category}/${id}`).remove().then(() => {
-            dispatch(_removePlaylist({ id }));
+            dispatch(_removePlaylist({ id }))
+            dispatch(showSnack(uid, {
+                label: `Your playlist has been removed !`,
+                timeout: 3000,
+                button: { label: 'OK, GOT IT' }
+            }));
         })
     }
 };

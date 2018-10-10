@@ -5,7 +5,7 @@ const style = {
     icon: {
         fontSize: 25,
         marginTop: 23,
-        cursor: 'pointer'
+        cursor: 'pointer',
     },
     playpause: {
         color: 'rgb(255, 255, 255)',
@@ -28,6 +28,11 @@ const style = {
         color: "#fff",
         outline: 'none',
         marginTop: '15px'
+    },
+    dropdown: {
+        maxHeight:'250px',
+        overflow:'auto',
+        
     }
 
 }

@@ -33,6 +33,7 @@ class Project extends Component {
             <div className="container pt-5">
                 <div className="text-center">
                     <h3 className="text-uppercase">your ({projects.length}) projects </h3>
+                    <br />
                     <button
                         className="btn btn-success"
                         data-toggle="modal" data-target="#addNewProject"

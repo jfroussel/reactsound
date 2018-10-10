@@ -20,8 +20,8 @@ class Card extends Component {
         return (
             <div className="card" style={style.card}>
                 <div className="card-body">
-                    <h5 className="card-title">{card.title}</h5>
-                    <h6 className="card-subtitle mb-2 text-muted">{card.btn2}</h6>
+                    <h5 className="card-title text-uppercase">{card.title}</h5>
+                    <h6 className="card-subtitle mb-2 text-muted">Description</h6>
                     <p className="card-text">{card.description}</p>
                     <Link to={card.url} className="btn btn-primary">{card.btn1}</Link>
                     <a href="" className="btn btn-default" data-toggle="modal" data-target={`#` + card.uid}>delete</a>

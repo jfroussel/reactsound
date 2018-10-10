@@ -35,6 +35,7 @@ class Playlist extends Component {
             <div className="container pt-5">
                 <div className="text-center">
                     <h3 className="text-uppercase">your ({playlists.length}) playlists</h3>
+                    <br />
                     <button
                         className="btn btn-success"
                         data-toggle="modal" data-target="#addNewPlaylist"
@@ -48,6 +49,7 @@ class Playlist extends Component {
                             return (
                                 <div className="col-4" key={index}>
                                     <Card
+                                        id= {index}
                                         uid={playlist.id}
                                         title={playlist.title}
                                         description={playlist.description}

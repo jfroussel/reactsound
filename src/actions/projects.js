@@ -1,6 +1,8 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
+import { showSnack } from 'react-redux-snackbar'
+
 
 const _addProject = (project) => ({
     type: 'ADD_PROJECT',
@@ -21,6 +23,11 @@ export const addProject = (uid,projectData = {
                 id: ref.key,
                 ...project
                 
+            }))
+            dispatch(showSnack(uid, {
+                label: `Your project has been created !`,
+                timeout: 3000,
+                button: { label: 'OK, GOT IT' }
             }));
         });
     };
@@ -35,6 +42,11 @@ export const removeProject = ( uid,category,id ) => {
     return (dispatch) => {
         return firebase.database().ref(`members/${uid}/${category}/${id}`).remove().then(() => {
             dispatch(_removeProject({ id }));
+            dispatch(showSnack(uid, {
+                label: `Your project has been removed !`,
+                timeout: 3000,
+                button: { label: 'OK, GOT IT' }
+            }));
         })
     }
 };
