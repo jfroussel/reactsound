@@ -95,7 +95,7 @@ class Account extends Component {
                     <div className="col-sm-12 text-center">
                         <h3 className="text-uppercase">Your Account </h3>
                     </div>
-                    <div className="container col-sm-12">
+                    <div className="container pt-5 col-sm-12">
                         <AccountTab />
                     </div>
                 </div>
