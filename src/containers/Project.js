@@ -36,7 +36,7 @@ class Project extends Component {
                     <h3 className="text-uppercase">your ({projects.length}) projects </h3>
                     <br />
                     <button
-                        className="btn btn-success"
+                        className="btn btn-sm btn-success"
                         data-toggle="modal" data-target="#addNewProject"
                     >
                         Create new project

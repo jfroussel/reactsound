@@ -37,7 +37,7 @@ class Playlist extends Component {
                     <h3 className="text-uppercase">your ({playlists.length}) playlists</h3>
                     <br />
                     <button
-                        className="btn btn-success"
+                        className="btn btn-sm btn-success"
                         data-toggle="modal" data-target="#addNewPlaylist"
                     >
                         Create new playlist

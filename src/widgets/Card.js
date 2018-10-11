@@ -31,8 +31,8 @@ class Card extends Component {
                         <p className="card-text">{card.description}</p>
                     </div>
                     <div className="card-footer text-right">
-                    <Link to={card.url} className="btn btn-primary">{card.btn1}</Link>
-                    <a href="" className="btn btn-default" data-toggle="modal" data-target={`#` + card.uid}>delete</a>
+                    <Link to={card.url} className="btn btn-dark">{card.btn1}</Link>
+                    <a href="" className="btn btn-light" data-toggle="modal" data-target={`#` + card.uid}>delete</a>
                     </div>
                     <RemoveCard card={card} />
                 </div>

@@ -43,12 +43,12 @@ class DetailProject extends Component {
 
             <div className="container-fluid pt-5">
                 <div className="row">
-                    <div className="text-left pl-5">
-                        <button className="btn btn-default ">
-                            <NavLink className="text-uppercase" to='/projects' activeClassName='activeNav'>
-                                project dashboard
+                    <div className="container-fluid text-left pl-5">
+                        
+                            <NavLink className="btn btn-sm btn-secondary" to='/projects' activeClassName='activeNav'>
+                                Return projects
                             </NavLink>
-                        </button>
+                       
                     </div>
                     <div className="col-sm-12 text-center">
                         <h3 className="text-uppercase">Project title : {project.title} </h3>

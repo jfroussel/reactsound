@@ -43,12 +43,10 @@ class DetailPlaylist extends Component {
 
             <div className="container-fluid pt-5">
                 <div className="row">
-                <div className="text-left pl-5">
-                        <button className="btn btn-default ">
-                            <NavLink className="text-uppercase" to='/playlists' activeClassName='activeNav'>
-                                playlist dashboard
-                            </NavLink>
-                        </button>
+                    <div className="container-fluid text-left pl-5">
+                        <NavLink className="btn btn-sm btn-secondary" to='/playlists' activeClassName='activeNav'>
+                            Return playlists
+                        </NavLink>
                     </div>
                     <div className="col-sm-12 text-center">
                         <h3 className="text-uppercase">Playlist title : {list.title}</h3>

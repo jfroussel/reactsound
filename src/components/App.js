@@ -6,6 +6,8 @@ import Catalog from '../containers/Catalog'
 import Features from './layout/Features'
 import Prices from './layout/Prices'
 import Contact from './layout/Contact'
+import Team from '../containers/Team'
+import Cart from '../containers/Cart'
 import Signin from './layout/AuthPage'
 import Navbar from './layout/Navbar'
 import Footer from './layout/Footer'
@@ -35,6 +37,8 @@ const App = () => (
             <Route exact path='/features' component={Features} />
             <Route exact path='/prices' component={Prices} />
             <Route exact path='/contact' component={Contact} />
+            <Route exact path='/cart' component={Cart} />
+            <Route exact path='/team' component={Team} />
             <Route exact path='/signin' component={Signin} />
             <Route exact path='/projects' component={Projects} />
             <Route exact path='/projects/:id' component={ProjectDetail} />

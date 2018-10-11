@@ -10,12 +10,15 @@ import { doSignOut } from '../../firebase/auth'
 const style = {
     loginIcon: {
         fontSize: 35,
-        marginTop: -6
+        marginTop: -6,
+       
+       
     },
     navbar: {
         borderBottom: '1px solid #0000001a',
         backgroundColor: '#fff'
     }
+    
 }
 
 class Home extends Component {
@@ -87,6 +90,7 @@ class Home extends Component {
                                     <NavLink className="dropdown-item " to='/account' activeClassName='activeNav'>Account</NavLink>
                                     <NavLink className="dropdown-item " to='/projects' activeClassName='activeNav'>Projects</NavLink>
                                     <NavLink className="dropdown-item " to='/playlists' activeClassName='activeNav'>Playlists</NavLink>
+                                    <NavLink className="dropdown-item " to='/team' activeClassName='activeNav'>Team</NavLink>
                                     <div className="dropdown-divider"></div>
                                     <NavLink className="dropdown-item " to='/documentation' activeClassName='activeNav'>Documentation</NavLink>
                                     <NavLink className="dropdown-item " to='/help-center' activeClassName='activeNav'>Help center</NavLink>
@@ -97,11 +101,14 @@ class Home extends Component {
                             : null
                         }
                         <div className="cart-element">
-                            <span className="cart-icon">
-                                <i className="material-icons" style={style.loginIcon}>
-                                    shopping_cart
+                            <NavLink   to='/cart' activeClassName='activeNav'>
+                                <span className="cart-icon">
+                                    <i className="material-icons" style={style.loginIcon}>
+                                        shopping_cart
                                 </i>
-                            </span>
+                                </span>
+                            </NavLink>
+
                             <span className="cart-notification">
                                 2
                             </span>
