@@ -24,7 +24,7 @@ class Project extends Component {
             }
         });
     }
-    
+
     removeProject(id) {
         this.props.dispatch(removeProject({ id }));
     }
@@ -48,6 +48,8 @@ class Project extends Component {
                             return (
                                 <div className="col-4" key={index}>
                                     <Card
+                                        id={index}
+                                        img={4}
                                         uid={project.id}
                                         title={project.title}
                                         description={project.description}

@@ -50,6 +50,7 @@ class Playlist extends Component {
                                 <div className="col-4" key={index}>
                                     <Card
                                         id= {index}
+                                        img={3}
                                         uid={playlist.id}
                                         title={playlist.title}
                                         description={playlist.description}
