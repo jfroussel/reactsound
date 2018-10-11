@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import VideoPlayer from '../components/projects/videoPlayer'
+import Tracks from '../components/projects/tracks'
+import Header from '../components/projects/header'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editProject } from '../actions/project'
 
+const style = {
+    video: {
+        width:250
+    }
+}
 
 
 
@@ -31,6 +38,9 @@ class DetailProject extends Component {
                 this.props.editProject(user.uid, this.props.match.params.id)
             }
         })
+
+       
+       
     }
 
 
@@ -38,17 +48,16 @@ class DetailProject extends Component {
     render() {
         const { project } = this.props
 
-
         return (
 
             <div className="container-fluid pt-5">
                 <div className="row">
                     <div className="container-fluid text-left pl-5">
-                        
-                            <NavLink className="btn btn-sm btn-secondary" to='/projects' activeClassName='activeNav'>
-                                Return projects
+
+                        <NavLink className="btn btn-sm btn-secondary" to='/projects' activeClassName='activeNav'>
+                            Return projects
                             </NavLink>
-                       
+
                     </div>
                     <div className="col-sm-12 text-center">
                         <h3 className="text-uppercase">{project.title}</h3>
@@ -56,7 +65,14 @@ class DetailProject extends Component {
                             <p className="lead">{project.description}</p>
                         </div>
                     </div>
-
+                </div>
+                <div className="container-fluid">
+                    <div className="row">
+                        <div className="col-12"><Header /></div>
+                        <div className="col-8"><Tracks /></div>
+                        <div className="col-4" style={style.video}><VideoPlayer /></div>
+                        <div className="col-12">footer playlist</div>
+                    </div>
                 </div>
             </div>
 

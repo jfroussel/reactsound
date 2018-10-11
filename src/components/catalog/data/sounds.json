@@ -1,0 +1,455 @@
+{
+  "-LHbrsD0TbWttdw-ReWL" : {
+    "author" : "A.Del",
+    "bpm" : 80,
+    "description" : "Epic test",
+    "filename" : "_Wild Fire_ EpicOrchestral Em 80bpm.mp3",
+    "genres" : [ {
+      "label" : "Orchestral",
+      "value" : "Orchestral"
+    } ],
+    "instruments" : [ {
+      "label" : "Violin",
+      "value" : "Violin"
+    }, {
+      "label" : "Viola",
+      "value" : "Viola"
+    }, {
+      "label" : "Cello",
+      "value" : "Cello"
+    }, {
+      "label" : "Double bass",
+      "value" : "Double bass"
+    }, {
+      "label" : "French horn",
+      "value" : "French horn"
+    }, {
+      "label" : "Trumpet",
+      "value" : "Trumpet"
+    }, {
+      "label" : "Trombone",
+      "value" : "Trombone"
+    }, {
+      "label" : "Timpani",
+      "value" : "Timpani"
+    }, {
+      "label" : "Bass drum",
+      "value" : "Bass drum"
+    }, {
+      "label" : "Electric guitar",
+      "value" : "Electric guitar"
+    }, {
+      "label" : "Cymbal",
+      "value" : "Cymbal"
+    }, {
+      "label" : "Taikos",
+      "value" : "Taikos"
+    }, {
+      "label" : "Toms",
+      "value" : "Toms"
+    }, {
+      "label" : "Choir",
+      "value" : "Choir"
+    } ],
+    "lenght" : "2.36",
+    "loops" : 5,
+    "moods" : [ {
+      "label" : "Epic /orchestral",
+      "value" : "Epic /orchestral"
+    } ],
+    "title" : "Wild Fire",
+    "tone" : {
+      "label" : "Em",
+      "value" : "e-"
+    }
+  },
+  "-LHc-qwrdlzxfq_0n9fj" : {
+    "author" : "A.Del",
+    "bpm" : 205,
+    "description" : "High Energy",
+    "filename" : "_Highway Speed_ HardRock B 205bpm.mp3",
+    "genres" : [ {
+      "label" : "Hard rock",
+      "value" : "Hard rock"
+    } ],
+    "instruments" : [ {
+      "label" : "Drum",
+      "value" : "Drum"
+    }, {
+      "label" : "Electric guitar",
+      "value" : "Electric guitar"
+    }, {
+      "label" : "Electric bass",
+      "value" : "Electric bass"
+    } ],
+    "lenght" : "1.53",
+    "loops" : 3,
+    "moods" : [ {
+      "label" : "Action / Sports",
+      "value" : "Action / Sports"
+    } ],
+    "title" : "Highway Speed",
+    "tone" : {
+      "label" : "B",
+      "value" : "b"
+    }
+  },
+  "-LHc6M7xhY8_RgrhDoP8" : {
+    "author" : "A.Del",
+    "bpm" : 80,
+    "description" : "Country Folk",
+    "filename" : "Keep It To Yourself.mp3",
+    "genres" : [ {
+      "label" : "Folk",
+      "value" : "Folk"
+    } ],
+    "instruments" : [ {
+      "label" : "Guitar",
+      "value" : "Guitar"
+    }, {
+      "label" : "Fiddle",
+      "value" : "Fiddle"
+    }, {
+      "label" : "Double bass",
+      "value" : "Double bass"
+    }, {
+      "label" : "Drum",
+      "value" : "Drum"
+    }, {
+      "label" : "Mandoline",
+      "value" : "Mandoline"
+    } ],
+    "lenght" : "3.12",
+    "loops" : 4,
+    "moods" : [ {
+      "label" : "Gentle / Light",
+      "value" : "Gentle / Light"
+    } ],
+    "title" : "Keep It To Yourself"
+  },
+  "-LHchYIP1IBNfxyJ0sLn" : {
+    "author" : "A.Del",
+    "bpm" : 140,
+    "description" : "Électro happy",
+    "genres" : [ {
+      "label" : "Electro",
+      "value" : "Electro"
+    } ],
+    "instruments" : [ {
+      "label" : "Piano",
+      "value" : "Piano"
+    }, {
+      "label" : "Synthesizer",
+      "value" : "Synthesizer"
+    }, {
+      "label" : "Bass drum",
+      "value" : "Bass drum"
+    }, {
+      "label" : "Snare drum",
+      "value" : "Snare drum"
+    }, {
+      "label" : "Cymbal",
+      "value" : "Cymbal"
+    }, {
+      "label" : "HitHat",
+      "value" : "HitHat"
+    }, {
+      "label" : "Fx",
+      "value" : "Fx"
+    } ],
+    "lenght" : "0.58",
+    "loops" : 4,
+    "moods" : [ {
+      "label" : "Happy / Cheerful",
+      "value" : "Happy / Cheerful"
+    } ],
+    "title" : "Infinity 1"
+  },
+  "-LHrI9Y3dk32Sdcti_Kp" : {
+    "author" : "A.Del",
+    "bpm" : 120,
+    "description" : "Berceuse",
+    "filename" : " _Lullaby For My Babe_ OrchestralBerceuse A 120bpm.mp3",
+    "genres" : [ {
+      "label" : "Orchestral",
+      "value" : "Orchestral"
+    } ],
+    "instruments" : [ {
+      "label" : "Bassoon",
+      "value" : "Bassoon"
+    }, {
+      "label" : "Cello",
+      "value" : "Cello"
+    }, {
+      "label" : "Clarinet",
+      "value" : "Clarinet"
+    }, {
+      "label" : "Double bass",
+      "value" : "Double bass"
+    }, {
+      "label" : "Flute",
+      "value" : "Flute"
+    }, {
+      "label" : "Guitar",
+      "value" : "Guitar"
+    }, {
+      "label" : "Harp",
+      "value" : "Harp"
+    }, {
+      "label" : "Piano",
+      "value" : "Piano"
+    }, {
+      "label" : "Viola",
+      "value" : "Viola"
+    }, {
+      "label" : "Violin",
+      "value" : "Violin"
+    }, {
+      "label" : "Synthesizer",
+      "value" : "Synthesizer"
+    } ],
+    "lenght" : "3.38",
+    "loops" : 3,
+    "moods" : [ {
+      "label" : "Gentle / Light",
+      "value" : "Gentle / Light"
+    } ],
+    "title" : "Lullaby For My Babe",
+    "tone" : {
+      "label" : "A",
+      "value" : "a"
+    }
+  },
+  "-LHrWGRhoppvpEq3TrNy" : {
+    "author" : "A.Del",
+    "bpm" : 132,
+    "description" : "Action Aventure",
+    "filename" : "_The Moment Of Truth_ EpicOrchestral C 132bpm.mp3",
+    "genres" : [ {
+      "label" : "Orchestral",
+      "value" : "Orchestral"
+    } ],
+    "instruments" : [ {
+      "label" : "Cello",
+      "value" : "Cello"
+    }, {
+      "label" : "Double bass",
+      "value" : "Double bass"
+    }, {
+      "label" : "Violin",
+      "value" : "Violin"
+    }, {
+      "label" : "Viola",
+      "value" : "Viola"
+    }, {
+      "label" : "Taikos",
+      "value" : "Taikos"
+    }, {
+      "label" : "Toms",
+      "value" : "Toms"
+    }, {
+      "label" : "Gong",
+      "value" : "Gong"
+    }, {
+      "label" : "Timpani",
+      "value" : "Timpani"
+    }, {
+      "label" : "Cymbal",
+      "value" : "Cymbal"
+    }, {
+      "label" : "Snare drum",
+      "value" : "Snare drum"
+    }, {
+      "label" : "French horn",
+      "value" : "French horn"
+    }, {
+      "label" : "Trumpet",
+      "value" : "Trumpet"
+    }, {
+      "label" : "Choir",
+      "value" : "Choir"
+    } ],
+    "lenght" : "2.5",
+    "loops" : 4,
+    "moods" : [ {
+      "label" : "Epic /orchestral",
+      "value" : "Epic /orchestral"
+    } ],
+    "title" : "The Moment Of Truth",
+    "tone" : {
+      "label" : "C",
+      "value" : "c"
+    }
+  },
+  "-LHrdy990ZKRW7SQYzpU" : {
+    "author" : "A.Del",
+    "bpm" : 192,
+    "description" : "Cinématique Percussions",
+    "filename" : "bloody.mp3",
+    "genres" : [ {
+      "label" : "Cinematic",
+      "value" : "Cinematic"
+    } ],
+    "instruments" : [ {
+      "label" : "Cymbal",
+      "value" : "Cymbal"
+    }, {
+      "label" : "Gong",
+      "value" : "Gong"
+    }, {
+      "label" : "Toms",
+      "value" : "Toms"
+    }, {
+      "label" : "Fx",
+      "value" : "Fx"
+    }, {
+      "label" : "Synthesizer",
+      "value" : "Synthesizer"
+    } ],
+    "lenght" : "2.16",
+    "loops" : 2,
+    "moods" : [ {
+      "label" : "Action / Sports",
+      "value" : "Action / Sports"
+    } ],
+    "title" : "Bloody Riot Drums"
+  },
+  "-LHrjiShEn4oC11ExFDt" : {
+    "author" : "A.Del",
+    "bpm" : 60,
+    "description" : "Étrange & Bizarre ",
+    "filename" : "_Cryptic Meaning_ Ambient Fm 60bpm.mp3",
+    "genres" : [ {
+      "label" : "Ambient",
+      "value" : "Ambient"
+    } ],
+    "instruments" : [ {
+      "label" : "Piano",
+      "value" : "Piano"
+    }, {
+      "label" : "Synthesizer",
+      "value" : "Synthesizer"
+    }, {
+      "label" : "Bass drum",
+      "value" : "Bass drum"
+    }, {
+      "label" : "Snare drum",
+      "value" : "Snare drum"
+    }, {
+      "label" : "HitHat",
+      "value" : "HitHat"
+    }, {
+      "label" : "Cymbal",
+      "value" : "Cymbal"
+    }, {
+      "label" : "Fx",
+      "value" : "Fx"
+    }, {
+      "label" : "Electric bass",
+      "value" : "Electric bass"
+    } ],
+    "lenght" : "3.28",
+    "loops" : 4,
+    "moods" : [ {
+      "label" : "Dark / Samber",
+      "value" : "Dark / Samber"
+    } ],
+    "title" : "Cryptic Meaning",
+    "tone" : {
+      "label" : "Fm",
+      "value" : "f-"
+    }
+  },
+  "-LHrqSDiHXLsnSzCkqlp" : {
+    "author" : "A.Del",
+    "bpm" : 84,
+    "description" : "Doux léger",
+    "filename" : "_Stride Over The Rainbow_ PopAmbient F 84bpm.mp3",
+    "genres" : [ {
+      "label" : "Ambient",
+      "value" : "Ambient"
+    } ],
+    "instruments" : [ {
+      "label" : "Cello",
+      "value" : "Cello"
+    }, {
+      "label" : "Piano",
+      "value" : "Piano"
+    }, {
+      "label" : "Electric guitar",
+      "value" : "Electric guitar"
+    }, {
+      "label" : "Guitar",
+      "value" : "Guitar"
+    }, {
+      "label" : "Electric bass",
+      "value" : "Electric bass"
+    }, {
+      "label" : "Bass drum",
+      "value" : "Bass drum"
+    }, {
+      "label" : "Snare drum",
+      "value" : "Snare drum"
+    }, {
+      "label" : "HitHat",
+      "value" : "HitHat"
+    }, {
+      "label" : "Cymbal",
+      "value" : "Cymbal"
+    }, {
+      "label" : "Synthesizer",
+      "value" : "Synthesizer"
+    } ],
+    "lenght" : "2.29",
+    "loops" : 4,
+    "moods" : [ {
+      "label" : "Gentle / Light",
+      "value" : "Gentle / Light"
+    } ],
+    "title" : "Stride Over The Rainbow",
+    "tone" : {
+      "label" : "F",
+      "value" : "f"
+    }
+  },
+  "-LKVn8a8K7fxypUbE_yv" : {
+    "author" : "jeff",
+    "bpm" : 48,
+    "description" : "test jeff 1",
+    "filename" : "audioDefault.mpeg",
+    "genres" : [ {
+      "label" : "Jazz",
+      "value" : "Jazz"
+    }, {
+      "label" : "Blues",
+      "value" : "Blues"
+    }, {
+      "label" : "Ballade",
+      "value" : "Ballade"
+    } ],
+    "instruments" : [ {
+      "label" : "Drum",
+      "value" : "Drum"
+    }, {
+      "label" : "Double bass",
+      "value" : "Double bass"
+    }, {
+      "label" : "Guitar",
+      "value" : "Guitar"
+    } ],
+    "lenght" : "0.31",
+    "loops" : 13,
+    "moods" : [ {
+      "label" : "Comedy / Funny",
+      "value" : "Comedy / Funny"
+    }, {
+      "label" : "Gentle / Light",
+      "value" : "Gentle / Light"
+    } ],
+    "title" : "test jeff 1",
+    "tone" : {
+      "label" : "D",
+      "value" : "d"
+    }
+  }
+}
