@@ -43,7 +43,7 @@ class tracks extends Component {
                 <div>
                     <div className="row">
                         <div style={style.iconBoxAction} className="ml-3" data-tip="Download this track">
-                            <i class="material-icons"> play_arrow</i>
+                            <i className="material-icons"> play_arrow</i>
                         </div>
                     </div>
                 </div>
@@ -55,13 +55,13 @@ class tracks extends Component {
                 <div>
                     <div className="row">
                         <div style={style.iconBoxAction} className="ml-2" data-tip="Download this track">
-                            <i class="material-icons"> volume_down</i>
+                            <i className="material-icons"> volume_down</i>
                         </div>
                         <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" >
-                            <i class="material-icons"> volume_off</i>
+                            <i className="material-icons"> volume_off</i>
                         </div>
                         <div style={style.iconBoxAction} className="ml-2" data-tip="Add to playlist" >
-                            <i class="material-icons"> volume_up</i>
+                            <i className="material-icons"> volume_up</i>
                         </div>
                     </div>
                 </div>
