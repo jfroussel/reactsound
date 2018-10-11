@@ -51,11 +51,10 @@ class DetailProject extends Component {
                        
                     </div>
                     <div className="col-sm-12 text-center">
-                        <h3 className="text-uppercase">Project title : {project.title} </h3>
-                        <p>Description : {project.description}</p>
-                    </div>
-                    <div className="col-sm-12">
-
+                        <h3 className="text-uppercase">{project.title}</h3>
+                        <div className="container text-center">
+                            <p className="lead">{project.description}</p>
+                        </div>
                     </div>
 
                 </div>

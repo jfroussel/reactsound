@@ -49,11 +49,10 @@ class DetailPlaylist extends Component {
                         </NavLink>
                     </div>
                     <div className="col-sm-12 text-center">
-                        <h3 className="text-uppercase">Playlist title : {list.title}</h3>
-                        <p>Description : {list.description}</p>
-                    </div>
-                    <div className="col-sm-12">
-
+                        <h3 className="text-uppercase">{list.title}</h3>
+                        <div className="container text-center">
+                            <p className="lead">{list.description}</p>
+                        </div>
                     </div>
                 </div>
             </div>
