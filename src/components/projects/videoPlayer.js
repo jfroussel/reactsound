@@ -8,7 +8,7 @@ class VideoPlayer extends Component {
         return (
             <div className="pt-1">
                 <Player
-                    autoPlay={false}
+                    autoPlay
                     poster={logo}
                     src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
                 />
