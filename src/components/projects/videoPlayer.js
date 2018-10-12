@@ -53,9 +53,7 @@ class VideoPlayer extends Component {
         return (
             <div className="pt-1">
                 <nav className="navbar navbar-light bg-light">
-                    <a className="navbar-brand" href="#">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg" style={style.logo} alt="" />
-                    </a>
+                    
                     <div>
                         {this.state.isUploading &&
                             <Progress percent={this.state.progress} />
