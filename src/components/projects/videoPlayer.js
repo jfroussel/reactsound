@@ -21,7 +21,7 @@ class VideoPlayer extends Component {
             isUploading: false,
             progress: 0,
             filename: '',
-            videoUrl: ''
+            videoUrl: "https://firebasestorage.googleapis.com/v0/b/myapp-a124d.appspot.com/o/projectsVideo%2Fangelina-songs-tommy-emmanuel.mp4?alt=media&token=64c186dc-c68d-49da-9eba-1231868eab8c"
         }
     }
 
@@ -32,11 +32,13 @@ class VideoPlayer extends Component {
         this.notifySuccess(error)
     }
     handleUploadSuccess = (filename, props) => {
+    
         this.setState({filename: filename, progress: 100, isUploading: false });
         firebase.storage().ref(`projectsVideo`).child(filename).getDownloadURL().then(url => this.setState({ videoUrl: url }));
     };
 
     render() {
+        console.log('STATE : ', this.state)
         const opts = {
             height: '390',
             width: '550',
@@ -63,17 +65,17 @@ class VideoPlayer extends Component {
 
 
                         <CustomUploadButton
-                            accept="image/audio/*"
+                            accept="image/audio/video/*"
                             name="avatar"
                             //randomizeFilename
-                            storageRef={firebase.storage().ref(this.props.author)}
+                            storageRef={firebase.storage().ref('projectsVideo')}
                             onUploadStart={this.handleUploadStart}
                             onUploadError={this.handleUploadError}
                             onUploadSuccess={this.handleUploadSuccess}
                             onProgress={this.handleProgress}
                             style={{ backgroundColor: '#dc3545', cursor: 'pointer', color: 'white', padding: 10, borderRadius: 4 }}
                         >
-                            Upload your video(max 100Mo)
+                            Upload video(max 100Mo)
                         </CustomUploadButton>
                        
                     </div>
@@ -81,7 +83,7 @@ class VideoPlayer extends Component {
                 <Player
                     autoPlay
                     poster={logo}
-                    src="https://media.w3.org/2010/05/sintel/trailer_hd.mp4"
+                    src={this.state.videoUrl}
                 />
             </div>
         );
