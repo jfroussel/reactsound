@@ -46,12 +46,6 @@ class ProjectsList extends Component {
        
     }
 
-
-
-
-
-
-
     render() {
         console.log('THIS PROPS //// : ', this.props)
         const { projects } = this.props

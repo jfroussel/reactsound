@@ -9,6 +9,8 @@ import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editProject } from '../actions/project'
+import { getPlaylists } from '../actions/playlist'
+
 
 const style = {
     video: {
@@ -38,10 +40,9 @@ class DetailProject extends Component {
                 this.setState({ uid: user.uid })
                 this.setState({ projectID: this.props.match.params })
                 this.props.editProject(user.uid, this.props.match.params.id)
+                this.props.getPlaylists(user.uid)
             }
         })
-
-
 
     }
 
@@ -55,13 +56,12 @@ class DetailProject extends Component {
         this.setState({ videoPlayer: 'videoplayer' })    
     }
 
-
-
-
     render() {
-        const { project } = this.props
+        const { project, playlists } = this.props
 
-        console.log('selected player : ', this.state.videoPlayer)
+        console.log('detail project props : ', playlists)
+
+        
         const SelectPlayer = () => {
             return (
                 <div>
@@ -120,7 +120,7 @@ class DetailProject extends Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-12"><Header /></div>
+                        <div className="col-12"><Header playlists = {playlists}/></div>
                         <div className="col-8"><Tracks /></div>
                         <div className="col-4" style={style.video}><SelectPlayer /> </div>
                         <div className="col-12">footer playlist</div>
@@ -135,12 +135,13 @@ class DetailProject extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        project: state.project
+        project: state.project,
+        playlists: state.playlists
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editProject }, dispatch)
+    return bindActionCreators({ editProject, getPlaylists }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailProject)
