@@ -7,12 +7,7 @@ import logo from '../../assets/logo.png'
 import CustomUploadButton from 'react-firebase-file-uploader/lib/CustomUploadButton';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
-const style = {
-    logo: {
-        width: 60,
-        height: 60
-    }
-}
+
 
 class VideoPlayer extends Component {
     constructor(props) {
@@ -39,19 +34,7 @@ class VideoPlayer extends Component {
 
     render() {
         console.log('STATE : ', this.state)
-        const opts = {
-            height: '390',
-            width: '550',
-            playerVars: { // https://developers.google.com/youtube/player_parameters
-                autoplay: 1,
-                controls: 2,
-                modestbranding: 1,
-                showinfo: 0,
-                rel: 0
-            }
-        };
-
-
+        
         return (
             <div className="pt-1">
                 <nav className="navbar navbar-light bg-light">

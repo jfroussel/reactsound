@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
+import { CountryDropdown, RegionDropdown } from 'react-country-region-selector';
 
 class MemberInfo extends Component {
     constructor(props) {
@@ -66,7 +66,6 @@ class MemberInfo extends Component {
                                 onChange={(val) => this.selectRegion(val)}
                                 className={'form-control'} />
                         </div>
-
                     </div>
                     <div className="form-row pb-5">
                         <div className="form-group col-md-4">

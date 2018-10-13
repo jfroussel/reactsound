@@ -31,7 +31,7 @@ class VideoYoutube extends Component {
         return (
             <div className="pt-1">
                 <nav className="navbar navbar-light bg-light">
-                    <a className="navbar-brand" href="#">
+                    <a className="navbar-brand" href="">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/9/90/Logo_of_YouTube_%282013-2015%29.svg" style={style.logo} alt="" />
                     </a>
                     <form className="form-inline">

@@ -75,10 +75,10 @@ class DetailProject extends Component {
                                 Others players
                         </button>
                             <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                <a className="dropdown-item" href="#">other player 1</a>
-                                <a className="dropdown-item" href="#">other player 2</a>
-                                <a className="dropdown-item" href="#">other player 3</a>
-                                <a className="dropdown-item" href="#">other player 4</a>
+                                <a className="dropdown-item" href="">other player 1</a>
+                                <a className="dropdown-item" href="">other player 2</a>
+                                <a className="dropdown-item" href="">other player 3</a>
+                                <a className="dropdown-item" href="">other player 4</a>
                             </div>
                         </div>
                     </div>

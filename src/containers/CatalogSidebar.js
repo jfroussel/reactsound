@@ -4,7 +4,6 @@ import {
   filterGenres,
   filterBpm,
   filterComposers,
-  removeFilterArtists,
   filterMoods,
   filterInstruments,
 } from '../actions/filters'

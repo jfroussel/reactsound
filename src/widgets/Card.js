@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import RemoveCard from './RemoveCard'
 
-const style = {
-    card: {
-        width: '18rem'
-    }
-}
-
 class Card extends Component {
     constructor(props) {
         super(props)
+        this.state = {}
 
     }
 
