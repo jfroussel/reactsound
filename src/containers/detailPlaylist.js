@@ -5,7 +5,8 @@ import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editPlaylist } from '../actions/list'
-
+import { getSounds } from '../actions/sounds'
+import PlaylistTable from '../components/playlist/playlistTable'
 
 class DetailPlaylist extends Component {
 
@@ -19,8 +20,6 @@ class DetailPlaylist extends Component {
         }
     }
 
-
-
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
@@ -28,7 +27,7 @@ class DetailPlaylist extends Component {
                 this.setState({ uid: user.uid })
                 this.setState({ playlistID: this.props.match.params })
                 this.props.editPlaylist(user.uid, this.props.match.params.id)
-
+                this.props.getSounds()
             }
         })
     }
@@ -36,8 +35,9 @@ class DetailPlaylist extends Component {
 
 
     render() {
-        const { list } = this.props
-
+        const { list, sounds } = this.props
+       
+        console.log('SOUNDS ' , sounds)
 
         return (
 
@@ -54,19 +54,22 @@ class DetailPlaylist extends Component {
                             <p className="lead">{list.description}</p>
                         </div>
                     </div>
+                    
                 </div>
+                <PlaylistTable sounds={sounds} />
             </div>
         )
     }
 }
 const mapStateToProps = (state) => {
     return {
-        list: state.list
+        list: state.list,
+        sounds: state.sounds,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editPlaylist }, dispatch)
+    return bindActionCreators({ editPlaylist, getSounds }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPlaylist)
