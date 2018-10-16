@@ -7,24 +7,23 @@ import { bindActionCreators } from 'redux'
 import { getStorageTrack } from '../../actions/storageTrack'
 import WaveSurfer from 'wavesurfer.js'
 
-
 const style = {
     wave: {
         position: 'inherit !important'
     },
 }
+
 class playlistTable extends Component {
     constructor(props) {
         super(props)
         this.state = {
             activePlay: false,
             src: ''
-
         }
-       
-
+        this.playPause = this.playPause.bind(this)
+        this.pause = this.pause.bind(this)
     }
-
+    
     componentDidUpdate() {
         this.$el = ReactDOM.findDOMNode(this)
         this.$waveform = this.$el.querySelector('.wave')
@@ -35,67 +34,55 @@ class playlistTable extends Component {
             progressColor: '#056271',
             height: 60,
         })
-
-        console.log('CWU : ', this.props.track)
         this.wavesurfer.load(this.props.track)
     }
-
     
+    playPause() {
+        this.setState({ activePlay: true })
+        return (
+            this.wavesurfer.playPause()
+        )
+    }
+
+    pause() {
+        this.setState({ activePlay: false })
+        return (
+            this.wavesurfer.pause()
+        )
+    }
 
     render() {
-
-
         const Wave = () => {
             return (
                 <div className='wave'></div>
             )
         }
 
-        const playPause = () => {
-            this.setState({ activePlay: true })
-            return (
-                this.wavesurfer.playPause()
-            )
-        }
-    
-        const pause = () => {
-            this.setState({ activePlay: false })
-            return (
-                this.wavesurfer.pause()
-            )
-        }
         const onRowClick = (state, rowInfo, column, instance) => {
-
             return {
                 onClick: (e, handleOriginal) => {
-
                     let filename = ''
                     const id = rowInfo.index
                     const author = state.data[id].author
-
                     filename = state.data[id].filename
-                    console.log(filename)
-
                     filename && this.props.getStorageTrack(author, filename)
+                    
+                    alert('ok')
 
                     if (handleOriginal) {
                         handleOriginal()
-
                     }
-
-
                 }
             };
         };
         return (
             <div>
-
+                <Wave />
                 <div>
                     <ReactTable
                         data={this.props.sounds}
                         columns={[
                             {
-
                                 columns: [
                                     {
                                         expander: true,
@@ -103,8 +90,8 @@ class playlistTable extends Component {
                                         Expander: ({ isExpanded, ...rest }) =>
                                             <div>
                                                 {isExpanded
-                                                    ? <div style={style.play} onClick={() =>pause()}><i className="material-icons" style={style.icon}>pause</i></div>
-                                                    : <div style={style.play} onClick={() =>playPause()}><i className="material-icons" style={style.icon}>play_arrow</i></div>}
+                                                    ? <div style={style.play} onClick={() => this.pause}><i className="material-icons" style={style.icon}>pause</i></div>
+                                                    : <div style={style.play} onClick={() => this.playPause}><i className="material-icons" style={style.icon}>play_arrow</i></div>}
                                             </div>,
                                         style: {
                                             cursor: "pointer",
@@ -128,7 +115,6 @@ class playlistTable extends Component {
                                         style: {
                                             color: '#000'
                                         }
-
                                     },
                                     {
                                         Header: "Author",
@@ -167,7 +153,7 @@ class playlistTable extends Component {
                                         accessor: "Tracks",
                                         Cell: row => (
                                             <div>
-                                                <Wave />
+                                                
                                             </div>
                                         )
                                     },
@@ -195,12 +181,12 @@ class playlistTable extends Component {
                         collapseOnSortingChange={true}
                         showPaginationBottom
                     />
-
                 </div>
             </div>
         );
     }
 }
+
 const mapStateToProps = (state) => {
     return {
         track: state.storageTrack
