@@ -14,6 +14,7 @@ import bass from '../../assets/instruments/bass.svg'
 import ReactTooltip from 'react-tooltip'
 import style from './WaveSurferStyle'
 import AddPlaylist from '../playlist/addPlaylist'
+import { addInPlaylist } from '../../actions/addTrackInPlaylist'
 
 class Waveform extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ class Waveform extends Component {
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
+        
 
     }
 
@@ -68,11 +70,12 @@ class Waveform extends Component {
 
 
     addToPlaylist(playlist, trackID, trackName) {
-        const playlistTitle = playlist.title
-        const playlistID = playlist.id
+        
+        const track = [trackID,trackName]
         return (
-            alert(`le morceau ${trackName} ref: ${trackID} a bien été ajouté à la playlist ${playlistTitle} avec pour clef ref : ${playlistID}`)
-        )
+            this.props.addInPlaylist(this.state.uid,playlist.id, track)
+
+        )      
     }
 
 
@@ -132,7 +135,7 @@ class Waveform extends Component {
 
                                 {playlists.map((playlist, id) => {
                                     return (
-                                        <a className="dropdown-item" href="" onClick={() => this.addToPlaylist(playlist, this.props.trackID, this.props.trackName)} key={playlist.id}>{id} - {playlist.title}</a>
+                                        <a className="dropdown-item"  onClick={() => this.addToPlaylist(playlist, this.props.trackID, this.props.trackName)} key={playlist.id}>{id} - {playlist.title}</a>
                                     )
                                 })}
 
@@ -194,12 +197,13 @@ Waveform.defaultProps = {
 
 const mapStateToProps = (state) => {
     return {
-        playlists: state.playlists
+        playlists: state.playlists,
+        addInPlaylist: state.addTrack
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getPlaylists }, dispatch)
+    return bindActionCreators({ getPlaylists, addInPlaylist }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Waveform);

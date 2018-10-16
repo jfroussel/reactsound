@@ -8,6 +8,7 @@ import ProjectsFilters from './reducer-projects-filter'
 import PlaylistReducer from './reducer-playlists'
 import List from './list'
 import Project from './project'
+import tracks from './addTrackInPlaylist'
 
 
 
@@ -21,5 +22,6 @@ export default combineReducers({
   projects: ProjectsReducer,
   playlists: PlaylistReducer,
   list:List,
-  project: Project
+  project: Project,
+  tracks: tracks
 })

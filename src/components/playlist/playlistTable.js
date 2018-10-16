@@ -18,45 +18,31 @@ class playlistTable extends Component {
         super(props)
         this.state = {
             activePlay: false,
-            src: ''
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
+
     }
-    
-    componentDidUpdate() {
-        this.$el = ReactDOM.findDOMNode(this)
-        this.$waveform = this.$el.querySelector('.wave')
-        this.$timelineform = this.$el.querySelector('.wave-timeline')
-        this.wavesurfer = WaveSurfer.create({
-            container: this.$waveform,
-            waveColor: '#17a2b8',
-            progressColor: '#056271',
-            height: 60,
-        })
-        this.wavesurfer.load(this.props.track)
-    }
+   
     
     playPause() {
+
         this.setState({ activePlay: true })
         return (
-            this.wavesurfer.playPause()
+            console.log(this.state.activePlay)
         )
     }
 
     pause() {
         this.setState({ activePlay: false })
         return (
-            this.wavesurfer.pause()
+            console.log(this.state.activePlay)
         )
     }
 
     render() {
-        const Wave = () => {
-            return (
-                <div className='wave'></div>
-            )
-        }
+        const { track } = this.props
+       
 
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
@@ -66,10 +52,10 @@ class playlistTable extends Component {
                     const author = state.data[id].author
                     filename = state.data[id].filename
                     filename && this.props.getStorageTrack(author, filename)
-                    
-                    alert('ok')
+
 
                     if (handleOriginal) {
+                       
                         handleOriginal()
                     }
                 }
@@ -77,22 +63,19 @@ class playlistTable extends Component {
         };
         return (
             <div>
-                <Wave />
+
                 <div>
                     <ReactTable
                         data={this.props.sounds}
                         columns={[
+                            
+
                             {
+                                Header: `${this.props.sounds.length} tracks found`,
                                 columns: [
                                     {
-                                        expander: true,
-                                        width: 65,
-                                        Expander: ({ isExpanded, ...rest }) =>
-                                            <div>
-                                                {isExpanded
-                                                    ? <div style={style.play} onClick={() => this.pause}><i className="material-icons" style={style.icon}>pause</i></div>
-                                                    : <div style={style.play} onClick={() => this.playPause}><i className="material-icons" style={style.icon}>play_arrow</i></div>}
-                                            </div>,
+                                        Header: "Action",
+                                        accessor: "action",
                                         style: {
                                             cursor: "pointer",
                                             fontSize: 15,
@@ -101,14 +84,16 @@ class playlistTable extends Component {
                                             userSelect: "none",
                                             width: 50
                                         },
-                                    }
-                                ]
-                            },
-
-                            {
-                                Header: `${this.props.sounds.length} tracks found`,
-                                columns: [
-
+                                        Cell: row => (
+                                            <div>{
+                                                !this.state.activePlay ? 
+                                                <div style={style.play} onClick={() => this.playPause()}><i className="material-icons" style={style.icon}>play_arrow</i></div>
+                                                :
+                                                <div style={style.play} onClick={() => this.pause()}><i className="material-icons" style={style.icon}>pause</i></div>
+                                            }</div>
+                                        ),
+                                       
+                                    },
                                     {
                                         Header: "Title",
                                         accessor: "title",
@@ -152,9 +137,7 @@ class playlistTable extends Component {
                                         Header: "Track",
                                         accessor: "Tracks",
                                         Cell: row => (
-                                            <div>
-                                                
-                                            </div>
+                                            <div></div>
                                         )
                                     },
                                     {

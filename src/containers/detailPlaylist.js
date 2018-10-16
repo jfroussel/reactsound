@@ -30,14 +30,17 @@ class DetailPlaylist extends Component {
                 this.props.getSounds()
             }
         })
+
+
     }
 
+   
 
 
     render() {
         const { list, sounds } = this.props
        
-        console.log('SOUNDS ' , sounds)
+        console.log('SOUNDS ' , this.props)
 
         return (
 
