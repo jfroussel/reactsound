@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
 import { connect } from 'react-redux'
@@ -13,7 +12,7 @@ const style = {
     },
 }
 
-class playlistTable extends Component {
+class tracksList extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -41,9 +40,8 @@ class playlistTable extends Component {
     }
 
     render() {
-        const { sounds, tracks } = this.props
+        const { track } = this.props
        
-        console.log('detail playlist sounds', ...tracks)
 
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
@@ -67,12 +65,12 @@ class playlistTable extends Component {
 
                 <div>
                     <ReactTable
-                        data={sounds}
+                        data={this.props.sounds}
                         columns={[
                             
 
                             {
-                                Header: `${tracks.length} tracks found`,
+                                Header: `${this.props.sounds.length} tracks found`,
                                 columns: [
                                     {
                                         Header: "Action",
@@ -173,8 +171,7 @@ class playlistTable extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        track: state.storageTrack,
-        tracks : state.tracks
+        track: state.storageTrack
     };
 }
 
@@ -182,4 +179,4 @@ const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({ getStorageTrack }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(playlistTable)
+export default connect(mapStateToProps, mapDispatchToProps)(tracksList)

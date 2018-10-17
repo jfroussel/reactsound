@@ -8,7 +8,7 @@ import ProjectsFilters from './reducer-projects-filter'
 import PlaylistReducer from './reducer-playlists'
 import List from './list'
 import Project from './project'
-import tracks from './addTrackInPlaylist'
+import tracks from './tracks'
 
 
 

@@ -5,11 +5,13 @@ const filtersReducerDefaultState = {
     instruments: [],
     bpm: '',
     length: '',
+   
 
 };
 
 export default (state = filtersReducerDefaultState, action) => {
     switch (action.type) {
+       
         case 'FILTER_GENRES':
             return {
                 ...state,

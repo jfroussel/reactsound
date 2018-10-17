@@ -1,3 +1,4 @@
+
 export const filterGenres = (genres = null) => ({
     type: 'FILTER_GENRES',
     genres

@@ -14,7 +14,7 @@ import bass from '../../assets/instruments/bass.svg'
 import ReactTooltip from 'react-tooltip'
 import style from './WaveSurferStyle'
 import AddPlaylist from '../playlist/addPlaylist'
-import { addInPlaylist } from '../../actions/addTrackInPlaylist'
+import { addInPlaylist } from '../../actions/tracks'
 
 class Waveform extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ class Waveform extends Component {
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
-        
+
 
     }
 
@@ -69,13 +69,11 @@ class Waveform extends Component {
     }
 
 
-    addToPlaylist(playlist, trackID, trackName) {
-        
-        const track = [trackID,trackName]
+    addToPlaylist(playlist, trackID, trackName, src) {
+        const track = [{ id: trackID, name: trackName, src:src }]
         return (
-            this.props.addInPlaylist(this.state.uid,playlist.id, track)
-
-        )      
+            this.props.addInPlaylist(this.state.uid, playlist.id, track)
+        )
     }
 
 
@@ -135,7 +133,9 @@ class Waveform extends Component {
 
                                 {playlists.map((playlist, id) => {
                                     return (
-                                        <a className="dropdown-item"  onClick={() => this.addToPlaylist(playlist, this.props.trackID, this.props.trackName)} key={playlist.id}>{id} - {playlist.title}</a>
+                                        <a
+                                            className="dropdown-item"
+                                            onClick={() => this.addToPlaylist(playlist, this.props.trackID, this.props.trackName, this.props.src)} key={playlist.id}>{id} - {playlist.title}</a>
                                     )
                                 })}
 

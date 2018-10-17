@@ -7,7 +7,14 @@ import { bindActionCreators } from 'redux'
 import { editPlaylist } from '../actions/list'
 import { getSounds } from '../actions/sounds'
 import PlaylistTable from '../components/playlist/playlistTable'
+import { getTracks } from '../actions/tracks'
 
+
+const style = {
+    wave: {
+        position: 'inherit !important'
+    },
+}
 class DetailPlaylist extends Component {
 
     constructor(props) {
@@ -28,19 +35,35 @@ class DetailPlaylist extends Component {
                 this.setState({ playlistID: this.props.match.params })
                 this.props.editPlaylist(user.uid, this.props.match.params.id)
                 this.props.getSounds()
+                this.props.getTracks(user.uid, this.props.match.params.id)
             }
         })
 
 
     }
 
-   
-
 
     render() {
-        const { list, sounds } = this.props
+        const { list, sounds, tracks } = this.props
+
+        
+
+        
+        const trackList = () => {
+            return (
+                tracks.map((track) => {
+                    return (
+                        track.map((t) => {
+                            return (
+                                 sounds.filter(sound => sound.id === t.id)
+                            )
+                        })
+                    )
+                })
+            )
+        }
+        
        
-        console.log('SOUNDS ' , this.props)
 
         return (
 
@@ -57,8 +80,16 @@ class DetailPlaylist extends Component {
                             <p className="lead">{list.description}</p>
                         </div>
                     </div>
-                    
+                    <div className="container">
+                        <p className="lead"></p>
+                        <pre>
+                            
+                            
+                        </pre>
+                    </div>
                 </div>
+
+
                 <PlaylistTable sounds={sounds} />
             </div>
         )
@@ -68,11 +99,12 @@ const mapStateToProps = (state) => {
     return {
         list: state.list,
         sounds: state.sounds,
+        tracks: state.tracks
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editPlaylist, getSounds }, dispatch)
+    return bindActionCreators({ editPlaylist, getSounds, getTracks }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPlaylist)

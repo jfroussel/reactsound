@@ -11,7 +11,7 @@ const _addInPlaylist = (track) => ({
 export const addInPlaylist = (uid, id, track) => {
     return (dispatch) => {
        
-        return firebase.database().ref(`members/${uid}/playlists/${id}/tracks`).push(track).then(ref => {
+        return firebase.database().ref(`members/${uid}/playlists/${id}/tracks`).push(...track).then(ref => {
             dispatch(_addInPlaylist({
                 id: ref.key,
                 ...track
@@ -22,7 +22,28 @@ export const addInPlaylist = (uid, id, track) => {
                 timeout: 5000,
                 button: { label: 'OK, GOT IT' }
             }));
+        });
+    };
+};
+
+const _getTracks = (id, tracks) => ({
+    type: 'GET_TRACKS',
+    tracks
+
+});
+export const getTracks = (uid,id) => {
+    return (dispatch) => {
+        return firebase.database().ref(`members/${uid}/playlists/${id}/tracks`).once('value').then(snapshot => {
             
+            const tracks = []
+            snapshot.forEach(item => {
+                tracks.push({
+                    id: item.key,
+                    ...item.val(),
+                    
+                });
+            });
+            dispatch(_getTracks(id,tracks));
         });
     };
 };
