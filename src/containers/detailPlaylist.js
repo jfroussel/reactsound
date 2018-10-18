@@ -38,7 +38,7 @@ class DetailPlaylist extends Component {
                 this.setState({ uid: user.uid })
                 this.setState({ playlistID: this.props.match.params })
                 this.props.editPlaylist(user.uid, this.props.match.params.id)
-                this.props.getSoundsSelected(['1', '2', '3'])
+                this.props.getSoundsSelected()
 
             }
         })
@@ -67,7 +67,7 @@ class DetailPlaylist extends Component {
 
         const { list, soundsSelected, tracks } = this.props
         const sounds = this.filteredSounds(this.state.selectedTracks, soundsSelected)
-
+        
         return (
 
             <div className="container-fluid pt-5">
@@ -86,7 +86,7 @@ class DetailPlaylist extends Component {
                     <div className="container">
                         <p className="lead"></p>
                         <pre>
-                            {JSON.stringify(sounds,null,2)}
+                            
                         </pre>
                     </div>
                 </div>

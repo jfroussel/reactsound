@@ -18,6 +18,7 @@ class playlistTable extends Component {
         super(props)
         this.state = {
             activePlay: false,
+            
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
@@ -42,7 +43,14 @@ class playlistTable extends Component {
 
     render() {
         const { sounds, tracks } = this.props
-        console.log('PLAYLIST TABLE ', this.props)
+        const data = () => {
+            return (
+                sounds.map((item) => {
+                    return item[0]
+                })
+            )
+        }
+        
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
                 onClick: (e, handleOriginal) => {
@@ -51,10 +59,7 @@ class playlistTable extends Component {
                     const author = state.data[id].author
                     filename = state.data[id].filename
                     filename && this.props.getStorageTrack(author, filename)
-
-
                     if (handleOriginal) {
-                       
                         handleOriginal()
                     }
                 }
@@ -62,15 +67,12 @@ class playlistTable extends Component {
         };
         return (
             <div>
-
                 <div>
                     <ReactTable
-                        data={sounds}
+                        data={data()}
                         columns={[
-                            
-
                             {
-                                Header: `${tracks.length} tracks found`,
+                                Header: `${data().length} tracks found`,
                                 columns: [
                                     {
                                         Header: "Action",
