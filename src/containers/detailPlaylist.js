@@ -5,7 +5,7 @@ import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editPlaylist } from '../actions/list'
-import { getSounds } from '../actions/sounds'
+import { getSoundsSelected } from '../actions/sounds'
 import PlaylistTable from '../components/playlist/playlistTable'
 import { getTracks } from '../actions/tracks'
 
@@ -23,8 +23,12 @@ class DetailPlaylist extends Component {
             isLogged: false,
             uid: null,
             playlistID: '',
+            selectedTracks: [],
+            test:''
 
         }
+
+        this; this.filteredSounds = this.filteredSounds.bind(this)
     }
 
     componentWillMount() {
@@ -34,36 +38,35 @@ class DetailPlaylist extends Component {
                 this.setState({ uid: user.uid })
                 this.setState({ playlistID: this.props.match.params })
                 this.props.editPlaylist(user.uid, this.props.match.params.id)
-                this.props.getSounds()
-                this.props.getTracks(user.uid, this.props.match.params.id)
+                this.props.getSoundsSelected(['1', '2', '3'])
+
             }
         })
+    }
 
+    componentWillReceiveProps() {
+
+        let list = this.props.list.tracks
+        if (list) {
+            this.setState({ selectedTracks: Object.values(list) })
+        }
+    }
+    filteredSounds = (tracks, sounds) => {
+        return (
+            tracks.map((item) => {
+                return (
+                   sounds.filter(sound => sound.id === item.id)
+                )
+            })
+        )
 
     }
 
 
     render() {
-        const { list, sounds, tracks } = this.props
 
-        
-
-        
-        const trackList = () => {
-            return (
-                tracks.map((track) => {
-                    return (
-                        track.map((t) => {
-                            return (
-                                 sounds.filter(sound => sound.id === t.id)
-                            )
-                        })
-                    )
-                })
-            )
-        }
-        
-       
+        const { list, soundsSelected, tracks } = this.props
+        const sounds = this.filteredSounds(this.state.selectedTracks, soundsSelected)
 
         return (
 
@@ -83,8 +86,7 @@ class DetailPlaylist extends Component {
                     <div className="container">
                         <p className="lead"></p>
                         <pre>
-                            
-                            
+                            {JSON.stringify(sounds,null,2)}
                         </pre>
                     </div>
                 </div>
@@ -98,13 +100,13 @@ class DetailPlaylist extends Component {
 const mapStateToProps = (state) => {
     return {
         list: state.list,
-        sounds: state.sounds,
+        soundsSelected: state.sounds,
         tracks: state.tracks
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editPlaylist, getSounds, getTracks }, dispatch)
+    return bindActionCreators({ editPlaylist, getSoundsSelected, getTracks }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailPlaylist)

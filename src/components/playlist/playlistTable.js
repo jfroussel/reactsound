@@ -42,9 +42,7 @@ class playlistTable extends Component {
 
     render() {
         const { sounds, tracks } = this.props
-       
-        console.log('detail playlist sounds', ...tracks)
-
+        console.log('PLAYLIST TABLE ', this.props)
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
                 onClick: (e, handleOriginal) => {

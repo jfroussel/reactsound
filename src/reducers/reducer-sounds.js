@@ -1,10 +1,12 @@
-import { GET_SOUNDS} from '../actions/sounds'
+import { GET_SOUNDS, GET_SOUNDS_SELECTED } from '../actions/sounds'
 
-export default function(state = [], action) {
-    switch(action.type) {
-        case GET_SOUNDS :
+export default function (state = [], action) {
+    switch (action.type) {
+        case GET_SOUNDS:
             return action.payload
-        default :
+        case GET_SOUNDS_SELECTED:
+            return action.payload
+        default:
             return state
     }
 }
