@@ -80,7 +80,6 @@ class Waveform extends Component {
 
     render() {
         const { playlists } = this.props
-        console.log('PROPS WS ', this.props)
         return (
             <div className='container waveform'>
                 <div className="row">

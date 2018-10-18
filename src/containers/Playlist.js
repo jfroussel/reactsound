@@ -29,8 +29,6 @@ class Playlist extends Component {
     }
     render() {
         const { playlists } = this.props
-        console.log('PLAYLISTS PROPS ', this.props)
-
         return (
             <div className="container pt-5">
                 <div className="text-center">

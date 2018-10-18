@@ -39,11 +39,8 @@ class PlaylistList extends Component {
     }
 
     render() {
-       console.log('PLAYLISTLIST PROPS ', this.props)
         const { playlists } = this.props
-        
         let countPlaylists = playlists.length ? playlists.length : 0
-        
         const remove = (id, title) => {
             confirmAlert({
                 customUI: ({ onClose }) => {
@@ -57,7 +54,6 @@ class PlaylistList extends Component {
                                     countPlaylists = countPlaylists -1
                                     onClose()
                                 })
-                                
                             }}>Yes, Delete it!</button>
                         </div>
                     )

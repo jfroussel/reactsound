@@ -78,17 +78,12 @@ class CatalogTable extends Component {
         }
     }
 
-
-
     render() {
 
-
         const { sounds, storageTrack } = this.props
-        console.log('CATALOG PROPS ', this.props)
         const filteredSounds = this.filtered(sounds).length ? this.filtered(sounds) : sounds
 
         const onRowClick = (state, rowInfo, column, instance) => {
-
             return {
                 onClick: (e, handleOriginal) => {
 
@@ -105,7 +100,6 @@ class CatalogTable extends Component {
                 }
             };
         };
-
 
         const Buy = () => {
             return (

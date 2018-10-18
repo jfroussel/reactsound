@@ -58,10 +58,6 @@ class DetailProject extends Component {
 
     render() {
         const { project, playlists } = this.props
-
-        console.log('detail project props : ', playlists)
-
-        
         const SelectPlayer = () => {
             return (
                 <div>

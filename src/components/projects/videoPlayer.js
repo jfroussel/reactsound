@@ -32,21 +32,16 @@ class VideoPlayer extends Component {
         firebase.storage().ref(`projectsVideo`).child(filename).getDownloadURL().then(url => this.setState({ videoUrl: url }));
     };
 
-    render() {
-        console.log('STATE : ', this.state)
-        
+    render() {        
         return (
             <div className="pt-1">
                 <nav className="navbar navbar-light bg-light">
-                    
                     <div>
                         {this.state.isUploading &&
                             <Progress percent={this.state.progress} />
 
                         }
                         {this.state.filename}
-
-
                         <CustomUploadButton
                             accept="image/audio/video/*"
                             name="avatar"

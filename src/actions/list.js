@@ -12,7 +12,6 @@ export const editPlaylist = (uid, id) => {
 
     return (dispatch) => {
         return firebase.database().ref(`members/${uid}/playlists/${id}`).once('value').then((snapshot) => {
-            console.log(snapshot.val())
             dispatch(_editPlaylist(snapshot.val()));
         })
     }

@@ -10,11 +10,6 @@ import PlaylistTable from '../components/playlist/playlistTable'
 import { getTracks } from '../actions/tracks'
 
 
-const style = {
-    wave: {
-        position: 'inherit !important'
-    },
-}
 class DetailPlaylist extends Component {
 
     constructor(props) {
@@ -24,11 +19,9 @@ class DetailPlaylist extends Component {
             uid: null,
             playlistID: '',
             selectedTracks: [],
-            test:''
-
         }
 
-        this; this.filteredSounds = this.filteredSounds.bind(this)
+        this.filteredSounds = this.filteredSounds.bind(this)
     }
 
     componentWillMount() {
@@ -55,7 +48,7 @@ class DetailPlaylist extends Component {
         return (
             tracks.map((item) => {
                 return (
-                   sounds.filter(sound => sound.id === item.id)
+                    sounds.filter(sound => sound.id === item.id)
                 )
             })
         )
@@ -65,9 +58,9 @@ class DetailPlaylist extends Component {
 
     render() {
 
-        const { list, soundsSelected, tracks } = this.props
+        const { list, soundsSelected } = this.props
         const sounds = this.filteredSounds(this.state.selectedTracks, soundsSelected)
-        
+
         return (
 
             <div className="container-fluid pt-5">
@@ -86,7 +79,7 @@ class DetailPlaylist extends Component {
                     <div className="container">
                         <p className="lead"></p>
                         <pre>
-                            
+
                         </pre>
                     </div>
                 </div>

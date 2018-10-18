@@ -9,13 +9,11 @@ class Composer extends Component {
         }
     }
 
-    
     componentWillMount() {
         this.setState({composer: this.props.match.params})
     }
     
     render() {
-        console.log('COMPOSER ', this.state.composer.id)
         return (
             <div className="container-fluid pt-5">
                 <div className="row">

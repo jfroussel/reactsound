@@ -41,7 +41,6 @@ class Home extends Component {
     componentWillReceiveProps() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
-            console.log('reference user : ', user)
         })
     }
 

@@ -29,15 +29,11 @@ const style = {
 
 
 const handleClickPlayer = () => {
-  return (
-    console.log('click on player')
-  )
+ 
 }
 
 const handleMouseOver = (e) => {
-  return (
-    console.log('mouse over', e)
-  )
+ 
 
 }
 

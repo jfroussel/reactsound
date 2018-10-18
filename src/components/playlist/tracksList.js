@@ -27,16 +27,12 @@ class tracksList extends Component {
     playPause() {
 
         this.setState({ activePlay: true })
-        return (
-            console.log(this.state.activePlay)
-        )
+        
     }
 
     pause() {
         this.setState({ activePlay: false })
-        return (
-            console.log(this.state.activePlay)
-        )
+        
     }
 
     render() {

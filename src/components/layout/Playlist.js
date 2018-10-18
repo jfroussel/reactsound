@@ -4,13 +4,7 @@ import { genres } from '../catalog/CatalogConstants'
 class Playlist extends Component {
 
 
-    componentWillMount() {
-        console.log(genres)
-
-    }
-
     render() {
-
         return (
             <section className="wrapper">
                 <div className="container-fostrap pt-5">

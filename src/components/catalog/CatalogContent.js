@@ -9,14 +9,9 @@ class CatalogContent extends Component {
     this.state = {}
   }
 
-  componentWillUpdate() {
-    console.log('CWM ' ,this.props)
-  }
   render() {
     const { filters, sounds } = this.props
-    
-
-
+  
     return (
       <div className="container-fluid">
         <h3 style={style.title}>Most Popular Royalty Free Music</h3>

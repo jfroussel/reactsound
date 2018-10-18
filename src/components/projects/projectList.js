@@ -33,7 +33,6 @@ class ProjectsList extends Component {
         };
     }
 
-
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
@@ -42,17 +41,11 @@ class ProjectsList extends Component {
                 this.props.getProjects(this.state.uid)
             }
         });
-
-       
     }
 
     render() {
-        console.log('THIS PROPS //// : ', this.props)
         const { projects } = this.props
         let countProjects = projects.length
-
-        
-
         const remove = (id, title) => {
             confirmAlert({
                 customUI: ({ onClose }) => {

@@ -4,14 +4,6 @@ import { fakeComposers } from '../catalog/CatalogConstants'
 
 class Composers extends Component {
 
-
-
-
-    componentWillMount() {
-        console.log(fakeComposers)
-
-    }
-
     render() {
         return (
             <div className="container pt-5 pb-5">

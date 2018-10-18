@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getStorageTrack } from '../../actions/storageTrack'
-import WaveSurfer from 'wavesurfer.js'
 
 const style = {
     wave: {
@@ -29,20 +27,16 @@ class playlistTable extends Component {
     playPause() {
 
         this.setState({ activePlay: true })
-        return (
-            console.log(this.state.activePlay)
-        )
+        
     }
 
     pause() {
         this.setState({ activePlay: false })
-        return (
-            console.log(this.state.activePlay)
-        )
+        
     }
 
     render() {
-        const { sounds, tracks } = this.props
+        const { sounds } = this.props
         const data = () => {
             return (
                 sounds.map((item) => {

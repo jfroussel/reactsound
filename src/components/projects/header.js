@@ -9,10 +9,12 @@ class header extends Component {
         const dataPlaylist = () => {
             const result = []
                 playlists.map((playlist) => {
-                    result.push({
-                        value: playlist.id,
-                        label: playlist.title
-                    })
+                    return (
+                        result.push({
+                            value: playlist.id,
+                            label: playlist.title
+                        })
+                    )
                 })
             return result
         }

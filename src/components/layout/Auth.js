@@ -37,8 +37,6 @@ class Auth extends React.Component {
         callbacks: {
 
             signInSuccessWithAuthResult: (e) => {
-                
-                console.log('ignInSuccessWithAuthResult : ',e)
                 if(e.additionalUserInfo.isNewUser){
                     this.createMember(e.user.uid, e.user.email, e.user.displayName).then(() => {
                         this.createMemberPlaylist(e.user.uid).then(() => {
@@ -48,9 +46,6 @@ class Auth extends React.Component {
                         })
                     })
                 }
-                    
-                
-
             }
         }
     };
