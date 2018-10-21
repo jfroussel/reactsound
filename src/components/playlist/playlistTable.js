@@ -4,6 +4,7 @@ import "react-table/react-table.css"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getStorageTrack } from '../../actions/storageTrack'
+import { getSoundsSelected } from '../../actions/sounds'
 
 const style = {
     wave: {
@@ -16,35 +17,33 @@ class playlistTable extends Component {
         super(props)
         this.state = {
             activePlay: false,
-            
+
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
 
     }
-   
-    
+
+    componentWillMount() {
+        console.log('PROPS', this.props)
+        this.props.getSoundsSelected(this.props.tracksID)
+    }
+
+
     playPause() {
 
         this.setState({ activePlay: true })
-        
+
     }
 
     pause() {
         this.setState({ activePlay: false })
-        
+
     }
 
     render() {
-        const { sounds } = this.props
-        const data = () => {
-            return (
-                sounds.map((item) => {
-                    return item[0]
-                })
-            )
-        }
-        
+        const { sounds, soundsSelected } = this.props
+
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
                 onClick: (e, handleOriginal) => {
@@ -63,10 +62,10 @@ class playlistTable extends Component {
             <div>
                 <div>
                     <ReactTable
-                        data={data()}
+                        data={soundsSelected}
                         columns={[
                             {
-                                Header: `${data().length} tracks found`,
+                                Header: `${soundsSelected.length} tracks found`,
                                 columns: [
                                     {
                                         Header: "Action",
@@ -81,13 +80,13 @@ class playlistTable extends Component {
                                         },
                                         Cell: row => (
                                             <div>{
-                                                !this.state.activePlay ? 
-                                                <div style={style.play} onClick={() => this.playPause()}><i className="material-icons" style={style.icon}>play_arrow</i></div>
-                                                :
-                                                <div style={style.play} onClick={() => this.pause()}><i className="material-icons" style={style.icon}>pause</i></div>
+                                                !this.state.activePlay ?
+                                                    <div style={style.play} onClick={() => this.playPause()}><i className="material-icons" style={style.icon}>play_arrow</i></div>
+                                                    :
+                                                    <div style={style.play} onClick={() => this.pause()}><i className="material-icons" style={style.icon}>pause</i></div>
                                             }</div>
                                         ),
-                                       
+
                                     },
                                     {
                                         Header: "Title",
@@ -168,12 +167,13 @@ class playlistTable extends Component {
 const mapStateToProps = (state) => {
     return {
         track: state.storageTrack,
-        tracks : state.tracks
+        tracks: state.tracks,
+        soundsSelected: state.sounds,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getStorageTrack }, dispatch)
+    return bindActionCreators({ getStorageTrack, getSoundsSelected }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(playlistTable)
