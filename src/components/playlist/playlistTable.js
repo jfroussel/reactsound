@@ -17,16 +17,19 @@ class playlistTable extends Component {
         super(props)
         this.state = {
             activePlay: false,
-
         }
         this.playPause = this.playPause.bind(this)
         this.pause = this.pause.bind(this)
-
+        
     }
 
-    componentWillMount() {
-        console.log('PROPS', this.props)
-        this.props.getSoundsSelected(this.props.tracksID)
+    componentDidMount() {
+        
+        this.props.getSoundsSelected(this.props.listID)
+    }
+
+    componentWillReceiveProps() {
+       
     }
 
 
@@ -43,7 +46,7 @@ class playlistTable extends Component {
 
     render() {
         const { sounds, soundsSelected } = this.props
-
+       
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
                 onClick: (e, handleOriginal) => {

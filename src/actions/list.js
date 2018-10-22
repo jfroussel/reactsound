@@ -12,9 +12,12 @@ export const editPlaylist = (uid, id) => {
 
     return (dispatch) => {
         return firebase.database().ref(`members/${uid}/playlists/${id}`).once('value').then((snapshot) => {
+
             dispatch(_editPlaylist(snapshot.val()));
         })
     }
 };
+
+
 
 
