@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CatalogHeader from '../components/catalog/CatalogHeader'
+import CatalogHeader from '../../components/catalog/CatalogHeader'
 import CatalogSidebar from './CatalogSidebar'
-import CatalogContent from '../components/catalog/CatalogContent'
+import CatalogContent from '../../components/catalog/CatalogContent'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getSounds } from '../actions/sounds'
+import { getSounds } from '../../actions/sounds'
 
 const style = {
   content: {

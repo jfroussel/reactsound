@@ -3,9 +3,9 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getPlaylists, removePlaylist } from '../actions/playlist'
-import Card from '../widgets/Card'
-import AddPlaylist from '../components/playlist/addPlaylist'
+import { getPlaylists, removePlaylist } from '../../actions/playlist'
+import Card from '../../widgets/Card'
+import AddPlaylist from '../../components/playlist/addPlaylist'
 
 class Playlist extends Component {
     constructor(props) {

@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
-import VideoPlayer from '../components/projects/videoPlayer'
-import VideoYoutube from '../components/projects/videoYoutube'
-import Tracks from '../components/projects/tracks'
-import Header from '../components/projects/header'
+import VideoPlayer from '../../components/projects/videoPlayer'
+import VideoYoutube from '../../components/projects/videoYoutube'
+import Tracks from '../../components/projects/tracks'
+import Header from '../../components/projects/header'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { editProject } from '../actions/project'
-import { getPlaylists } from '../actions/playlist'
+import { editProject } from '../../actions/project'
+import { getPlaylists } from '../../actions/playlist'
 
 
 const style = {

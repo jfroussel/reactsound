@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import MemberInfo from '../components/account/MemberInfo'
-import Orders from '../components/account/Orders'
-import Settings from '../components/account/Settings'
-import Profil from '../assets/jeff.jpg'
+import MemberInfo from '../../components/account/MemberInfo'
+import Orders from '../../components/account/Orders'
+import Settings from '../../components/account/Settings'
+import Profil from '../../assets/jeff.jpg'
 
 const style = {
     header: {

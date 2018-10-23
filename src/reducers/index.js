@@ -10,6 +10,7 @@ import List from './list'
 import PlaylistTracks from './playlistTracks'
 import Project from './project'
 import tracks from './tracks'
+import SoundsSelected from './soundsSelected'
 
 
 
@@ -25,5 +26,6 @@ export default combineReducers({
   list:List,
   playlistTracks: PlaylistTracks,
   project: Project,
-  tracks: tracks
+  tracks: tracks,
+  soundsSelected: SoundsSelected
 })

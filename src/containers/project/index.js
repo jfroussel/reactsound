@@ -3,9 +3,9 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { getProjects, removeProject } from '../actions/projects'
-import Card from '../widgets/Card'
-import AddProject from '../components/projects/addProject'
+import { getProjects, removeProject } from '../../actions/projects'
+import Card from '../../widgets/Card'
+import AddProject from '../../components/projects/addProject'
 
 class Project extends Component {
     constructor(props) {

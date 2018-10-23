@@ -6,9 +6,9 @@ import {
   filterComposers,
   filterMoods,
   filterInstruments,
-} from '../actions/filters'
+} from '../../actions/filters'
 import style from './CatalogSidebarStyle'
-import { genres, moods, composers, instruments, bpm } from '../components/catalog/CatalogConstants'
+import { genres, moods, composers, instruments, bpm } from '../../components/catalog/CatalogConstants'
 
 class CatalogSidebar extends Component {
 
