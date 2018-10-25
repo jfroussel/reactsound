@@ -69,3 +69,28 @@ export const getProjects = (uid) => {
         });
     };
 };
+
+const _addPlaylistInProject = (playlist) => ({
+    type: 'ADD_PLAYLIST_IN_PROJECT',
+    playlist,
+});
+
+export const addPlaylistInProject = (uid, id, playlistData = {
+    id: '',
+   
+}) => {
+    return (dispatch) => {
+        const playlist = playlistData
+        return firebase.database().ref('members/' + uid + '/projects/' + id +'/playlists/').push(playlist).then((ref) => {
+            dispatch(_addPlaylistInProject({
+                id:ref.key,
+                ...playlist
+            }))
+            dispatch(showSnack(uid, {
+                label: `Your playlist ${playlist.id} has been created`,
+                timeout: 5000,
+                button: { label: 'OK, GOT IT' }
+            }));
+        });
+    };
+};

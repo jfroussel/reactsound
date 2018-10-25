@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import VideoPlayer from '../../components/projects/videoPlayer'
 import VideoYoutube from '../../components/projects/videoYoutube'
-//import Tracks from '../../components/projects/tracks'
 import PlaylistTable from '../../components/playlist/table'
 import Header from '../../components/projects/header'
 import firebase from 'firebase/app'
@@ -11,18 +10,15 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editProject } from '../../actions/project'
 import { getPlaylists } from '../../actions/playlist'
+import { addPlaylistInProject} from '../../actions/projects'
 import Select from 'react-select'
 import { playlistTracks } from '../../actions/playlistTracks'
-
-
 
 const style = {
     video: {
         width: 250
     }
 }
-
-
 
 class DetailProject extends Component {
 
@@ -69,8 +65,10 @@ class DetailProject extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        const id = '-LNU61zqdBEAsG_6Owqh' 
         if (this.state.selectedOption !== prevState.selectedOption) {
             this.props.playlistTracks(this.state.uid, this.state.selectedOption)
+            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, this.props.listID)
         }
     }
 
@@ -85,6 +83,7 @@ class DetailProject extends Component {
     }
 
     handleChange = (selectedOption) => {
+        
         this.setState({ selectedOption: selectedOption.value });
         console.log(`Option selected:`, selectedOption);
     }
@@ -176,11 +175,12 @@ const mapStateToProps = (state) => {
         project: state.project,
         playlists: state.playlists,
         listID: state.playlistTracks,
+        addPlaylistInProject: state.addPlaylistInProject
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editProject, getPlaylists, playlistTracks }, dispatch)
+    return bindActionCreators({ editProject, playlistTracks, getPlaylists, addPlaylistInProject }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailProject)

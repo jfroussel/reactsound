@@ -122,26 +122,7 @@ class playlistTable extends Component {
                                         }
 
                                     },
-                                    {
-                                        Header: "Track",
-                                        accessor: "Tracks",
-                                        Cell: row => (
-                                            <div></div>
-                                        )
-                                    },
-                                    {
-                                        accessor: "Actions",
-                                        Cell: row => (
-                                            <div>actions</div>
-                                        )
-                                    },
-                                    {
-                                        accessor: "buy",
-                                        Cell: row => (
-                                            <div>buy</div>
-                                        )
-                                    },
-
+                                    
                                 ]
                             },
                         ]}
