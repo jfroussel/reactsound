@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getProjects, removeProject } from '../../actions/projects'
 import Card from '../../widgets/Card'
-import AddProject from '../../components/projects/addProject'
+import AddProject from '../../components/projects/add'
 
 class Project extends Component {
     constructor(props) {

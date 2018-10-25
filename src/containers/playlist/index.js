@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getPlaylists, removePlaylist } from '../../actions/playlist'
 import Card from '../../widgets/Card'
-import AddPlaylist from '../../components/playlist/addPlaylist'
+import AddPlaylist from '../../components/playlist/add'
 
 class Playlist extends Component {
     constructor(props) {

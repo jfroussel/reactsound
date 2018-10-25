@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProjectForm from './projectForm';
+import ProjectForm from './form';
 import { connect } from 'react-redux';
 import { addProject } from '../../actions/projects'
 

@@ -13,7 +13,7 @@ import fullmix from '../../assets/instruments/fullmix.svg'
 import bass from '../../assets/instruments/bass.svg'
 import ReactTooltip from 'react-tooltip'
 import style from './WaveSurferStyle'
-import AddPlaylist from '../playlist/addPlaylist'
+import AddPlaylist from '../playlist/add'
 import { addInPlaylist } from '../../actions/tracks'
 
 class Waveform extends Component {

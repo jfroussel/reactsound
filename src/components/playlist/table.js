@@ -4,6 +4,7 @@ import "react-table/react-table.css"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getStorageTrack } from '../../actions/storageTrack'
+import { getSoundsSelected} from '../../actions/soundsSelected'
 
 const style = {
     wave: {
@@ -22,21 +23,22 @@ class playlistTable extends Component {
         
     }
    
-
+    componentDidUpdate(prevProps) {
+        if(this.props.listID !== prevProps.listID) {
+            this.props.getSoundsSelected(this.props.listID)
+        }
+    }
+    
     playPause() {
-
         this.setState({ activePlay: true })
-
     }
 
     pause() {
         this.setState({ activePlay: false })
-
     }
 
     render() {
-        console.log('constructor props', this.props)
-        const { soundsSelected } = this.props
+        const { soundsSelected} = this.props
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
                 onClick: (e, handleOriginal) => {
@@ -58,7 +60,7 @@ class playlistTable extends Component {
                         data={soundsSelected}
                         columns={[
                             {
-                                Header: `${soundsSelected.length} tracks found`,
+                                Header: `${soundsSelected ? soundsSelected.length : 0} tracks found`,
                                 columns: [
                                     {
                                         Header: "Action",
@@ -161,11 +163,12 @@ const mapStateToProps = (state) => {
     return {
         track: state.storageTrack,
         tracks: state.tracks,
+        soundsSelected: state.soundsSelected
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ getStorageTrack }, dispatch)
+    return bindActionCreators({ getStorageTrack, getSoundsSelected }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(playlistTable)

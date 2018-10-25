@@ -1,6 +1,35 @@
 import React, { Component } from 'react';
 
 class Team extends Component {
+
+    componentWillMount() {
+        console.log('Component will mount')
+    }
+
+    componentDidMount() {
+        console.log('Component did mount')
+    }
+
+    componentWillUpdate() {
+        console.log('Component will update')
+    }
+    componentDidUpdate(){
+        console.log('Component did update')
+    }
+
+    componentWillReceiveProps() {
+        console.log('Component will receive props')
+    }
+
+    componentWillUnmount() {
+        console.log('Component will unmount')
+    }
+
+    shouldComponentUpdate() {
+        console.log('Should component update')
+    }
+
+    
     render() {
         return (
             <div className="container-fluid pt-5">
