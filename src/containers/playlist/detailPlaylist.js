@@ -19,14 +19,10 @@ class DetailPlaylist extends Component {
             uid: null,
             playlistID: '',
             selectedTracks: [],
-
         }
     }
 
-
-
     componentWillMount() {
-        //console.log('CWM',this.props)
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
             if (user) {
@@ -34,15 +30,9 @@ class DetailPlaylist extends Component {
                 this.setState({ playlistID: this.props.match.params })
                 this.props.editPlaylist(user.uid, this.props.match.params.id)
                 this.props.playlistTracks(user.uid, this.props.match.params.id)
-
             }
         })
     }
-
-    componentDidMount() {
-        //console.log('CDM', this.state)
-    }
-
 
     componentWillReceiveProps() {
         this.setState({ selectedTracks: this.props.listID })
@@ -50,10 +40,9 @@ class DetailPlaylist extends Component {
 
     render() {
 
-        const { list, soundsSelected, listID } = this.props
+        const { list, listID } = this.props
 
         return (
-
             <div className="container-fluid pt-5">
                 <div className="row">
                     <div className="container-fluid text-left pl-5">
@@ -82,7 +71,6 @@ class DetailPlaylist extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        soundsSelected: state.soundsSelected,
         list: state.list,
         listID: state.playlistTracks,
         tracks: state.tracks,

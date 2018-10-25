@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import VideoPlayer from '../../components/projects/videoPlayer'
 import VideoYoutube from '../../components/projects/videoYoutube'
-import Tracks from '../../components/projects/tracks'
+//import Tracks from '../../components/projects/tracks'
+import PlaylistTable from '../../components/playlist/table'
 import Header from '../../components/projects/header'
 import firebase from 'firebase/app'
 import 'firebase/auth'
@@ -10,6 +11,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editProject } from '../../actions/project'
 import { getPlaylists } from '../../actions/playlist'
+import Select from 'react-select'
+import { playlistTracks } from '../../actions/playlistTracks'
+
 
 
 const style = {
@@ -28,8 +32,25 @@ class DetailProject extends Component {
             projectID: '',
             isLogged: false,
             uid: null,
-            videoPlayer: null
+            videoPlayer: null,
+            selectedOption: null
         }
+    }
+
+
+    dataPlaylist = () => {
+        const playlists = this.props.playlists
+        const result = []
+        playlists.map((playlist) => {
+            return (
+                result.push({
+                    value: playlist.id,
+                    label: playlist.title
+                })
+            )
+        })
+        console.log(result)
+        return result
     }
 
     componentWillMount() {
@@ -41,27 +62,48 @@ class DetailProject extends Component {
                 this.setState({ projectID: this.props.match.params })
                 this.props.editProject(user.uid, this.props.match.params.id)
                 this.props.getPlaylists(user.uid)
+                //this.props.playlistTracks(user.uid, this.state.selectedOption)
             }
         })
 
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (this.state.selectedOption !== prevState.selectedOption) {
+            this.props.playlistTracks(this.state.uid, this.state.selectedOption)
+        }
+    }
+
     selectPlayer(type) {
-        this.setState({videoPlayer: null})
+        this.setState({ videoPlayer: null })
         if (type === 'youtube') {
             return (
                 this.setState({ videoPlayer: 'youtube' })
             )
-        } 
-        this.setState({ videoPlayer: 'videoplayer' })    
+        }
+        this.setState({ videoPlayer: 'videoplayer' })
+    }
+
+    handleChange = (selectedOption) => {
+        this.setState({ selectedOption: selectedOption.value });
+        console.log(`Option selected:`, selectedOption);
     }
 
     render() {
-        const { project, playlists } = this.props
+
+        const { selectedOption } = this.state
+        const { project, playlists, listID } = this.props
         const SelectPlayer = () => {
             return (
                 <div>
-                    <p className="lead">Choose your video player </p>
+                    <p>Import playlist :   {selectedOption ? selectedOption : 'undefined'}</p>
+                    <Select
+                        value={selectedOption}
+                        options={this.dataPlaylist()}
+                        onChange={this.handleChange}
+                    />
+                    <br />
+                    <p>Choose your video player </p>
                     <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
                         <button type="button" className="btn btn-secondary" onClick={() => this.selectPlayer('youtube')}>Youtube</button>
                         <button type="button" className="btn btn-secondary" onClick={() => this.selectPlayer('videoplayer')}>Video player</button>
@@ -80,8 +122,8 @@ class DetailProject extends Component {
                     </div>
                     {!this.state.videoPlayer ? <NoVideoPlayerSelected /> : null}
                     <div>
-                        { this.state.videoPlayer === 'youtube' ? <VideoYoutube /> : null }
-                        { this.state.videoPlayer === 'videoplayer' ? <VideoPlayer /> : null }   
+                        {this.state.videoPlayer === 'youtube' ? <VideoYoutube /> : null}
+                        {this.state.videoPlayer === 'videoplayer' ? <VideoPlayer /> : null}
                     </div>
                 </div>
 
@@ -116,8 +158,8 @@ class DetailProject extends Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-12"><Header playlists = {playlists}/></div>
-                        <div className="col-8"><Tracks /></div>
+                        <div className="col-12"><Header playlists={playlists} /></div>
+                        <div className="col-8"><PlaylistTable listID={listID} /></div>
                         <div className="col-4" style={style.video}><SelectPlayer /> </div>
                         <div className="col-12">footer playlist</div>
                     </div>
@@ -132,12 +174,13 @@ class DetailProject extends Component {
 const mapStateToProps = (state) => {
     return {
         project: state.project,
-        playlists: state.playlists
+        playlists: state.playlists,
+        listID: state.playlistTracks,
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editProject, getPlaylists }, dispatch)
+    return bindActionCreators({ editProject, getPlaylists, playlistTracks }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailProject)
