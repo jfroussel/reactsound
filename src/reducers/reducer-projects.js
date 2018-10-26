@@ -12,6 +12,8 @@ export default (state = projectsReducerDefaultState, action) => {
                 ...state,
                 action.playlist
             ];
+        case 'GET_PLAYLIST_IN_PROJECT':
+            return action.playlist;
         case 'REMOVE_PROJECT':
             return state.filter(({ id }) => id !== action.id)
         case 'GET_PROJECTS':

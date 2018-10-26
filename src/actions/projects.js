@@ -81,9 +81,8 @@ export const addPlaylistInProject = (uid, id, playlistData = {
 }) => {
     return (dispatch) => {
         const playlist = playlistData
-        return firebase.database().ref('members/' + uid + '/projects/' + id +'/playlists/').push(playlist).then((ref) => {
+        return firebase.database().ref('members/' + uid + '/projects/' + id +'/playlist/').set(playlist).then(() => {
             dispatch(_addPlaylistInProject({
-                id:ref.key,
                 ...playlist
             }))
             dispatch(showSnack(uid, {
@@ -91,6 +90,24 @@ export const addPlaylistInProject = (uid, id, playlistData = {
                 timeout: 5000,
                 button: { label: 'OK, GOT IT' }
             }));
+        });
+       
+    };
+};
+
+const _getPlaylistInProject = (uid, playlist) => ({
+    type: 'GET_PLAYLIST_IN_PROJECT',
+    playlist
+
+});
+export const getPlaylistInProject = (uid, id) => {
+    return (dispatch) => {
+        return firebase.database().ref(`members/${uid}/projects/${id}/playlist`).once('value').then(snapshot => {
+
+            const playlist = snapshot.val()
+           
+            console.log('ACTION GET PLAYLIST IN PROJECT', playlist)
+            dispatch(_getPlaylistInProject(uid, playlist));
         });
     };
 };

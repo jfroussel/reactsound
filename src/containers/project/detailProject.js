@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { editProject } from '../../actions/project'
 import { getPlaylists } from '../../actions/playlist'
-import { addPlaylistInProject} from '../../actions/projects'
+import { addPlaylistInProject, getPlaylistInProject } from '../../actions/projects'
 import Select from 'react-select'
 import { playlistTracks } from '../../actions/playlistTracks'
 
@@ -26,6 +26,7 @@ class DetailProject extends Component {
         super(props)
         this.state = {
             projectID: '',
+            defaultListID: [],
             isLogged: false,
             uid: null,
             videoPlayer: null,
@@ -45,7 +46,7 @@ class DetailProject extends Component {
                 })
             )
         })
-        console.log(result)
+       
         return result
     }
 
@@ -58,18 +59,34 @@ class DetailProject extends Component {
                 this.setState({ projectID: this.props.match.params })
                 this.props.editProject(user.uid, this.props.match.params.id)
                 this.props.getPlaylists(user.uid)
-                //this.props.playlistTracks(user.uid, this.state.selectedOption)
+                
+               
             }
         })
+        
+    }
 
+   
+
+    componentWillReceiveProps() {
+        //this.props.getPlaylistInProject(this.state.uid, this.props.match.params.id)
     }
 
     componentDidUpdate(prevProps, prevState) {
-        const id = '-LNU61zqdBEAsG_6Owqh' 
+       
         if (this.state.selectedOption !== prevState.selectedOption) {
             this.props.playlistTracks(this.state.uid, this.state.selectedOption)
-            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, this.props.listID)
         }
+        
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        if (this.props.listID !== nextProps.listID) {
+            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, nextProps.listID)
+            
+        }
+        // recuperation de la playlist du projet dans firebase
+        this.props.getPlaylistInProject(this.state.uid, this.props.match.params.id)
     }
 
     selectPlayer(type) {
@@ -83,7 +100,7 @@ class DetailProject extends Component {
     }
 
     handleChange = (selectedOption) => {
-        
+
         this.setState({ selectedOption: selectedOption.value });
         console.log(`Option selected:`, selectedOption);
     }
@@ -92,6 +109,9 @@ class DetailProject extends Component {
 
         const { selectedOption } = this.state
         const { project, playlists, listID } = this.props
+
+        console.log('RENDER' , this.props)
+
         const SelectPlayer = () => {
             return (
                 <div>
@@ -175,12 +195,13 @@ const mapStateToProps = (state) => {
         project: state.project,
         playlists: state.playlists,
         listID: state.playlistTracks,
-        addPlaylistInProject: state.addPlaylistInProject
+        addPlaylistInProject: state.addPlaylistInProject,
+        getPlaylistInProject: getPlaylistInProject
     };
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ editProject, playlistTracks, getPlaylists, addPlaylistInProject }, dispatch)
+    return bindActionCreators({ editProject, playlistTracks, getPlaylists, addPlaylistInProject, getPlaylistInProject }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailProject)
