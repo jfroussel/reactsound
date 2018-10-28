@@ -59,31 +59,19 @@ class DetailProject extends Component {
                 this.setState({ projectID: this.props.match.params })
                 this.props.editProject(user.uid, this.props.match.params.id)
                 this.props.getPlaylists(user.uid)
-                
-               
             }
         })
-        
-    }
-
-   
-
-    componentWillReceiveProps() {
-        //this.props.getPlaylistInProject(this.state.uid, this.props.match.params.id)
     }
 
     componentDidUpdate(prevProps, prevState) {
-       
         if (this.state.selectedOption !== prevState.selectedOption) {
             this.props.playlistTracks(this.state.uid, this.state.selectedOption)
-        }
-        
+        } 
     }
 
     componentWillUpdate(nextProps, nextState) {
         if (this.props.listID !== nextProps.listID) {
-            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, nextProps.listID)
-            
+            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, nextProps.listID) 
         }
         // recuperation de la playlist du projet dans firebase
         this.props.getPlaylistInProject(this.state.uid, this.props.match.params.id)
@@ -110,7 +98,8 @@ class DetailProject extends Component {
         const { selectedOption } = this.state
         const { project, playlists, listID } = this.props
 
-        console.log('RENDER' , this.props)
+        console.log('RENDER project' , project.playlist)
+        console.log('RENDER listID' , listID)
 
         const SelectPlayer = () => {
             return (
@@ -178,7 +167,7 @@ class DetailProject extends Component {
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-12"><Header playlists={playlists} /></div>
-                        <div className="col-8"><PlaylistTable listID={listID} /></div>
+                        <div className="col-8"><PlaylistTable listID={!this.state.selectedOption ? project.playlist : listID} /></div>
                         <div className="col-4" style={style.video}><SelectPlayer /> </div>
                         <div className="col-12">footer playlist</div>
                     </div>
