@@ -78,10 +78,7 @@ class playlistTable extends Component {
 
 
         const SubComponent = (props) => {
-
-
             const id = props.id
-
             return (
                 <div className="row" style={style.subComponent}>
                    
