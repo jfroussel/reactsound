@@ -34,7 +34,6 @@ class DetailProject extends Component {
         }
     }
 
-
     dataPlaylist = () => {
         const playlists = this.props.playlists
         const result = []
@@ -46,7 +45,6 @@ class DetailProject extends Component {
                 })
             )
         })
-       
         return result
     }
 
@@ -66,12 +64,12 @@ class DetailProject extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (this.state.selectedOption !== prevState.selectedOption) {
             this.props.playlistTracks(this.state.uid, this.state.selectedOption)
-        } 
+        }
     }
 
     componentWillUpdate(nextProps, nextState) {
         if (this.props.listID !== nextProps.listID) {
-            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, nextProps.listID) 
+            this.props.addPlaylistInProject(this.state.uid, this.props.match.params.id, nextProps.listID)
         }
         // recuperation de la playlist du projet dans firebase
         this.props.getPlaylistInProject(this.state.uid, this.props.match.params.id)
@@ -92,7 +90,6 @@ class DetailProject extends Component {
     }
 
     render() {
-
         const { selectedOption } = this.state
         const { project, playlists, listID } = this.props
         const SelectPlayer = () => {
@@ -145,11 +142,9 @@ class DetailProject extends Component {
             <div className="container-fluid pt-5">
                 <div className="row">
                     <div className="container-fluid text-left pl-5">
-
                         <NavLink className="btn btn-sm btn-secondary" to='/projects' activeClassName='activeNav'>
                             Return projects
-                            </NavLink>
-
+                        </NavLink>
                     </div>
                     <div className="col-sm-12 text-center">
                         <h3 className="text-uppercase">{project.title}</h3>
