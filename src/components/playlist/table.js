@@ -23,11 +23,6 @@ class playlistTable extends Component {
         
     }
    
-    
-    componentWillMount() {
-        console.log('CWM', this.props)
-    }
-    
     componentDidUpdate(prevProps) {
         if(this.props.listID !== prevProps.listID) {
             this.props.getSoundsSelected(this.props.listID)

@@ -91,22 +91,17 @@ export const addPlaylistInProject = (uid, id, playlistData = {
                 button: { label: 'OK, GOT IT' }
             }));
         });
-       
     };
 };
 
 const _getPlaylistInProject = (uid, playlist) => ({
     type: 'GET_PLAYLIST_IN_PROJECT',
     playlist
-
 });
 export const getPlaylistInProject = (uid, id) => {
     return (dispatch) => {
         return firebase.database().ref(`members/${uid}/projects/${id}/playlist`).once('value').then(snapshot => {
-
-            const playlist = snapshot.val()
-           
-            console.log('ACTION GET PLAYLIST IN PROJECT', playlist)
+            const playlist = snapshot.val() 
             dispatch(_getPlaylistInProject(uid, playlist));
         });
     };

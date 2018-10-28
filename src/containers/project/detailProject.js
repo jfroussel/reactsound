@@ -30,7 +30,7 @@ class DetailProject extends Component {
             isLogged: false,
             uid: null,
             videoPlayer: null,
-            selectedOption: null
+            selectedOption: null,
         }
     }
 
@@ -88,23 +88,17 @@ class DetailProject extends Component {
     }
 
     handleChange = (selectedOption) => {
-
-        this.setState({ selectedOption: selectedOption.value });
-        console.log(`Option selected:`, selectedOption);
+        this.setState({ selectedOption: selectedOption.value, selectedOptionLabel: selectedOption.label });
     }
 
     render() {
 
         const { selectedOption } = this.state
         const { project, playlists, listID } = this.props
-
-        console.log('RENDER project' , project.playlist)
-        console.log('RENDER listID' , listID)
-
         const SelectPlayer = () => {
             return (
                 <div>
-                    <p>Import playlist :   {selectedOption ? selectedOption : 'undefined'}</p>
+                    <p>Import playlist :   {selectedOption ? this.state.selectedOptionLabel : 'undefined'}</p>
                     <Select
                         value={selectedOption}
                         options={this.dataPlaylist()}
