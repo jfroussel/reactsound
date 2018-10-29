@@ -4,7 +4,6 @@ import "react-table/react-table.css"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getStorageTrack } from '../../actions/storageTrack'
-import WaveSurfer from 'wavesurfer.js'
 
 const style = {
     wave: {

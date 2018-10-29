@@ -1,6 +1,6 @@
 const style = {
     wave: {
-        position:'inherit !important'
+        //position:'inherit !important'
     },
     icon: {
         fontSize: 25,

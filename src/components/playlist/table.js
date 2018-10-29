@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getStorageTrack } from '../../actions/storageTrack'
 import { getSoundsSelected } from '../../actions/soundsSelected'
-import WaveSurfer from 'wavesurfer.js'
+import Wave from './wave'
 
 const style = {
-    wave: {
-        position: 'inherit !important'
-    },
+    table: {}
 }
 
 class playlistTable extends Component {
@@ -20,42 +17,13 @@ class playlistTable extends Component {
         this.state = {
             activePlay: false,
         }
-        this.playPause = this.playPause.bind(this)
-        this.pause = this.pause.bind(this)
-
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.listID !== prevProps.listID) {
             this.props.getSoundsSelected(this.props.listID)
+
         }
-    }
-
-    componentDidMount() {
-        this.$el = ReactDOM.findDOMNode(this)
-        this.$waveform = this.$el.querySelector('.wave')
-        this.$timelineform = this.$el.querySelector('.wave-timeline')
-        this.wavesurfer = WaveSurfer.create({
-            container: this.$waveform,
-            waveColor: '#17a2b8',
-            progressColor: '#056271',
-            height: 60,
-        })
-
-        const src = 'https://firebasestorage.googleapis.com/v0/b/myapp-a124d.appspot.com/o/A.Del%2F_Wild%20Fire_%20EpicOrchestral%20Em%2080bpm.mp3?alt=media&token=d368ce80-d145-4fcc-bbc3-9660c68662f5'
-        this.wavesurfer.load(src)
-    }
-
-    playPause() {
-        return (
-            this.wavesurfer.playPause()
-        )
-    }
-
-    pause() {
-        return (
-            this.wavesurfer.pause()
-        )
     }
 
     render() {
@@ -78,16 +46,12 @@ class playlistTable extends Component {
 
 
         const SubComponent = (props) => {
-            const id = props.id
             return (
-                <div className="row" style={style.subComponent}>
-                   
-                </div>
+                <Wave />
             )
         }
         return (
             <div>
-                <div className="wave"> </div>
                 <div>
                     <ReactTable
                         data={soundsSelected}
@@ -101,8 +65,8 @@ class playlistTable extends Component {
                                         Expander: ({ isExpanded, ...rest }) =>
                                             <div >
                                                 {isExpanded
-                                                    ? <div onClick={this.pause} data-tip="" ><i className="material-icons" >pause_circle_outline</i></div>
-                                                    : <div onClick={this.playPause} data-tip="Expend for more infos" ><i className="material-icons">play_circle_outline</i></div>}
+                                                    ? <div  data-tip="" ><i className="material-icons" >pause_circle_outline</i></div>
+                                                    : <div  data-tip="Expend for more infos" ><i className="material-icons">play_circle_outline</i></div>}
                                             </div>,
                                         style: {
                                             cursor: "pointer",
@@ -157,7 +121,19 @@ class playlistTable extends Component {
                                             color: '#000'
                                         }
 
+
                                     },
+                                    {
+                                        
+                                        Cell: row => (
+                                           <button className="btn btn-sm btn-warning">buy</button>
+                                        )
+                                            
+                                               
+                                            
+                                        
+                                    },
+
 
                                 ]
                             },
@@ -167,7 +143,6 @@ class playlistTable extends Component {
                         className="-striped -highlight"
                         getTdProps={onRowClick}
                         SubComponent={(row) => <div style={{ padding: '10px' }}><SubComponent id={row.index} /></div>}
-
                         collapseOnDataChange={false}
                         collapseOnSortingChange={true}
                         showPaginationBottom
