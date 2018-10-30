@@ -26,17 +26,16 @@ class playlistTable extends Component {
         }
     }
 
+
     render() {
-        const { soundsSelected } = this.props
+
+        console.log('PROPS ', this.props)
+        const { soundsSelected, track } = this.props
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
                 onClick: (e, handleOriginal) => {
                     console.log(rowInfo)
-                    let filename = ''
-                    const id = rowInfo.index
-                    const author = state.data[id].author
-                    filename = state.data[id].filename
-                    //filename && this.props.getStorageTrack(author, filename)
+                  
                     if (handleOriginal) {
                         handleOriginal()
                     }
@@ -46,9 +45,15 @@ class playlistTable extends Component {
 
 
         const SubComponent = (props) => {
+            console.log('SUB COMPONANT PROPS', props)
+            const author = props.author
+            const filename = props.filename
+            this.props.getStorageTrack(author, filename)
             return (
-                <Wave />
+                <Wave src={track} />
             )
+
+
         }
         return (
             <div>
@@ -57,7 +62,6 @@ class playlistTable extends Component {
                         data={soundsSelected}
                         columns={[
                             {
-
                                 columns: [
                                     {
                                         expander: true,
@@ -65,8 +69,8 @@ class playlistTable extends Component {
                                         Expander: ({ isExpanded, ...rest }) =>
                                             <div >
                                                 {isExpanded
-                                                    ? <div  data-tip="" ><i className="material-icons" >pause_circle_outline</i></div>
-                                                    : <div  data-tip="Expend for more infos" ><i className="material-icons">play_circle_outline</i></div>}
+                                                    ? <div data-tip="" ><i className="material-icons" >pause_circle_outline</i></div>
+                                                    : <div data-tip="Expend for more infos" ><i className="material-icons">play_circle_outline</i></div>}
                                             </div>,
                                         style: {
                                             cursor: "pointer",
@@ -96,7 +100,6 @@ class playlistTable extends Component {
                                         style: {
                                             color: '#000'
                                         }
-
                                     },
                                     {
                                         Header: "Length",
@@ -104,7 +107,6 @@ class playlistTable extends Component {
                                         style: {
                                             color: '#000'
                                         }
-
                                     },
                                     {
                                         Header: "BPM",
@@ -112,7 +114,6 @@ class playlistTable extends Component {
                                         style: {
                                             color: '#000'
                                         }
-
                                     },
                                     {
                                         Header: "Tone",
@@ -120,18 +121,11 @@ class playlistTable extends Component {
                                         style: {
                                             color: '#000'
                                         }
-
-
                                     },
                                     {
-                                        
                                         Cell: row => (
-                                           <button className="btn btn-sm btn-warning">buy</button>
+                                            <button className="btn btn-sm btn-warning">buy</button>
                                         )
-                                            
-                                               
-                                            
-                                        
                                     },
 
 
@@ -142,7 +136,7 @@ class playlistTable extends Component {
                         style={style.table}
                         className="-striped -highlight"
                         getTdProps={onRowClick}
-                        SubComponent={(row) => <div style={{ padding: '10px' }}><SubComponent id={row.index} /></div>}
+                        SubComponent={(row) => <div style={{ padding: '10px' }}><SubComponent id={row.index} refID={row.original.id} author={row.original.author} filename={row.original.filename} /></div>}
                         collapseOnDataChange={false}
                         collapseOnSortingChange={true}
                         showPaginationBottom

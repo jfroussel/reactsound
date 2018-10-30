@@ -17,12 +17,13 @@ class Wave extends Component {
         this.pause = this.pause.bind(this)
         this.addRegion = this.addRegion.bind(this)
         this.removeRegion = this.removeRegion.bind(this)
+        this.play = this.play.bind(this)
 
 
     }
 
     componentDidMount() {
-        const src = 'https://firebasestorage.googleapis.com/v0/b/myapp-a124d.appspot.com/o/_Wide_%20Cinematic%20F%23%20192bpm.mp3?alt=media&token=f5334fc6-6131-4956-bc21-9cee26d8c8a8'
+        const src = this.props.src
         this.$el = ReactDOM.findDOMNode(this)
         this.$waveform = this.$el.querySelector('.wave')
         this.$timelineform = this.$el.querySelector('.wave-timeline')
@@ -36,7 +37,7 @@ class Wave extends Component {
                     container: '.wave-timeline'
                 }),
                 RegionsPlugin.create({
-                   
+
                 })
             ]
         })
@@ -59,10 +60,14 @@ class Wave extends Component {
                 end: 10,
                 color: 'hsla(400, 100%, 30%, 0.1)'
             });
+
         })
 
     }
 
+    play() {
+        this.wavesurfer.playPause()
+    }
     addRegion() {
         this.wavesurfer.addRegion({
             start: 8,
@@ -73,6 +78,10 @@ class Wave extends Component {
 
     removeRegion() {
         this.wavesurfer.clearRegions()
+    }
+
+    handleClickRegion() {
+        this.wavesurfer.playLoop()
     }
 
     playPause() {
@@ -98,8 +107,12 @@ class Wave extends Component {
             <div className="col-12">
                 <div className='wave' > </div>
                 <div className='wave-timeline'  > </div>
-                <button onClick={this.addRegion} className="btn btn-sm btn-primary">add Region</button>
-                <button onClick={this.removeRegion} className="btn btn-sm btn-primary ml-2">remove Region</button>
+                <div className="pt-2">
+                    <button onClick={this.addRegion} className="btn btn-sm btn-primary">add Region</button>
+                    <button onClick={this.removeRegion} className="btn btn-sm btn-primary ml-2">remove Region</button>
+                    <button onClick={this.play} className="btn btn-sm btn-primary ml-2">play</button>
+                </div>
+
             </div>
         )
     }
