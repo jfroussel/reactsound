@@ -155,7 +155,7 @@ class DetailProject extends Component {
                 </div>
                 <div className="container-fluid">
                     <div className="row">
-                        <div className="col-12"><Header playlists={playlists} /></div>
+                        
                         <div className="col-8"><PlaylistTable listID={!this.state.selectedOption ? project.playlist : listID} /></div>
                         <div className="col-4" style={style.video}><SelectPlayer /> </div>
                         <div className="col-12">footer playlist</div>

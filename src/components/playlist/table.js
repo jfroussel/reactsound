@@ -8,6 +8,7 @@ import { getSoundsSelected } from '../../actions/soundsSelected'
 import Wave from './wave'
 
 
+
 const style = {
     table: {}
 }
@@ -17,6 +18,7 @@ class playlistTable extends Component {
         super(props)
         this.state = {
             activePlay: false,
+            isActiveSubComponant: false
         }
     }
 
@@ -27,6 +29,9 @@ class playlistTable extends Component {
         }
     }
 
+    isActiveSubComponant() {
+
+    }
 
     render() {
 
@@ -49,6 +54,7 @@ class playlistTable extends Component {
             console.log('SUB COMPONANT PROPS', props)
             const author = props.author
             const filename = props.filename
+            
             this.props.getStorageTrack(author, filename)
             return (
                 <Wave src={track} />
@@ -70,8 +76,8 @@ class playlistTable extends Component {
                                         Expander: ({ isExpanded, ...rest }) =>
                                             <div >
                                                 {isExpanded
-                                                    ? <div data-tip="" ><i className="material-icons" >pause_circle_outline</i></div>
-                                                    : <div data-tip="Expend for more infos" ><i className="material-icons">play_circle_outline</i></div>}
+                                                    ? <div data-tip="" ><i className="material-icons" >keyboard_arrow_down</i></div>
+                                                    : <div data-tip="Expend for more infos" ><i className="material-icons">keyboard_arrow_right</i></div>}
                                             </div>,
                                         style: {
                                             cursor: "pointer",
@@ -123,12 +129,7 @@ class playlistTable extends Component {
                                             color: '#000'
                                         }
                                     },
-                                    {
-                                        Cell: row => (
-                                            <button className="btn btn-sm btn-warning">buy</button>
-                                        )
-                                    },
-
+                                   
 
                                 ]
                             },
