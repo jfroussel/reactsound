@@ -23,13 +23,11 @@ class playlistTable extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log('CDU', this.props, prevProps)
         if (this.props.listID !== prevProps.listID) {
             this.props.getSoundsSelected(this.props.listID)
-
         }
-    }
 
-    isActiveSubComponant() {
 
     }
 
@@ -41,7 +39,7 @@ class playlistTable extends Component {
             return {
                 onClick: (e, handleOriginal) => {
                     console.log(rowInfo)
-                  
+
                     if (handleOriginal) {
                         handleOriginal()
                     }
@@ -49,19 +47,16 @@ class playlistTable extends Component {
             };
         };
 
-
         const SubComponent = (props) => {
             console.log('SUB COMPONANT PROPS', props)
             const author = props.author
             const filename = props.filename
-            
             this.props.getStorageTrack(author, filename)
             return (
                 <Wave src={track} />
             )
-
-
         }
+
         return (
             <div>
                 <div>
@@ -71,7 +66,7 @@ class playlistTable extends Component {
                             {
                                 columns: [
                                     {
-                                        expander: true,
+                                        expander: false,
                                         width: 65,
                                         Expander: ({ isExpanded, ...rest }) =>
                                             <div >
@@ -129,7 +124,7 @@ class playlistTable extends Component {
                                             color: '#000'
                                         }
                                     },
-                                   
+
 
                                 ]
                             },
@@ -138,10 +133,17 @@ class playlistTable extends Component {
                         style={style.table}
                         className="-striped -highlight"
                         getTdProps={onRowClick}
-                        SubComponent={(row) => <div style={{ padding: '10px' }}><SubComponent id={row.index} refID={row.original.id} author={row.original.author} filename={row.original.filename} /></div>}
+                        SubComponent={(row) => {
+                            return (
+                                <div style={{ padding: '10px' }}>
+                                    <SubComponent id={row.index} refID={row.original.id} author={row.original.author} filename={row.original.filename} />
+                                </div>
+                            )
+                        }}
                         collapseOnDataChange={false}
                         collapseOnSortingChange={true}
                         showPaginationBottom
+
                     />
                 </div>
             </div>

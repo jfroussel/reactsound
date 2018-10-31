@@ -5,7 +5,6 @@ import TimelinePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js
 import RegionsPlugin from 'wavesurfer.js/dist/plugin/wavesurfer.regions';
 import Loader from 'react-loader-spinner'
 
-
 class Wave extends Component {
     constructor(props) {
         super(props)
@@ -23,11 +22,6 @@ class Wave extends Component {
 
     }
 
-
-    componentWillMount() {
-
-    }
-
     componentDidMount() {
 
         const src = this.props.src
@@ -36,13 +30,18 @@ class Wave extends Component {
         this.$timelineform = this.$el.querySelector('.wave-timeline')
         this.wavesurfer = WaveSurfer.create({
             container: this.$waveform,
-            waveColor: '#17a2b8',
-            progressColor: '#056271',
+            waveColor: '#6c757d9c',
+            progressColor: '#6c757d',
             height: 60,
             plugins: [
                 TimelinePlugin.create({
                     container: '.wave-timeline',
-                    primaryColor: '#dc3545',
+                    fontFamily: 'Montserrat',
+                    primaryColor: '#343a40',
+                    secondaryColor: '#343a40',
+                    primaryFontColor: '#343a40',
+                    secondaryFontColor: '#343a40',
+                    notchPercentHeight: 60
 
                 }),
                 RegionsPlugin.create({
@@ -52,13 +51,17 @@ class Wave extends Component {
         })
         this.wavesurfer.load(src)
 
-        this.wavesurfer.on('ready', () => { this.setState({ isReady: true }) })
+        this.wavesurfer.on('ready', () => { 
+            this.setState({ isReady: true }) 
+            this.wavesurfer.enableDragSelection({});
+        })
 
+        this.wavesurfer.on('region-click', (region, e) => {
+            e.stopPropagation();
+            this.wavesurfer.play(region.start, region.end);
+        });
 
     }
-
-
-
 
     play() {
         this.setState({ activePlay: true })

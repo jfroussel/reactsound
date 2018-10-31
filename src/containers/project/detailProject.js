@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom'
 import VideoPlayer from '../../components/projects/videoPlayer'
 import VideoYoutube from '../../components/projects/videoYoutube'
 import PlaylistTable from '../../components/playlist/table'
-import Header from '../../components/projects/header'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { connect } from 'react-redux'
@@ -91,7 +90,7 @@ class DetailProject extends Component {
 
     render() {
         const { selectedOption } = this.state
-        const { project, playlists, listID } = this.props
+        const { project, listID } = this.props
         const SelectPlayer = () => {
             return (
                 <div>
