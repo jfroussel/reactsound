@@ -82,7 +82,7 @@ class Wave extends Component {
         this.wavesurfer.addRegion({
             start: 8,
             end: 30,
-            color: 'rgba(111, 66, 193, 0.53)'
+            color: '#28a74578'
         })
     }
 
