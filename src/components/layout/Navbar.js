@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { editCart } from '../../actions/cart'
 import Logo from '../../assets/logo.png'
 import { NavLink } from 'react-router-dom'
 import firebase from 'firebase/app'
@@ -11,8 +14,6 @@ const style = {
     loginIcon: {
         fontSize: 35,
         marginTop: -6,
-       
-       
     },
     navbar: {
         borderBottom: '1px solid #0000001a',
@@ -30,11 +31,10 @@ class Home extends Component {
         }
     }
 
-
-
     componentWillMount() {
         firebase.auth().onAuthStateChanged((user) => {
             user ? this.setState({ isLogged: true }) : this.setState({ isLogged: false })
+            this.props.editCart(user.uid)
         });
     }
 
@@ -45,6 +45,9 @@ class Home extends Component {
     }
 
     render() {
+        console.log(this.props)
+        const { cart } = this.props
+
         return (
             <nav className="navbar navbar-expand-lg navbar-light fixed-top" style={style.navbar}>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
@@ -109,7 +112,7 @@ class Home extends Component {
                             </NavLink>
 
                             <span className="cart-notification">
-                                2
+                                {cart.length}
                             </span>
                         </div>
                     </ul>
@@ -120,5 +123,15 @@ class Home extends Component {
     }
 }
 
-export default Home
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart,
+    };
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ editCart }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
 

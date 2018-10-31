@@ -7,8 +7,6 @@ import { getStorageTrack } from '../../actions/storageTrack'
 import { getSoundsSelected } from '../../actions/soundsSelected'
 import Wave from './wave'
 
-
-
 const style = {
     table: {}
 }
@@ -23,7 +21,6 @@ class playlistTable extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log('CDU', this.props, prevProps)
         if (this.props.listID !== prevProps.listID) {
             this.props.getSoundsSelected(this.props.listID)
         }
@@ -32,8 +29,7 @@ class playlistTable extends Component {
     }
 
     render() {
-
-        console.log('PROPS ', this.props)
+       console.log('TABLE', this.props)
         const { soundsSelected, track } = this.props
         const onRowClick = (state, rowInfo, column, instance) => {
             return {
@@ -48,12 +44,11 @@ class playlistTable extends Component {
         };
 
         const SubComponent = (props) => {
-            console.log('SUB COMPONANT PROPS', props)
             const author = props.author
             const filename = props.filename
             this.props.getStorageTrack(author, filename)
             return (
-                <Wave src={track} />
+                <Wave src={track} uid={this.props.uid} info={props} />
             )
         }
 

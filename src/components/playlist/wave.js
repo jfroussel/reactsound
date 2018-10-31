@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { addToCart } from '../../actions/cart'
 import WaveSurfer from 'wavesurfer.js'
 import TimelinePlugin from 'wavesurfer.js/dist/plugin/wavesurfer.timeline.min.js';
 import RegionsPlugin from 'wavesurfer.js/dist/plugin/wavesurfer.regions';
@@ -19,6 +22,7 @@ class Wave extends Component {
         this.removeRegion = this.removeRegion.bind(this)
         this.play = this.play.bind(this)
         this.stop = this.stop.bind(this)
+        this.addToCart = this.addToCart.bind(this)
 
     }
 
@@ -94,9 +98,17 @@ class Wave extends Component {
         this.wavesurfer.playLoop()
     }
 
+    addToCart(uid,info) {
+        console.log('add to cart', JSON.stringify(info,null,2))
+        return (
+            this.props.addToCart(uid,info)
+            
+        )
+    }
+
 
     render() {
-
+        console.log('WAVE', this.props)
         return (
             <div className="col-12">
                 <div className="text-center">
@@ -110,8 +122,8 @@ class Wave extends Component {
                     <button onClick={this.play} className="btn btn-sm btn-secondary ml-2">play</button>
                     <button onClick={this.pause} className="btn btn-sm btn-secondary ml-2">pause</button>
                     <button onClick={this.stop} className="btn btn-sm btn-secondary ml-2">stop</button>
+                    <button onClick={() => this.addToCart(this.props.uid,this.props.info)} className="btn btn-sm btn-secondary ml-2">add to cart</button>
                 </div>
-
             </div>
         )
     }
@@ -120,6 +132,16 @@ class Wave extends Component {
 Wave.defaultProps = {
     src: ""
 }
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cart,
+        
+    };
+}
 
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ addToCart }, dispatch)
+}
 
-export default Wave
+export default connect(mapStateToProps, mapDispatchToProps)(Wave)
+
